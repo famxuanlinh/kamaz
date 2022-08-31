@@ -1,0 +1,39 @@
+@import 'normalize.css';
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Serif:opsz,wght@8..144,100;8..144,200;8..144,300;8..144,400;8..144,500;8..144,600;8..144,700&display=swap');
+
+:root {
+    --primary-color: #1f3f81;
+    --text-color-dark: #1f1f1f;
+    --text-color-white: #fff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html {
+    font-size: 62.5%;
+}
+body {
+    font-family: 'Roboto Serif', serif;
+    font-size: 1.6rem;
+    line-height: 1.5;
+    text-rendering: optimizeSpeed;
+}
+
+//Crollbar
+html *::-webkit-scrollbar {
+    border-radius: 0;
+    width: 8px;
+}
+
+html *::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: rgb(128 128 133);
+}
+
+html *::-webkit-scrollbar-track {
+    border-radius: 4px;
+    background-color: rgb(176 176 176);
+}
