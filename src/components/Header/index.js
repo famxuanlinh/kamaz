@@ -1,15 +1,81 @@
-import React from 'react';
-import classNames from 'classnames/bind';
-import styles from './Header.module.scss';
-import { Button } from 'reactstrap';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBagShopping, faMagnifyingGlass, faUser } from '@fortawesome/free-solid-svg-icons';
 
-const cx = classNames.bind(styles);
+const Wrapper = styled.div`
+    background-color: var(--primary-color);
+    width: 100%;
+    height: 61px;
+    position: relative;
+    font-size: 20px;
+`;
+
+const Container = styled.div`
+    max-width: var(--width-size);
+    height: 100%;
+    padding: auto;
+    margin: auto;
+    position: relative;
+`;
+// const Inner = styled.div`
+//     justify-content: center;
+//     align-items: center;
+//     height: 100%;
+// `;
 
 const Header = () => {
     return (
-        <header className={cx('wrapper')}>
-            <Button color="danger">Danger!</Button>
-        </header>
+        <Wrapper>
+            <Container>
+                <nav class="navbar navbar-expand-lg navbar-dark py-3 fixed-top " style={{ height: '61px' }}>
+                    <div class="container">
+                        <a class="navbar-brand" href="#" style={{ fontSize: '30px' }}>
+                            KAMAZ
+                            <FontAwesomeIcon icon={faMagnifyingGlass} />
+                            <FontAwesomeIcon icon={faBagShopping} />
+                            <FontAwesomeIcon icon={faUser} />
+                        </a>
+                        <button
+                            class="navbar-toggler"
+                            type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#navbarSupportedContent"
+                            aria-controls="navbarSupportedContent"
+                            aria-expanded="false"
+                            aria-label="Toggle navigation"
+                        >
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <form class="d-flex ms-auto mb-2 mb-lg-0 mx-3">
+                                <input
+                                    class="form-control me-2"
+                                    type="search"
+                                    placeholder="Search"
+                                    aria-label="Search"
+                                />
+                                <button class="btn btn-outline-success" type="submit">
+                                    Search
+                                </button>
+                            </form>
+                            <ul class="navbar-nav ">
+                                <li class="nav-item dropdown">
+                                    <button type="button" class="btn btn-primary position-relative">
+                                        Inbox
+                                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                            99+
+                                            <span class="visually-hidden">unread messages</span>
+                                        </span>
+                                    </button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+            </Container>
+        </Wrapper>
     );
 };
 
