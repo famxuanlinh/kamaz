@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBagShopping, faMagnifyingGlass, faUser } from '@fortawesome/free-solid-svg-icons';
 
 const Wrapper = styled.div`
-    background-color: var(--primary-color);
+    background-color: var(--secondary-color);
     width: 100%;
     height: 61px;
     position: relative;
@@ -33,9 +33,6 @@ const Header = () => {
                     <div class="container">
                         <a class="navbar-brand" href="#" style={{ fontSize: '30px' }}>
                             KAMAZ
-                            <FontAwesomeIcon icon={faMagnifyingGlass} />
-                            <FontAwesomeIcon icon={faBagShopping} />
-                            <FontAwesomeIcon icon={faUser} />
                         </a>
                         <button
                             class="navbar-toggler"
@@ -61,15 +58,26 @@ const Header = () => {
                                 </button>
                             </form>
                             <ul class="navbar-nav ">
-                                <li class="nav-item dropdown">
-                                    <button type="button" class="btn btn-primary position-relative">
-                                        Inbox
+                                <Link to="/">
+                                    <li class="nav-item dropdown">
+                                        <FontAwesomeIcon icon={faMagnifyingGlass} />
+                                    </li>
+                                </Link>
+
+                                <Link to="/">
+                                    <li class="nav-item dropdown p1">
+                                        <FontAwesomeIcon icon={faBagShopping} />
                                         <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                                            99+
+                                            99
                                             <span class="visually-hidden">unread messages</span>
                                         </span>
-                                    </button>
-                                </li>
+                                    </li>
+                                </Link>
+                                <Link to="/">
+                                    <li class="nav-item dropdown">
+                                        <FontAwesomeIcon icon={faUser} />
+                                    </li>
+                                </Link>
                             </ul>
                         </div>
                     </div>
