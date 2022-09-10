@@ -1,0 +1,21 @@
+.wrapper {
+    background-color: var(--secondary-color);
+
+    width: 100%;
+}
+
+.inner {
+    max-width: var(--width-size);
+    padding: auto;
+    margin: auto;
+}
+
+.phone-icon {
+    padding-right: 10px;
+}
+
+.recall::after {
+    content: ' ';
+    padding: 0 15px;
+    border-right: 1px solid grey;
+}
