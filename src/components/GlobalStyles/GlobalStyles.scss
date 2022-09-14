@@ -94,3 +94,14 @@ html *::-webkit-scrollbar-track {
     border-radius: 4px;
     background-color: rgb(176 176 176);
 }
+
+.container {
+    max-width: 1176px;
+}
+
+.modal-dialog {
+    width: 400px;
+    position: fixed;
+    margin: 0;
+    border-radius: 0;
+}

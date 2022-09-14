@@ -3,6 +3,7 @@ import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBagShopping, faHeart, faSearch, faUser } from '@fortawesome/free-solid-svg-icons';
+import Search from '~/components/Search';
 
 const Navbar = ({ direction, ...args }) => {
     const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -14,18 +15,9 @@ const Navbar = ({ direction, ...args }) => {
                 <Link className="navbar-brand col" to="/">
                     <img src="https://kamaztrade.com/sites/all/themes/jipn/images/logo.png" alt="kamaz" height="60" />
                 </Link>
-                <form className="d-none d-lg-flex border border-1 rounded col-6 p-0">
-                    <input
-                        className="form-control me-2 p-3 border-0"
-                        type="search"
-                        placeholder="Search"
-                        aria-label="Search"
-                        style={{ fontSize: '14px', border: 'none' }}
-                    />
-                    <button className="btn border-0 btn-dark rounded-end px-5" type="submit">
-                        <FontAwesomeIcon icon={faSearch} style={{ fontSize: '24px' }} />
-                    </button>
-                </form>
+                <div className="col-6">
+                    <Search className="d-none d-lg-flex p-0 w-60" />
+                </div>
                 <div className="col d-flex flex-row-reverse">
                     <div className="d-flex align-items-center">
                         {true ? (

@@ -3,7 +3,7 @@ import { Carousel, CarouselItem, CarouselControl, CarouselIndicators, CarouselCa
 
 const items = [
     {
-        src: 'https://picsum.photos/id/123/1200/400',
+        src: 'https://kamaztrade.com/sites/default/files/14._sklad_palletnogo_hraneniya_zch.jpg',
         altText: 'Slide 1',
         caption: 'Slide 1',
         key: 1,
@@ -51,7 +51,11 @@ function CarouselSlide(args) {
                 key={item.src}
                 style={{ width: '100vw' }}
             >
-                <img src={item.src} alt={item.altText} style={{ width: '100vw' }} />
+                <img
+                    src={item.src}
+                    alt={item.altText}
+                    style={{ width: '100vw', height: '52.5rem', objectFit: 'cover' }}
+                />
                 <CarouselCaption captionText={item.caption} captionHeader={item.caption} />
             </CarouselItem>
         );

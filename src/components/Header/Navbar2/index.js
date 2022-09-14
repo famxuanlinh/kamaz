@@ -45,7 +45,7 @@ const Navbar2 = ({ direction, ...args }) => {
                         <DropdownToggle nav caret>
                             Phụ tùng KAMAZ
                         </DropdownToggle>
-                        <div className="d-block">
+                        <div className="d-none">
                             <DropdownMenu
                                 end
                                 style={{
