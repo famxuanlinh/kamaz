@@ -1,7 +1,13 @@
 import React from 'react';
+import CarouselSlide from '~/components/CarouselSlide';
 
 const Home = () => {
-    return <div>Home</div>;
+    return (
+        <div>
+            {' '}
+            <CarouselSlide />
+        </div>
+    );
 };
 
 export default Home;

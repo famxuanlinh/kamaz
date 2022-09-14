@@ -1,69 +1,83 @@
-import React, { useState } from 'react';
-import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
-
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Navbar, NavItem, NavLink, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 
 import styled from 'styled-components';
 
-const List = styled.ul`
-    display: flex;
+const Wrapper = styled.div`
+    background-color: var(--primary-color);
+    width: 100%;
 `;
-const ListItem = styled.li``;
 
 const Navbar2 = ({ direction, ...args }) => {
-    const [dropdownOpen, setDropdownOpen] = useState(false);
+    const [postList, setpostList] = useState([]);
 
-    const toggle = () => setDropdownOpen((prevState) => !prevState);
+    const getCategory = () => {
+        fetch(`http://localhost:1337/api/categories`)
+            .then((res) => res.json())
+            .then((res) => {
+                setpostList(res.data);
+            });
+    };
+
+    useEffect(() => {
+        getCategory();
+    }, []);
+
     return (
-        <div className="container">
-            <List>
-                <ListItem>
-                    <Link to="/">Trang chủ</Link>
-                </ListItem>
-                <ListItem>
-                    <div className="d-flex ps-4 ">
-                        <Dropdown
-                            isOpen={dropdownOpen}
-                            toggle={toggle}
-                            direction={direction}
-                            style={{ fontSize: '1.6 rem' }}
-                        >
-                            <DropdownToggle caret size="lg" style={{ backgroundColor: 'transparent', color: 'black' }}>
-                                Fam Linh
-                            </DropdownToggle>
+        <Wrapper className=" d-none d-lg-block">
+            <div className="container py-2">
+                <Navbar {...args} style={{ fontSize: '20px', color: 'white' }}>
+                    <NavItem>
+                        <NavLink href="/components/">Trang chủ</NavLink>
+                    </NavItem>
+                    <UncontrolledDropdown nav inNavbar>
+                        <DropdownToggle nav caret>
+                            Sửa chữa
+                        </DropdownToggle>
+                        <DropdownMenu end>
+                            <DropdownItem>Option 1</DropdownItem>
+                            <DropdownItem>Option 2</DropdownItem>
+                            <DropdownItem divider />
+                            <DropdownItem>Reset</DropdownItem>
+                        </DropdownMenu>
+                    </UncontrolledDropdown>
+                    <UncontrolledDropdown nav inNavbar>
+                        <DropdownToggle nav caret>
+                            Phụ tùng KAMAZ
+                        </DropdownToggle>
+                        <div className="d-block">
                             <DropdownMenu
-                                {...args}
                                 end
-                                className="dropdown-menu dropdown-menu-lg-end"
-                                style={{ fontSize: '1.6rem' }}
+                                style={{
+                                    height: '70vh',
+                                    width: '562px',
+                                    flexWrap: 'wrap',
+                                    overflowWrap: 'break-word',
+                                    marginTop: '10px',
+                                    display: 'flex',
+                                }}
                             >
-                                <DropdownItem>
-                                    <Link to="/">Quản lý tài khoản</Link>
-                                </DropdownItem>
-                                <DropdownItem>
-                                    <Link to="/">Thay đổi mật khẩu</Link>
-                                </DropdownItem>
-                                <DropdownItem>
-                                    <Link to="/">Đơn hàng</Link>
-                                </DropdownItem>
-                                <DropdownItem>
-                                    <Link to="/">Đăng xuất</Link>
-                                </DropdownItem>
+                                {postList.map((item) => (
+                                    <DropdownItem key={item.id} style={{ width: '280px' }}>
+                                        <span>{item.attributes.group_number} </span>
+                                        {item.attributes.name}
+                                    </DropdownItem>
+                                ))}
                             </DropdownMenu>
-                        </Dropdown>
-                    </div>
-                </ListItem>
-                <ListItem>
-                    <Link to="/">Phụ tùng</Link>
-                </ListItem>
-                <ListItem>
-                    <Link to="/">Thông tin về chúng tôi</Link>
-                </ListItem>
-                <ListItem>
-                    <Link to="/">Liên hệ</Link>
-                </ListItem>
-            </List>
-        </div>
+                        </div>
+                    </UncontrolledDropdown>
+                    <NavItem>
+                        <NavLink href="/components/">Thông tin về công ty</NavLink>
+                    </NavItem>
+                    <NavItem>
+                        <NavLink href="/components/">Tuyển dụng</NavLink>
+                    </NavItem>
+                    <NavItem>
+                        <NavLink href="/components/">Thông tin liên hệ</NavLink>
+                    </NavItem>
+                </Navbar>
+            </div>
+        </Wrapper>
     );
 };
 

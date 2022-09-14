@@ -28,17 +28,20 @@ const Navbar = ({ direction, ...args }) => {
                 </form>
                 <div className="col d-flex flex-row-reverse">
                     <div className="d-flex align-items-center">
-                        <Link to="/gio-hang" className="px-4">
-                            <FontAwesomeIcon icon={faHeart} style={{ fontSize: '24px' }} />
-                        </Link>
-                        <Link to="/gio-hang" className="px-4 position-relative">
-                            <FontAwesomeIcon icon={faBagShopping} style={{ fontSize: '24px' }} />
-                            <span className="position-absolute top-0 start-85 translate-middle badge rounded-pill bg-danger">
-                                99<span className="visually-hidden">unread messages</span>
-                            </span>
-                        </Link>
                         {true ? (
                             <div className="d-flex ps-4 ">
+                                <Link to="/gio-hang" className="px-4 position-relative">
+                                    <FontAwesomeIcon icon={faHeart} style={{ fontSize: '24px' }} />
+                                    <span className="position-absolute top-0 start-90 translate-middle badge rounded-pill bg-danger">
+                                        99<span className="visually-hidden">unread messages</span>
+                                    </span>
+                                </Link>
+                                <Link to="/gio-hang" className="px-4 pe-4 position-relative">
+                                    <FontAwesomeIcon icon={faBagShopping} style={{ fontSize: '24px' }} />
+                                    <span className="position-absolute top-0 start-90 translate-middle badge rounded-pill bg-danger">
+                                        99<span className="visually-hidden">unread messages</span>
+                                    </span>
+                                </Link>
                                 <Dropdown
                                     isOpen={dropdownOpen}
                                     toggle={toggle}
@@ -56,7 +59,7 @@ const Navbar = ({ direction, ...args }) => {
                                         {...args}
                                         end
                                         className="dropdown-menu dropdown-menu-lg-end"
-                                        style={{ fontSize: '1.6rem' }}
+                                        style={{ fontSize: '1.6rem', zIndex: '9999' }}
                                     >
                                         <DropdownItem>
                                             <Link to="/">Quản lý tài khoản</Link>
@@ -76,10 +79,14 @@ const Navbar = ({ direction, ...args }) => {
                         ) : (
                             <>
                                 <Link to="/dang-ki">
-                                    <button className="btn ">Đăng Kí</button>
+                                    <button className="btn " style={{ border: 'none', fontSize: '14px' }}>
+                                        Đăng Kí
+                                    </button>
                                 </Link>
                                 <Link to="/dang-nhap">
-                                    <button className="btn btn-warning">Đăng Nhập</button>
+                                    <button className="btn btn-warning" style={{ fontSize: '14px' }}>
+                                        Đăng Nhập
+                                    </button>
                                 </Link>
                             </>
                         )}

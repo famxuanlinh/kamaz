@@ -26,8 +26,16 @@ body {
     text-rendering: optimizeSpeed;
 }
 
+.svg-inline--fa {
+    vertical-align: middle;
+}
+
 ul {
     list-style-type: none;
+}
+
+li {
+    list-style: none;
 }
 
 a {
@@ -54,4 +62,35 @@ html *::-webkit-scrollbar-track {
 .dropdown:hover .dropdown-menu {
     display: block;
     margin-top: 0; // remove the gap so it doesn't close
+}
+
+.dropdown-menu {
+    border-radius: 0;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+// .dropdown-menu-item:hover {
+//     background-color: var(--primary-color);
+// }
+
+// .uniqueid:hover .dropdown-menu {
+//     display: block;
+//     margin-top: 0; // remove the gap so it doesn't close
+// }
+
+//Crollbar
+html *::-webkit-scrollbar {
+    border-radius: 0;
+    width: 8px;
+}
+
+html *::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: rgb(128 128 133);
+}
+
+html *::-webkit-scrollbar-track {
+    border-radius: 4px;
+    background-color: rgb(176 176 176);
 }
