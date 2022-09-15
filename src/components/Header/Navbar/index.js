@@ -4,6 +4,10 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBagShopping, faHeart, faSearch, faUser } from '@fortawesome/free-solid-svg-icons';
 import Search from '~/components/Search';
+import OffcanvasWishlist from '~/components/OffcanvasWishlist';
+import OffcanvasCart from '~/components/OffcanvasCart';
+
+const Offcanvas = [];
 
 const Navbar = ({ direction, ...args }) => {
     const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -22,18 +26,8 @@ const Navbar = ({ direction, ...args }) => {
                     <div className="d-flex align-items-center">
                         {true ? (
                             <div className="d-flex ps-4 ">
-                                <Link to="/gio-hang" className="px-4 position-relative">
-                                    <FontAwesomeIcon icon={faHeart} style={{ fontSize: '24px' }} />
-                                    <span className="position-absolute top-0 start-90 translate-middle badge rounded-pill bg-danger">
-                                        99<span className="visually-hidden">unread messages</span>
-                                    </span>
-                                </Link>
-                                <Link to="/gio-hang" className="px-4 pe-4 position-relative">
-                                    <FontAwesomeIcon icon={faBagShopping} style={{ fontSize: '24px' }} />
-                                    <span className="position-absolute top-0 start-90 translate-middle badge rounded-pill bg-danger">
-                                        99<span className="visually-hidden">unread messages</span>
-                                    </span>
-                                </Link>
+                                <OffcanvasWishlist />
+                                <OffcanvasCart />
                                 <Dropdown
                                     isOpen={dropdownOpen}
                                     toggle={toggle}
@@ -43,7 +37,7 @@ const Navbar = ({ direction, ...args }) => {
                                     <DropdownToggle
                                         caret
                                         size="lg"
-                                        style={{ backgroundColor: 'transparent', color: 'black' }}
+                                        style={{ backgroundColor: 'transparent', color: 'black', border: '0' }}
                                     >
                                         <FontAwesomeIcon icon={faUser} style={{ paddingRight: '8px' }} /> Fam Linh
                                     </DropdownToggle>
