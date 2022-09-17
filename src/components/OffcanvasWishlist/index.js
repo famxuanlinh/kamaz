@@ -27,7 +27,7 @@ function OffcanvasWishlist() {
                 style={{ backgroundColor: 'transparent', border: 'none', position: 'relative' }}
                 onClick={() => setIsOpen(true)}
             >
-                <FontAwesomeIcon icon={faHeart} style={{ fontSize: '24px', color: 'black' }} />
+                <FontAwesomeIcon icon={faHeart} style={{ fontSize: '3rem', color: 'black' }} />
                 <span
                     style={{ fontSize: '10px' }}
                     className="position-absolute top-1 start-90 translate-middle badge rounded-pill bg-danger"

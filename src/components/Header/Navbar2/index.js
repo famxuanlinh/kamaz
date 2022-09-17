@@ -35,36 +35,35 @@ const Navbar2 = ({ direction, ...args }) => {
                             Sửa chữa
                         </DropdownToggle>
                         <DropdownMenu end>
-                            <DropdownItem>Option 1</DropdownItem>
-                            <DropdownItem>Option 2</DropdownItem>
-                            <DropdownItem divider />
-                            <DropdownItem>Reset</DropdownItem>
+                            <div>
+                                <DropdownItem>Option 1</DropdownItem>
+                                <DropdownItem>Option 2</DropdownItem>
+                                <DropdownItem divider />
+                                <DropdownItem>Reset</DropdownItem>
+                            </div>
                         </DropdownMenu>
                     </UncontrolledDropdown>
                     <UncontrolledDropdown nav inNavbar>
                         <DropdownToggle nav caret>
                             Phụ tùng KAMAZ
                         </DropdownToggle>
-                        <div className="d-none">
-                            <DropdownMenu
-                                end
-                                style={{
-                                    height: '70vh',
-                                    width: '562px',
-                                    flexWrap: 'wrap',
-                                    overflowWrap: 'break-word',
-                                    marginTop: '10px',
-                                    display: 'flex',
-                                }}
-                            >
-                                {postList.map((item) => (
-                                    <DropdownItem key={item.id} style={{ width: '280px' }}>
-                                        <span>{item.attributes.group_number} </span>
-                                        {item.attributes.name}
-                                    </DropdownItem>
-                                ))}
-                            </DropdownMenu>
-                        </div>
+                        <DropdownMenu
+                            end
+                            style={{
+                                height: '70vh',
+                                width: '562px',
+                                flexWrap: 'wrap',
+                                overflowWrap: 'break-word',
+                                // display: 'flex',
+                            }}
+                        >
+                            {postList.map((item) => (
+                                <DropdownItem key={item.id} style={{ width: '280px' }}>
+                                    <span>{item.attributes.group_number} </span>
+                                    {item.attributes.name}
+                                </DropdownItem>
+                            ))}
+                        </DropdownMenu>
                     </UncontrolledDropdown>
                     <NavItem>
                         <NavLink href="/components/">Thông tin về công ty</NavLink>

@@ -8,9 +8,7 @@ const Header = () => {
         <div>
             <Announcement />
             <Navbar />
-            <div className="sticky-top">
-                <Navbar2 />
-            </div>
+            <Navbar2 />
         </div>
     );
 };

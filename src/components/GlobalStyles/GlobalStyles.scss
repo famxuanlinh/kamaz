@@ -42,6 +42,9 @@ a {
     text-decoration: none;
     color: unset;
 }
+a:hover {
+    color: unset;
+}
 
 //Crollbar
 html *::-webkit-scrollbar {
@@ -60,24 +63,15 @@ html *::-webkit-scrollbar-track {
 }
 
 .dropdown:hover .dropdown-menu {
-    display: block;
+    display: flex;
     margin-top: 0; // remove the gap so it doesn't close
 }
 
 .dropdown-menu {
-    border-radius: 0;
-    font-size: 20px;
+    border-radius: 0.5rem;
+    font-size: 2rem;
     margin-bottom: 10px;
 }
-
-// .dropdown-menu-item:hover {
-//     background-color: var(--primary-color);
-// }
-
-// .uniqueid:hover .dropdown-menu {
-//     display: block;
-//     margin-top: 0; // remove the gap so it doesn't close
-// }
 
 //Crollbar
 html *::-webkit-scrollbar {
@@ -97,11 +91,21 @@ html *::-webkit-scrollbar-track {
 
 .container {
     max-width: 1176px;
+    padding-left: 0;
+    padding-right: 0;
+    @media (max-width: 1199.98px) {
+        max-width: 936px;
+    }
+    @media (max-width: 991.98px) {
+        max-width: 720px;
+    }
 }
 
-.modal-dialog {
-    width: 400px;
-    position: fixed;
-    margin: 0;
-    border-radius: 0;
+.accordion-button {
+    font-size: 1.4rem;
+}
+
+.g-2,
+.gy-2 {
+    --bs-gutter-y: 2rem;
 }

@@ -1,0 +1,33 @@
+.card-product:hover .card-btn {
+    display: flex;
+    transition: 10s;
+    transition-delay: 50s;
+}
+
+.card-product:hover {
+    transform: scale(1.03);
+    /* transition: 0.5s; */
+    transition-duration: 0.5s;
+}
+.card-btn {
+    display: none;
+}
+
+.card-btn-item {
+    padding: 8px 8px;
+}
+
+.card-new {
+    position: absolute;
+    font-size: 1.2rem;
+    padding: 0 7px;
+    background-color: var(--primary-color);
+    color: var(--text-color-white);
+    border-radius: 3px;
+    top: 1rem;
+    left: 1rem;
+}
+
+/* .card-btn-item:hover {
+    background-color: var(--primary-color);
+} */

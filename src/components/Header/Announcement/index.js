@@ -12,11 +12,11 @@ const Wrapper = styled.div`
 
 const Announcement = () => {
     return (
-        <Wrapper>
-            <div className="container">
-                <div className="d-block d-lg-flex align-items-center justify-content-between text-center">
+        <Wrapper className="shadow-lg ">
+            <div className="container ">
+                <div className="d-block d-lg-flex align-items-center justify-content-between text-center ">
                     <div className="">CHÚNG TÔI CÓ THỂ LÀM NHỮNG VIỆC MÀ NGƯỜI KHÁC KHÔNG THỂ</div>
-                    <div className="d-flex align-items-center text-center">
+                    <div className="d-flex align-items-center justify-content-center">
                         <div
                             className="px-4 d-block text-center"
                             style={{

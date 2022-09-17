@@ -22,12 +22,12 @@ import formatCurrency from '~/until/formatCurrency';
 function OffcanvasCart() {
     const [isOpen, setIsOpen] = useState(false);
     return (
-        <div>
+        <div className="mx-3">
             <Button
                 style={{ backgroundColor: 'transparent', border: 'none', position: 'relative' }}
                 onClick={() => setIsOpen(true)}
             >
-                <FontAwesomeIcon icon={faBagShopping} style={{ fontSize: '24px', color: 'black' }} />
+                <FontAwesomeIcon icon={faBagShopping} style={{ fontSize: '3rem', color: 'black' }} />
                 <span
                     style={{ fontSize: '10px' }}
                     className="position-absolute top-1 start-90 translate-middle badge rounded-pill bg-danger"
@@ -36,7 +36,7 @@ function OffcanvasCart() {
                 </span>
             </Button>
             <Offcanvas
-                style={{ padding: '20px', maxWidth: '400px' }}
+                style={{ maxWidth: '400px' }}
                 isOpen={isOpen}
                 toggle={() => setIsOpen((prev) => !prev)}
                 direction={'end'}

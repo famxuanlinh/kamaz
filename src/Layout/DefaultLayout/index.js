@@ -1,15 +1,17 @@
-import Header from '~/components/Header';
-import Sidebar from '~/components/Sidebar';
-
 import React from 'react';
-import Home from '~/pages/Home';
+import Announcement from '~/components/Header/Announcement';
+import Navbar from '~/components/Header/Navbar';
+import Navbar2 from '~/components/Header/Navbar2';
+import Footer from '~/pages/Footer';
 
 const DefaultLayout = ({ children }) => {
     return (
         <div>
-            <Header />
-            <Home />
-            <div className="content">{children}</div>
+            <Announcement />
+            <Navbar />
+            <Navbar2 />
+            <div>{children}</div>
+            <Footer />
         </div>
     );
 };

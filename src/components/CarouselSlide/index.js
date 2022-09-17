@@ -54,7 +54,7 @@ function CarouselSlide(args) {
                 <img
                     src={item.src}
                     alt={item.altText}
-                    style={{ width: '100vw', height: '52.5rem', objectFit: 'cover' }}
+                    style={{ width: '100vw', minHeight: '30rem', maxHeight: '52.5rem', objectFit: 'cover' }}
                 />
                 <CarouselCaption captionText={item.caption} captionHeader={item.caption} />
             </CarouselItem>
