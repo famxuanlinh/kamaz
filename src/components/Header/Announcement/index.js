@@ -26,7 +26,7 @@ const Announcement = () => {
                             }}
                         >
                             <FontAwesomeIcon icon={faPhone} style={{ fontSize: '24px', paddingRight: '10px' }} />
-                            <button className="btn btn-warning cus-btn" style={{ fontsize: '14px' }}>
+                            <button className="btn btn-warning" style={{ fontsize: '14px' }}>
                                 Yêu cầu gọi lại
                             </button>
                         </div>

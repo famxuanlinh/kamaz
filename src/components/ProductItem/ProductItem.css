@@ -1,17 +1,18 @@
 .card-product {
     transition: all 0.5s;
 }
+
+.card-product:hover {
+    transform: scale(1.03);
+    /* transition-duration: 0.5s; */
+}
+
 .card-product:hover .card-btn {
     display: flex;
     transition: 10s;
 }
 
-.card-product:hover {
-    transform: scale(1.03);
-    /* transition: 0.5s; */
-    transition-duration: 0.5s;
-}
-.card-btn {
+.btn-group.card-btn {
     display: none;
 }
 
@@ -29,7 +30,16 @@
     top: 1rem;
     left: 1rem;
 }
+.btn.cus-btn {
+    background: var(--secondary-color);
+    border: none;
+    padding: 8px 8px;
+}
 
-/* .card-btn-item:hover {
-    background-color: var(--primary-color);
-} */
+.btn.cus-btn:hover {
+    background: var(--primary-color) !important;
+}
+
+.btn.cus-btn:hover .cus-btn-icon {
+    color: white !important;
+}

@@ -67,7 +67,13 @@ html *::-webkit-scrollbar-track {
     background-color: rgb(176 176 176);
 }
 
+//Dropdown
 .dropdown.category-dropdown-menu:hover .dropdown-menu {
+    display: flex;
+    margin-top: 0; // remove the gap so it doesn't close
+}
+
+.dropdown:hover .dropdown-menu {
     display: flex;
     margin-top: 0; // remove the gap so it doesn't close
 }
@@ -124,6 +130,12 @@ html *::-webkit-scrollbar-track {
     box-shadow: none;
 }
 
-.btn.cus-btn:hover {
-    background: black;
+//Home
+
+.title-products-home {
+    padding-top: 4rem;
+    margin-bottom: 1.5rem;
+    padding-left: 1rem;
+    font-size: 2.4rem;
+    font-weight: 500;
 }

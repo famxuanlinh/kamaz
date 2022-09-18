@@ -21,13 +21,16 @@ import formatCurrency from '~/until/formatCurrency';
 
 function OffcanvasCart() {
     const [isOpen, setIsOpen] = useState(false);
+
+    const fakeProducts = new Array(8).fill(1);
+
     return (
-        <div className="mx-3">
+        <div className="mx-3 position-relative">
             <Button
                 style={{ backgroundColor: 'transparent', border: 'none', position: 'relative' }}
                 onClick={() => setIsOpen(true)}
             >
-                <FontAwesomeIcon icon={faBagShopping} style={{ fontSize: '3rem', color: 'black' }} />
+                <FontAwesomeIcon icon={faBagShopping} style={{ fontSize: '3rem', color: '#42454D' }} />
                 <span
                     style={{ fontSize: '10px' }}
                     className="position-absolute top-1 start-90 translate-middle badge rounded-pill bg-danger"
@@ -36,146 +39,77 @@ function OffcanvasCart() {
                 </span>
             </Button>
             <Offcanvas
-                style={{ maxWidth: '400px' }}
+                style={{ maxWidth: '400px', padding: '20px' }}
                 isOpen={isOpen}
                 toggle={() => setIsOpen((prev) => !prev)}
                 direction={'end'}
             >
                 <OffcanvasHeader toggle={() => setIsOpen((prev) => !prev)} style={{ paddingBottom: '0' }}>
-                    <strong>Giỏ Hàng</strong>
+                    <strong style={{ fontSize: '1.8rem' }}>Giỏ Hàng</strong>
                 </OffcanvasHeader>
-                <OffcanvasBody style={{ paddingTop: '0' }}>
+                <OffcanvasBody style={{ paddingTop: '0', marginBottom: '230px' }}>
                     <Row>
                         <Col>
-                            <hr style={{ width: '100%', margin: '20px 0' }} />
-                            <Card style={{ border: 'none' }}>
-                                <Row className="no-gutters">
-                                    <Col md="4">
-                                        <CardImg
-                                            top
-                                            width="100%"
-                                            src="https://picsum.photos/300/200"
-                                            alt="Card image cap"
-                                            style={{ aspectRatio: '1 / 1', objectFit: 'cover' }}
-                                        />
-                                    </Col>
-                                    <Col md="8">
-                                        <CardBody>
-                                            <CardTitle>Card title</CardTitle>
-                                            <CardSubtitle>Card subtitle</CardSubtitle>
-                                            <CardText tag="h3" style={{ color: '#ea1b25' }}>
-                                                <>
-                                                    <span
-                                                        style={{
-                                                            fontSize: '1.4rem',
-                                                            color: 'gray',
-                                                        }}
-                                                    >
-                                                        1x
-                                                    </span>{' '}
-                                                    {formatCurrency(21000)}
-                                                </>
-                                            </CardText>
+                            {fakeProducts.map((_item, index) => (
+                                <div key={index}>
+                                    <hr style={{ width: '100%', margin: '20px 0' }} />
+                                    <Card style={{ border: 'none' }}>
+                                        <Row className="no-gutters">
+                                            <Col md="4">
+                                                <CardImg
+                                                    top
+                                                    width="100%"
+                                                    src="https://picsum.photos/300/200"
+                                                    alt="Card image cap"
+                                                    style={{ aspectRatio: '1 / 1', objectFit: 'cover' }}
+                                                />
+                                            </Col>
+                                            <Col md="8">
+                                                <CardBody>
+                                                    <CardTitle>Card title</CardTitle>
+                                                    <CardSubtitle>Card subtitle</CardSubtitle>
+                                                    <CardText tag="h3" style={{ color: '#ea1b25' }}>
+                                                        <>
+                                                            <span
+                                                                style={{
+                                                                    fontSize: '1.4rem',
+                                                                    color: 'gray',
+                                                                }}
+                                                            >
+                                                                1x
+                                                            </span>{' '}
+                                                            {formatCurrency(21000)}
+                                                        </>
+                                                    </CardText>
 
-                                            <CloseButton
-                                                style={{
-                                                    position: 'absolute',
-                                                    top: '10px',
-                                                    right: '0',
-                                                    fontSize: '1rem',
-                                                }}
-                                            />
-                                        </CardBody>
-                                    </Col>
-                                </Row>
-                            </Card>
-                            <hr style={{ width: '100%', margin: '20px 0' }} />
-                            <Card style={{ border: 'none' }}>
-                                <Row className="no-gutters">
-                                    <Col md="4">
-                                        <CardImg
-                                            top
-                                            width="100%"
-                                            src="https://picsum.photos/300/200"
-                                            alt="Card image cap"
-                                            style={{ aspectRatio: '1 / 1', objectFit: 'cover' }}
-                                        />
-                                    </Col>
-                                    <Col md="8">
-                                        <CardBody>
-                                            <CardTitle>Card title</CardTitle>
-                                            <CardSubtitle>Card subtitle</CardSubtitle>
-                                            <CardText tag="h3" style={{ color: '#ea1b25' }}>
-                                                <>
-                                                    <span
+                                                    <CloseButton
                                                         style={{
-                                                            fontSize: '1.4rem',
-                                                            color: 'gray',
+                                                            position: 'absolute',
+                                                            top: '10px',
+                                                            right: '0',
+                                                            fontSize: '1rem',
                                                         }}
-                                                    >
-                                                        1x
-                                                    </span>{' '}
-                                                    {formatCurrency(21000)}
-                                                </>
-                                            </CardText>
-
-                                            <CloseButton
-                                                style={{
-                                                    position: 'absolute',
-                                                    top: '10px',
-                                                    right: '0',
-                                                    fontSize: '1rem',
-                                                }}
-                                            />
-                                        </CardBody>
-                                    </Col>
-                                </Row>
-                            </Card>
-                            <hr style={{ width: '100%', margin: '20px 0' }} />
-                            <Card style={{ border: 'none' }}>
-                                <Row className="no-gutters">
-                                    <Col md="4">
-                                        <CardImg
-                                            top
-                                            width="100%"
-                                            src="https://picsum.photos/300/200"
-                                            alt="Card image cap"
-                                            style={{ aspectRatio: '1 / 1', objectFit: 'cover' }}
-                                        />
-                                    </Col>
-                                    <Col md="8">
-                                        <CardBody>
-                                            <CardTitle>Card title</CardTitle>
-                                            <CardSubtitle>Card subtitle</CardSubtitle>
-                                            <CardText tag="h3" style={{ color: '#ea1b25' }}>
-                                                <>
-                                                    <span
-                                                        style={{
-                                                            fontSize: '1.4rem',
-                                                            color: 'gray',
-                                                        }}
-                                                    >
-                                                        1x
-                                                    </span>{' '}
-                                                    {formatCurrency(21000)}
-                                                </>
-                                            </CardText>
-
-                                            <CloseButton
-                                                style={{
-                                                    position: 'absolute',
-                                                    top: '10px',
-                                                    right: '0',
-                                                    fontSize: '1rem',
-                                                }}
-                                            />
-                                        </CardBody>
-                                    </Col>
-                                </Row>
-                            </Card>
+                                                    />
+                                                </CardBody>
+                                            </Col>
+                                        </Row>
+                                    </Card>
+                                </div>
+                            ))}
                         </Col>
                     </Row>
-                    <hr style={{ width: '100%', margin: '20px 0' }} />
+                </OffcanvasBody>
+                <div
+                    className="position-absolute"
+                    style={{
+                        // padding: '6px 0',
+                        width: '90%',
+                        marginBottom: '20px',
+                        bottom: '0',
+                        right: '20px',
+                    }}
+                >
+                    {/* <hr style={{ width: '100%', margin: '20px 0' }} /> */}
                     <div>
                         <div className="total-price d-flex justify-content-between">
                             <h3>Tiết kiệm:</h3>
@@ -193,7 +127,7 @@ function OffcanvasCart() {
                         color="secondary"
                         href="#"
                         tag="a"
-                        style={{ fontSize: '1.6rem', width: '100%', margin: '30px 0' }}
+                        style={{ fontSize: '2rem', width: '100%', margin: '20px 0' }}
                     >
                         Xem Giỏ Hàng
                     </Button>
@@ -202,14 +136,12 @@ function OffcanvasCart() {
                         color="primary"
                         href="#"
                         tag="a"
-                        style={{ fontSize: '1.6rem', width: '100%', marginBottom: '20px' }}
+                        style={{ fontSize: '2rem', width: '100%', marginBottom: '20px' }}
                     >
                         Thanh toán ngay
                     </Button>
-                    <p color="secondary" style={{ fontSize: '12px' }}>
-                        Lưu ý: Số tiền trên chưa bao gồm phí ship.
-                    </p>
-                </OffcanvasBody>
+                    <div style={{ fontSize: '12px' }}>Lưu ý: Số tiền trên chưa bao gồm phí ship.</div>
+                </div>
             </Offcanvas>
         </div>
     );

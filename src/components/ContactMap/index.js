@@ -5,7 +5,7 @@ import React from 'react';
 const ContactMap = () => {
     return (
         <div>
-            <div className="container" style={{ marginTop: '3rem', marginBottom: '3rem' }}>
+            <div className="container" style={{ marginTop: '3rem', marginBottom: '2.3rem' }}>
                 <h1 className="d-flex  justify-content-center" style={{ marginTop: '6rem', marginBottom: '2.2rem' }}>
                     XIN HÃY LIÊN HỆ VỚI CHÚNG TÔI
                 </h1>

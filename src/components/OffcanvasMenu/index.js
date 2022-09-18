@@ -61,7 +61,7 @@ function OffcanvasMenu() {
                 ></OffcanvasHeader>
                 <hr style={{ width: '100%', margin: '20px 0' }} />
                 <Search />
-                <OffcanvasBody style={{ padding: '20px 0 0', fontSize: '1.4rem' }}>
+                <OffcanvasBody style={{ margin: '20px 0 0', fontSize: '1.4rem' }}>
                     <Accordion open={open} toggle={toggle}>
                         <div style={{ padding: '1rem 1.25rem' }}>
                             <Link to="/">TRANG CHỦ</Link>
@@ -90,9 +90,11 @@ function OffcanvasMenu() {
                             <AccordionHeader targetId="3">PHỤ TÙNG KAMAZ</AccordionHeader>
                             <AccordionBody accordionId="3">
                                 {postList.map((item) => (
-                                    <div className="accordionItemRemote" key={item.id}>
+                                    <div className="accordionItemRemote text-capitalize" key={item.id}>
                                         <Link to="/">
-                                            <span>{item.attributes.group_number} </span>
+                                            <span className="text-primary" style={{ fontWeight: '600' }}>
+                                                {item.attributes.group_number}{' '}
+                                            </span>
                                             {item.attributes.name}
                                         </Link>
                                     </div>

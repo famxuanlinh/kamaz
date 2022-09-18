@@ -3,13 +3,18 @@ import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import ProductItem from '../ProductItem';
 import '../NewProducts/NewProducts.css';
+import { faMinus } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const NewProducts = () => {
     const fakeProducts = new Array(10).fill(1213123);
 
     return (
         <div className="container">
-            <h1 style={{ marginTop: '6rem', marginBottom: '1rem', paddingLeft: '1rem' }}>Sản Phẩm Mới</h1>
+            <h2 className="title-products-home">
+                <FontAwesomeIcon icon={faMinus} style={{ color: '#1f3f81', paddingRight: '0.5rem' }} /> SẢN PHẨM{' '}
+                <span style={{ fontWeight: '600' }}>MỚI</span>
+            </h2>
             <Carousel
                 additionalTransfrom={0}
                 arrows
@@ -39,7 +44,7 @@ const NewProducts = () => {
                     },
                     mobile: {
                         breakpoint: {
-                            max: 464,
+                            max: 768,
                             min: 0,
                         },
                         items: 2,
@@ -48,7 +53,7 @@ const NewProducts = () => {
                     tablet: {
                         breakpoint: {
                             max: 1024,
-                            min: 464,
+                            min: 768,
                         },
                         items: 3,
                         partialVisibilityGutter: 30,

@@ -3,7 +3,7 @@ import { Breadcrumb, BreadcrumbItem } from 'reactstrap';
 
 const BreadcrumbProduct = () => {
     return (
-        <div className="py-5">
+        <div className="py-3">
             <Breadcrumb>
                 <BreadcrumbItem>
                     <a href="#">Home</a>

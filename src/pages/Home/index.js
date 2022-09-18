@@ -7,11 +7,17 @@ import PopularProducts from '~/components/PopularProducts';
 
 const Home = () => {
     return (
-        <div style={{ backgroundColor: '#f7f7f7' }}>
+        <div>
             <CarouselSlide />
-            <NewProducts />
-            <PopularProducts />
-            <BestSaleProducts />
+            <div style={{ backgroundColor: '#f7f7f7', paddingBottom: '1.5rem' }}>
+                <NewProducts />
+            </div>
+            <div style={{ paddingBottom: '2.3rem' }}>
+                <PopularProducts />
+            </div>
+            <div style={{ backgroundColor: '#f7f7f7', paddingBottom: '2.3rem' }}>
+                <BestSaleProducts />
+            </div>
             <ContactMap />
         </div>
     );

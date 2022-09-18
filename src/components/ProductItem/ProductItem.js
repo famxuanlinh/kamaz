@@ -37,15 +37,33 @@ const ProductItem = () => {
                         aria-label="First group"
                         style={{ flexFlow: 'column', top: '1.4rem', right: '1rem' }}
                     >
-                        <button type="button" className="btn btn-secondary rounded-circle card-btn-item">
-                            <FontAwesomeIcon icon={faHeart} style={{ fontSize: '1.6rem', color: 'black' }} />
-                        </button>
-                        <button type="button" className="btn btn-secondary rounded-circle my-3  card-btn-item">
-                            <FontAwesomeIcon icon={faBagShopping} style={{ fontSize: '1.6rem', color: 'black' }} />
-                        </button>
-                        <button type="button" className="btn btn-secondary rounded-circle card-btn-item">
-                            <FontAwesomeIcon icon={faEye} style={{ fontSize: '1.6rem', color: 'black' }} />
-                        </button>
+                        <Link to="/">
+                            <button type="button" className="btn btn-secondary rounded-circle cus-btn">
+                                <FontAwesomeIcon
+                                    className="cus-btn-icon"
+                                    icon={faHeart}
+                                    style={{ fontSize: '1.6rem', color: 'black' }}
+                                />
+                            </button>
+                        </Link>
+                        <Link to="/">
+                            <button type="button" className="btn btn-secondary rounded-circle my-3  cus-btn">
+                                <FontAwesomeIcon
+                                    className="cus-btn-icon"
+                                    icon={faBagShopping}
+                                    style={{ fontSize: '1.6rem', color: 'black' }}
+                                />
+                            </button>
+                        </Link>
+                        <Link to="/">
+                            <button type="button" className="btn btn-secondary rounded-circle cus-btn">
+                                <FontAwesomeIcon
+                                    className="cus-btn-icon"
+                                    icon={faEye}
+                                    style={{ fontSize: '1.6rem', color: 'black' }}
+                                />
+                            </button>
+                        </Link>
                     </div>
                     <CardBody>
                         <CardTitle

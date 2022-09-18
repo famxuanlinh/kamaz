@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ListGroup, ListGroupItem } from 'reactstrap';
+import { BASE_URL } from '~/constants/env';
 
 const Sidebar = () => {
     const [postList, setpostList] = useState([]);
 
     const getCategory = () => {
-        fetch(`http://localhost:1337/api/categories`)
+        fetch(`${BASE_URL}/categories?filters[is_menu][$eq]=true`)
             .then((res) => res.json())
             .then((res) => {
                 setpostList(res.data);
@@ -18,7 +19,9 @@ const Sidebar = () => {
     }, []);
     return (
         <div>
-            <h2>Danh mục sản phẩm</h2>
+            <h2 style={{ fontWeight: '600' }} className="title-products-home">
+                Danh mục sản phẩm
+            </h2>
             <hr />
             <ListGroup>
                 {postList.map((item) => (
@@ -27,9 +30,12 @@ const Sidebar = () => {
                         href="#"
                         tag="a"
                         key={item.id}
+                        className="text-capitalize"
                         style={{ border: 'none', backgroundColor: '#f7f7f7' }}
                     >
-                        <span>{item.attributes.group_number} </span>
+                        <span className="text-primary " style={{ fontWeight: '600' }}>
+                            {item.attributes.group_number}{' '}
+                        </span>
                         {item.attributes.name}
                     </ListGroupItem>
                 ))}
