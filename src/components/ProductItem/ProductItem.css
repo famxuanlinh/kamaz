@@ -1,7 +1,9 @@
+.card-product {
+    transition: all 0.5s;
+}
 .card-product:hover .card-btn {
     display: flex;
     transition: 10s;
-    transition-delay: 50s;
 }
 
 .card-product:hover {

@@ -5,6 +5,8 @@ import ProductItem from '../ProductItem';
 import '../NewProducts/NewProducts.css';
 
 const NewProducts = () => {
+    const fakeProducts = new Array(10).fill(1213123);
+
     return (
         <div className="container">
             <h1 style={{ marginTop: '6rem', marginBottom: '1rem', paddingLeft: '1rem' }}>Sản Phẩm Mới</h1>
@@ -61,13 +63,16 @@ const NewProducts = () => {
                 slidesToSlide={1}
                 swipeable
             >
-                <ProductItem />
-                <ProductItem />
-                <ProductItem />
-                <ProductItem />
-                <ProductItem />
-                <ProductItem />
-                <ProductItem />
+                {fakeProducts.map((_item, index) => (
+                    <div
+                        style={{
+                            margin: '8px',
+                        }}
+                        key={index}
+                    >
+                        <ProductItem key={index} />
+                    </div>
+                ))}
             </Carousel>
         </div>
     );

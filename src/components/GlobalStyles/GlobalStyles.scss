@@ -1,5 +1,9 @@
 @import 'normalize.css';
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Serif:opsz,wght@8..144,100;8..144,200;8..144,300;8..144,400;8..144,500;8..144,600;8..144,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,700;0,900;1,400;1,500;1,700&display=swap');
+
+$primary: #1f3f81;
+
+@import 'node_modules/bootstrap/scss/bootstrap';
 
 :root {
     --primary-color: #1f3f81;
@@ -19,8 +23,9 @@
 html {
     font-size: 62.5%;
 }
+
 body {
-    font-family: 'Roboto Serif', serif;
+    font-family: 'Roboto', sans-serif;
     font-size: 1.6rem;
     line-height: 1.5;
     text-rendering: optimizeSpeed;
@@ -62,7 +67,7 @@ html *::-webkit-scrollbar-track {
     background-color: rgb(176 176 176);
 }
 
-.dropdown:hover .dropdown-menu {
+.dropdown.category-dropdown-menu:hover .dropdown-menu {
     display: flex;
     margin-top: 0; // remove the gap so it doesn't close
 }
@@ -89,17 +94,20 @@ html *::-webkit-scrollbar-track {
     background-color: rgb(176 176 176);
 }
 
-.container {
-    max-width: 1176px;
-    padding-left: 0;
-    padding-right: 0;
-    @media (max-width: 1199.98px) {
-        max-width: 936px;
-    }
-    @media (max-width: 991.98px) {
-        max-width: 720px;
-    }
-}
+// .container {
+//     max-width: 1176px;
+//     padding-left: 0;
+//     padding-right: 0;
+//     @media (max-width: 1199.98px) {
+//         max-width: 936px;
+//     }
+//     @media (max-width: 991.98px) {
+//         max-width: 720px;
+//     }
+//     @media (max-width: 420px) {
+//         max-width: 380px;
+//     }
+// }
 
 .accordion-button {
     font-size: 1.4rem;
@@ -108,4 +116,14 @@ html *::-webkit-scrollbar-track {
 .g-2,
 .gy-2 {
     --bs-gutter-y: 2rem;
+}
+
+.form-control:focus {
+    border-color: inherit;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.btn.cus-btn:hover {
+    background: black;
 }

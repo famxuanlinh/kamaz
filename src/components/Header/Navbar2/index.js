@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Navbar, NavItem, NavLink, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 
 import styled from 'styled-components';
@@ -36,21 +37,23 @@ const Navbar2 = ({ direction, ...args }) => {
                         </DropdownToggle>
                         <DropdownMenu end>
                             <div>
-                                <DropdownItem>Option 1</DropdownItem>
+                                <Link to="/danh-muc/dong-co">
+                                    <DropdownItem>Option 1</DropdownItem>
+                                </Link>
                                 <DropdownItem>Option 2</DropdownItem>
                                 <DropdownItem divider />
                                 <DropdownItem>Reset</DropdownItem>
                             </div>
                         </DropdownMenu>
                     </UncontrolledDropdown>
-                    <UncontrolledDropdown nav inNavbar>
+                    <UncontrolledDropdown nav inNavbar className="category-dropdown-menu">
                         <DropdownToggle nav caret>
                             Phụ tùng KAMAZ
                         </DropdownToggle>
                         <DropdownMenu
                             end
                             style={{
-                                height: '70vh',
+                                maxHeight: '70vh',
                                 width: '562px',
                                 flexWrap: 'wrap',
                                 overflowWrap: 'break-word',
@@ -58,10 +61,12 @@ const Navbar2 = ({ direction, ...args }) => {
                             }}
                         >
                             {postList.map((item) => (
-                                <DropdownItem key={item.id} style={{ width: '280px' }}>
-                                    <span>{item.attributes.group_number} </span>
-                                    {item.attributes.name}
-                                </DropdownItem>
+                                <Link to="/danh-muc/dong-co" key={item.id}>
+                                    <DropdownItem style={{ width: '280px' }}>
+                                        <span>{item.attributes.group_number} </span>
+                                        {item.attributes.name}
+                                    </DropdownItem>
+                                </Link>
                             ))}
                         </DropdownMenu>
                     </UncontrolledDropdown>

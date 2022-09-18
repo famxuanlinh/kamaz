@@ -18,7 +18,7 @@ const Navbar = ({ direction, ...args }) => {
 
     // const toggle = () => setDropdownOpen((prevState) => !prevState);
     return (
-        <div className="sticky-top " style={wrapper}>
+        <div className="sticky-top" style={wrapper}>
             <div className="container">
                 <nav className="navbar d-flex row">
                     <div className="d-flex col align-items-center">
@@ -36,7 +36,7 @@ const Navbar = ({ direction, ...args }) => {
                     </div>
                     <div className="col d-flex flex-row-reverse">
                         <div className="d-flex align-items-center">
-                            {false ? (
+                            {true ? (
                                 <div className="d-flex ps-4 ">
                                     <OffcanvasWishlist />
                                     <OffcanvasCart />
