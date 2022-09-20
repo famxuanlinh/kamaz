@@ -1,16 +1,20 @@
 import React from 'react';
 import BreadcrumbProduct from '~/components/BreadcrumbProduct';
-import Product from '~/components/Product';
+import NewProducts from '~/components/NewProducts';
+import ProductDetailDesc from '~/components/ProductDetailDesc';
+import ProductInfo from '~/components/ProductInfo';
 
 const ProductPage = () => {
     return (
-        <div style={{ backgroundColor: '#f7f7f7' }}>
+        <div style={{ backgroundColor: '#f7f7f7', paddingBottom: '30px' }}>
             <div className="container">
                 <BreadcrumbProduct />
                 <div className="py-4">
-                    <Product />
+                    <ProductInfo />
                 </div>
+                <ProductDetailDesc />
             </div>
+            <NewProducts />
         </div>
     );
 };
