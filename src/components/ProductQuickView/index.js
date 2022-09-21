@@ -29,7 +29,7 @@ const items = [
     },
 ];
 
-function ProductImage() {
+function ProductQuickView() {
     return (
         <div style={{ backgroundColor: 'white' }}>
             <div className="row ">
@@ -147,26 +147,6 @@ function ProductImage() {
                             </span>{' '}
                         </div>
                         <hr />
-                        <div>Lưu Ý: </div>
-                        <div>Để Biết Rõ Hơn Về Cách Thức Đặt Hàng Và Giao Hang Hãy Liên Hệ Ngay với Chúng Tôi </div>
-                        <div>Giá Trên Có Thể Thay Đổi Tuỳ Do Tình Hình Chiến Tranh Đang kéo Dài Ở Nga Và Ukraina. </div>
-                        <div>Liên Hệ Ngay Với Chúng Tôi Để Biết Được Giá Chính Xác Nhất.</div>
-                        <hr />
-                        <ul className="py-3 ">
-                            <li style={{ listStyle: 'circle' }}>
-                                Mã phụ tùng:<span className="text-success ps-3">377.8902</span>
-                            </li>
-                            <li style={{ listStyle: 'circle' }}>
-                                Thương Hiệu:<span className="text-success ps-3">Kamaz</span>
-                            </li>
-                            <li style={{ listStyle: 'circle' }}>
-                                Sản Xuất tại:<span className="text-success ps-3">Nga</span>
-                            </li>
-                            <li style={{ listStyle: 'circle' }}>
-                                Tình Trạng Kho:<span className="text-success ps-3">Còn Hàng</span>
-                            </li>
-                        </ul>
-                        <hr />
                         <div className="d-flex mt-4 mb-3 align-items-center">
                             <div className="pe-4"> Số Lượng: </div>
                             <div
@@ -187,8 +167,8 @@ function ProductImage() {
                                 </button>
                             </div>
                         </div>
-                        <div className="text-center  d-md-flex mb-3">
-                            <div className="me-md-3 mb-3">
+                        <div className="text-center   mb-3">
+                            <div className=" mb-3">
                                 <button
                                     className="btn  pe-2 px-md-5  w-100  "
                                     style={{ fontSize: '2rem', border: '1px solid #1f3f81', color: '#1f3f81' }}
@@ -202,7 +182,7 @@ function ProductImage() {
                                 </button>
                             </div>
                         </div>
-                        <div className="d-md-flex pb-4">
+                        <div className="d-flex pb-4">
                             <button style={{ background: 'none', border: 'none' }} className="pb-md-2  pe-5">
                                 <span>
                                     <FontAwesomeIcon
@@ -249,4 +229,4 @@ function ProductImage() {
     );
 }
 
-export default ProductImage;
+export default ProductQuickView;

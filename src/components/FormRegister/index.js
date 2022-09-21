@@ -4,7 +4,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button, FormGroup, Input, Label, Form } from 'reactstrap';
 
-const FormLogIn = () => {
+const FormRegister = () => {
     return (
         <div className="container text-center">
             <div className="row align-items-center">
@@ -28,30 +28,42 @@ const FormLogIn = () => {
                                 fontWeight: '600',
                             }}
                         >
-                            Đăng Nhập
+                            Đăng Ký
                         </button>
                         <span className="px-3">|</span>
-                        <Link to="/dang-ki">
+                        <Link to="/dang-nhap">
                             <button className="btn " style={{ border: 'none', fontSize: '2rem', fontWeight: '600' }}>
-                                Đăng Kí
+                                Đăng Nhập
                             </button>
                         </Link>
                     </div>
                     <FormGroup>
+                        <Label for="examplePassword" hidden>
+                            Tên Tài Khoản
+                        </Label>
+                        <Input
+                            id="examplePassword"
+                            name="password"
+                            placeholder="Tên Tài Khoản"
+                            type="password"
+                            style={{ fontSize: '1.6rem' }}
+                        />
+                    </FormGroup>
+                    <FormGroup>
                         <Label for="exampleEmail" hidden>
-                            Email
+                            Địa Chỉ Email
                         </Label>
                         <Input
                             id="exampleEmail"
                             name="email"
-                            placeholder="Email"
+                            placeholder="Địa Chỉ Email"
                             type="email"
                             style={{ fontSize: '1.6rem' }}
                         />
                     </FormGroup>{' '}
                     <FormGroup>
                         <Label for="examplePassword" hidden>
-                            Password
+                            Mật Khẩu
                         </Label>
                         <Input
                             id="examplePassword"
@@ -61,7 +73,7 @@ const FormLogIn = () => {
                             style={{ fontSize: '1.6rem' }}
                         />
                     </FormGroup>
-                    <FormGroup check className="d-flex justify-content-between pt-5 pb-3">
+                    {/* <FormGroup check className="d-flex justify-content-between pt-5 pb-3">
                         <span>
                             <Input
                                 id="exampleCheckbox"
@@ -76,9 +88,9 @@ const FormLogIn = () => {
                         <Link to="/" style={{ fontSize: '1.4rem' }}>
                             Quên Mật Khẩu?
                         </Link>
-                    </FormGroup>
-                    <button className="btn btn-primary" style={{ width: '100%', fontSize: '1.6rem' }}>
-                        Đăng Nhập
+                    </FormGroup> */}
+                    <button className="btn btn-primary mt-4" style={{ width: '100%', fontSize: '1.6rem' }}>
+                        Đăng Ký
                     </button>
                 </Form>
                 <div className="col"></div>
@@ -87,4 +99,4 @@ const FormLogIn = () => {
     );
 };
 
-export default FormLogIn;
+export default FormRegister;

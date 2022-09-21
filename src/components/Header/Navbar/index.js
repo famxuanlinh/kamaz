@@ -89,10 +89,7 @@ const Navbar = ({ direction, ...args }) => {
                                         </button>
                                     </Link>
                                     <Link to="/dang-nhap">
-                                        <button
-                                            className="btn"
-                                            style={{ fontSize: '1.8rem', backgroundColor: '#0d6efd', color: 'white' }}
-                                        >
+                                        <button className="btn btn-primary" style={{ fontSize: '1.8rem' }}>
                                             Đăng Nhập
                                         </button>
                                     </Link>
