@@ -2,34 +2,34 @@ import { faHeart, faStar, faStarHalf } from '@fortawesome/free-solid-svg-icons';
 import { faFacebook, faTwitter, faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { useState } from 'react';
-import { Carousel, CarouselItem, CarouselControl, CarouselIndicators, CarouselCaption } from 'reactstrap';
+import React from 'react';
 import formatCurrency from '~/until/formatCurrency';
 import './ProductImage.css';
 import { Link } from 'react-router-dom';
+import QuantityInput from '../QuantityInput';
 
-const items = [
-    {
-        src: 'https://www.autoopt.ru/product_pictures/big/f76/671270_3.jpg',
-        altText: 'Slide 1',
-        caption: 'Slide 1',
-        key: 1,
-    },
-    {
-        src: 'https://www.autoopt.ru/product_pictures/big/640/671270.jpg',
-        altText: 'Slide 2',
-        caption: 'Slide 2',
-        key: 2,
-    },
-    {
-        src: 'https://picsum.photos/id/678/1200/400',
-        altText: 'Slide 3',
-        caption: 'Slide 3',
-        key: 3,
-    },
-];
+// const items = [
+//     {
+//         src: 'https://www.autoopt.ru/product_pictures/big/f76/671270_3.jpg',
+//         altText: 'Slide 1',
+//         caption: 'Slide 1',
+//         key: 1,
+//     },
+//     {
+//         src: 'https://www.autoopt.ru/product_pictures/big/640/671270.jpg',
+//         altText: 'Slide 2',
+//         caption: 'Slide 2',
+//         key: 2,
+//     },
+//     {
+//         src: 'https://picsum.photos/id/678/1200/400',
+//         altText: 'Slide 3',
+//         caption: 'Slide 3',
+//         key: 3,
+//     },
+// ];
 
-function ProductQuickView() {
+function ProductQuickView({ product }) {
     return (
         <div style={{ backgroundColor: 'white' }}>
             <div className="row ">
@@ -119,7 +119,9 @@ function ProductQuickView() {
                 </div>
                 <div className="col-lg ">
                     <div className="mx-4 mb-4">
-                        <h2 style={{ fontSize: '30px', marginTop: '20px', fontWeight: '600' }}>Bơm Tay bót lái</h2>
+                        <h2 style={{ fontSize: '30px', marginTop: '20px', fontWeight: '600' }}>
+                            {product.attributes.name}
+                        </h2>
                         <h2 style={{ fontSize: '18px', marginBottom: '20px' }}>Nhóm động cơ</h2>
                         <div>
                             <FontAwesomeIcon icon={faStar} className="text-secondary" />
@@ -129,12 +131,12 @@ function ProductQuickView() {
                             <FontAwesomeIcon icon={faStarHalf} className="text-secondary" />
                             <span style={{ margin: '15px' }}>|</span>
                             <span style={{ fontWeight: '600', marginRight: '10px', textDecorationLine: 'underline' }}>
-                                5236
+                                {product.attributes.sold}
                             </span>
                             <span>Đã bán</span>
                         </div>
                         <div className="text-danger py-4">
-                            <strong style={{ fontSize: '30px' }}>{formatCurrency(21000)}</strong>
+                            <strong style={{ fontSize: '30px' }}>{formatCurrency(product.attributes.price)}</strong>
                             <span
                                 style={{
                                     textDecorationLine: 'line-through',
@@ -143,28 +145,17 @@ function ProductQuickView() {
                                     paddingLeft: '20px',
                                 }}
                             >
-                                {formatCurrency(50000)}
+                                {formatCurrency(product.attributes.price)}
                             </span>{' '}
                         </div>
                         <hr />
                         <div className="d-flex mt-4 mb-3 align-items-center">
                             <div className="pe-4"> Số Lượng: </div>
                             <div
-                                style={{ borderRadius: '5px', border: '1px solid gray', maxWidth: '200px' }}
-                                className=" px-3 "
+                                style={{ borderRadius: '5px', border: '1px solid gray' }}
+                                // className=" px-3 "
                             >
-                                <button className="btn" style={{ border: 'none', fontSize: '20px' }}>
-                                    -
-                                </button>
-                                <input
-                                    type="text"
-                                    style={{ outline: 'none', border: 'none', maxWidth: '60px' }}
-                                    value={'1'}
-                                    className="px-3"
-                                />
-                                <button className="btn" style={{ border: 'none', fontSize: '20px' }}>
-                                    +
-                                </button>
+                                <QuantityInput />
                             </div>
                         </div>
                         <div className="text-center   mb-3">

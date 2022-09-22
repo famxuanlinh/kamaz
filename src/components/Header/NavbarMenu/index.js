@@ -69,7 +69,7 @@ const NavbarMenu = ({ direction, ...args }) => {
                                 // className="category-dropdown-menu"
                             >
                                 {postList.map((item) => (
-                                    <Link to="/danh-muc/dong-co" key={item.id}>
+                                    <Link to={`/danh-muc/${item.slug}`} key={item.id}>
                                         <DropdownItem style={{ width: '260px' }} className="text-capitalize">
                                             <span className="text-primary">{item.attributes.group_number} </span>
                                             {item.attributes.name}
@@ -100,8 +100,21 @@ const NavbarMenu = ({ direction, ...args }) => {
                                 }}
                                 // className="category-dropdown-menu"
                             >
+                                <Link to="/danh-muc/dong-co">
+                                    <DropdownItem
+                                        style={{
+                                            width: '260px',
+                                            color: '#1f3f81',
+                                            fontSize: '1.8rem',
+                                            fontWeight: '600',
+                                        }}
+                                        className="text-capitalize"
+                                    >
+                                        Tất Cả Sản Phẩm
+                                    </DropdownItem>
+                                </Link>
                                 {postList.map((item) => (
-                                    <Link to="/danh-muc/dong-co" key={item.id}>
+                                    <Link to={`/danh-muc/${item.attributes.slug}`} key={item.id}>
                                         <DropdownItem style={{ width: '260px' }} className="text-capitalize">
                                             <span className="text-primary" style={{ fontWeight: '600' }}>
                                                 {item.attributes.group_number}{' '}

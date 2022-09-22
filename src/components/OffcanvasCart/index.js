@@ -18,11 +18,13 @@ import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBagShopping, faHeart } from '@fortawesome/free-solid-svg-icons';
 import formatCurrency from '~/until/formatCurrency';
+import { useCart } from '~/contexts/Cart/CartContext';
+import QuantityInput from '../QuantityInput';
 
 function OffcanvasCart() {
     const [isOpen, setIsOpen] = useState(false);
-
-    const fakeProducts = new Array(8).fill(1);
+    const { products } = useCart();
+    console.log(products);
 
     return (
         <div className="mx-3 position-relative">
@@ -50,8 +52,8 @@ function OffcanvasCart() {
                 <OffcanvasBody style={{ paddingTop: '0', marginBottom: '230px' }}>
                     <Row>
                         <Col>
-                            {fakeProducts.map((_item, index) => (
-                                <div key={index}>
+                            {products?.map((item) => (
+                                <div key={item.id}>
                                     <hr style={{ width: '100%', margin: '20px 0' }} />
                                     <Card style={{ border: 'none' }}>
                                         <Row className="no-gutters">
@@ -66,8 +68,10 @@ function OffcanvasCart() {
                                             </Col>
                                             <Col md="8">
                                                 <CardBody>
-                                                    <CardTitle>Card title</CardTitle>
-                                                    <CardSubtitle>Card subtitle</CardSubtitle>
+                                                    <CardTitle>{item.attributes.name}</CardTitle>
+                                                    <CardSubtitle className="pb-2" style={{ fontSize: '1.4rem' }}>
+                                                        Sku: {item.attributes.sku}
+                                                    </CardSubtitle>
                                                     <CardText tag="h3" style={{ color: '#ea1b25' }}>
                                                         <>
                                                             <span
@@ -76,9 +80,9 @@ function OffcanvasCart() {
                                                                     color: 'gray',
                                                                 }}
                                                             >
-                                                                1x
+                                                                {item.attributes.qty}x
                                                             </span>{' '}
-                                                            {formatCurrency(21000)}
+                                                            {formatCurrency(item.attributes.price)}
                                                         </>
                                                     </CardText>
 

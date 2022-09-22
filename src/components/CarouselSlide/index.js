@@ -9,13 +9,13 @@ const items = [
         key: 1,
     },
     {
-        src: 'https://picsum.photos/id/456/1200/400',
+        src: 'https://pdm72.ru/wp-content/uploads/2016/01/f_044537a65a575d31.jpg',
         altText: 'Slide 2',
         caption: 'Slide 2',
         key: 2,
     },
     {
-        src: 'https://picsum.photos/id/678/1200/400',
+        src: 'https://bigpicture.ru/wp-content/uploads/2020/12/avtoservis-gruzovikov.jpeg',
         altText: 'Slide 3',
         caption: 'Slide 3',
         key: 3,

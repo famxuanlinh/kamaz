@@ -8,8 +8,8 @@ import Register from '~/pages/Register';
 
 const publicRoutes = [
     { path: '/', component: Home, layout: MainLayout },
-    { path: '/danh-muc/dong-co', component: Categories, layout: MainLayout },
-    { path: '/san-pham/loa', component: ProductPage, layout: MainLayout },
+    { path: '/danh-muc/:slug', component: Categories, layout: MainLayout },
+    { path: '/san-pham/:slug', component: ProductPage, layout: MainLayout },
     { path: '/dang-nhap', component: LogIn, layout: DefaultLayout },
     { path: '/dang-ki', component: Register, layout: DefaultLayout },
 ];

@@ -12,9 +12,9 @@ const ProductPage = () => {
                 <div className="py-4">
                     <ProductInfo />
                 </div>
-                <ProductDetailDesc />
+                {/* <ProductDetailDesc /> */}
             </div>
-            <NewProducts />
+            <NewProducts slug={'ban-chay'} />
         </div>
     );
 };
