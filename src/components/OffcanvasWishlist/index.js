@@ -18,11 +18,12 @@ import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import formatCurrency from '~/until/formatCurrency';
+import ProductItemOffcanvas from '../ProductItemOffcanvas';
+import { useCart } from '~/contexts/Cart/CartContext';
 
 function OffcanvasWishlist() {
     const [isOpen, setIsOpen] = useState(false);
-
-    const fakeProducts = new Array(8).fill(1);
+    const fakeApi = new Array(3).fill(0);
 
     return (
         <div className="position-relative">
@@ -50,7 +51,7 @@ function OffcanvasWishlist() {
                 <OffcanvasBody style={{ paddingTop: '0', marginBottom: '80px' }}>
                     <Row>
                         <Col>
-                            {fakeProducts.map((_item, index) => (
+                            {fakeApi.map((_product, index) => (
                                 <div key={index}>
                                     <hr style={{ width: '100%', margin: '20px 0' }} />
                                     <Card style={{ border: 'none' }}>
@@ -66,20 +67,23 @@ function OffcanvasWishlist() {
                                             </Col>
                                             <Col md="8">
                                                 <CardBody>
-                                                    <CardTitle>Card title</CardTitle>
-                                                    <CardSubtitle>Card subtitle</CardSubtitle>
+                                                    <CardTitle>Tên sản phẩm</CardTitle>
+                                                    <CardSubtitle className="pb-2" style={{ fontSize: '1.4rem' }}>
+                                                        Sku: 798354983459
+                                                    </CardSubtitle>
                                                     <CardText tag="h3" style={{ color: '#ea1b25' }}>
-                                                        <>
+                                                        <div>
                                                             <span
                                                                 style={{
                                                                     fontSize: '1.4rem',
                                                                     color: 'gray',
+                                                                    paddingLeft: '5px',
                                                                 }}
                                                             >
                                                                 1x
                                                             </span>{' '}
-                                                            {formatCurrency(21000)}
-                                                        </>
+                                                            {formatCurrency(354045)}
+                                                        </div>
                                                     </CardText>
 
                                                     <CloseButton

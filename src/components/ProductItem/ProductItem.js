@@ -8,12 +8,13 @@ import ProductQuickView from '../ProductQuickView';
 
 import React, { useState } from 'react';
 import { Modal, ModalHeader, ModalBody } from 'reactstrap';
+// import { BASE_URL } from '~/constants/env';
+import ProductsDetail from '../ProductsDetail';
 
 const ProductItem = ({ product, args }) => {
     const [modal, setModal] = useState(false);
 
     const toggle = () => setModal(!modal);
-
     return (
         <div className="card-product " style={{ width: '100%' }}>
             <div>
@@ -21,7 +22,7 @@ const ProductItem = ({ product, args }) => {
                     <Card style={{ borderRadius: '0.5rem' }} className="shadow-sm">
                         <img
                             alt="Sample"
-                            src="https://www.autoopt.ru/product_pictures/big/31f/671270_2.jpg"
+                            src={`http://localhost:1337${product.attributes.images?.data[0].attributes.formats.small.url}`}
                             style={{
                                 aspectRatio: '1 / 1',
                                 objectFit: 'cover',
@@ -39,7 +40,21 @@ const ProductItem = ({ product, args }) => {
                                 {product.attributes.name}
                             </CardTitle>
                             <CardSubtitle className="mb-2 text-muted" tag="h5">
-                                Nhóm phụ tùng
+                                Nhóm:
+                                {product.attributes.categories?.data.map((item) => {
+                                    if (item.attributes.is_menu === true) {
+                                        return (
+                                            <span key={item.id}>
+                                                <span className="px-3" style={{ color: '#1f3f81' }}>
+                                                    {item.attributes.group_number}
+                                                </span>
+                                                {item.attributes.name}
+                                            </span>
+                                        );
+                                    } else {
+                                        return <span key={item.id}></span>;
+                                    }
+                                })}
                             </CardSubtitle>
                             <CardText tag="h3" style={{ color: '#ea1b25', fontSize: '1.8rem' }}>
                                 <span
@@ -107,10 +122,10 @@ const ProductItem = ({ product, args }) => {
                         />
                     </button>
                     {/* <!-- Modal --> */}
-                    <Modal isOpen={modal} toggle={toggle} {...args} style={{ maxWidth: '888px' }}>
+                    <Modal isOpen={modal} toggle={toggle} {...args} style={{ maxWidth: '950px' }}>
                         <ModalHeader toggle={toggle}></ModalHeader>
                         <ModalBody>
-                            <ProductQuickView product={product} />
+                            <ProductsDetail product={product} showMoreInfo={false} />
                         </ModalBody>
                     </Modal>
                 </div>

@@ -6,7 +6,9 @@ const BreadcrumbProduct = () => {
         <div className="py-3">
             <Breadcrumb>
                 <BreadcrumbItem>
-                    <a href="#">Home</a>
+                    <a href="#" className="text-dark">
+                        Home
+                    </a>
                 </BreadcrumbItem>
                 <BreadcrumbItem active>Library</BreadcrumbItem>
             </Breadcrumb>

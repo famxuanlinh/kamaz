@@ -12,7 +12,7 @@ const NewProducts = ({ slug }) => {
     const [products, setProducts] = useState([]);
 
     const getCategory = (slug) => {
-        fetch(`${BASE_URL}/categories?filters[slug]=${slug}&populate=*`)
+        fetch(`${BASE_URL}/categories?filters[slug]=${slug}&populate=deep,3`)
             .then((res) => res.json())
             .then((res) => {
                 setCategory(res.data?.[0].attributes);

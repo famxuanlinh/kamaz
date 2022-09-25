@@ -1,30 +1,17 @@
-import {
-    Button,
-    Card,
-    CardBody,
-    CardImg,
-    CardSubtitle,
-    CardText,
-    CardTitle,
-    CloseButton,
-    Col,
-    Offcanvas,
-    OffcanvasBody,
-    OffcanvasHeader,
-    Row,
-} from 'reactstrap';
+import { Button, Col, Offcanvas, OffcanvasBody, OffcanvasHeader, Row } from 'reactstrap';
+import { Link } from 'react-router-dom';
 
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBagShopping, faHeart } from '@fortawesome/free-solid-svg-icons';
+import { faBagShopping } from '@fortawesome/free-solid-svg-icons';
 import formatCurrency from '~/until/formatCurrency';
 import { useCart } from '~/contexts/Cart/CartContext';
-import QuantityInput from '../QuantityInput';
+
+import ProductItemOffcanvas from '../ProductItemOffcanvas';
 
 function OffcanvasCart() {
     const [isOpen, setIsOpen] = useState(false);
-    const { products } = useCart();
-    console.log(products);
+    const { products, handleUpdateCart, totalMoneyCart, totalQty } = useCart();
 
     return (
         <div className="mx-3 position-relative">
@@ -37,7 +24,8 @@ function OffcanvasCart() {
                     style={{ fontSize: '10px' }}
                     className="position-absolute top-1 start-90 translate-middle badge rounded-pill bg-danger"
                 >
-                    99<span className="visually-hidden">unread messages</span>
+                    {totalQty}
+                    <span className="visually-hidden">unread messages</span>
                 </span>
             </Button>
             <Offcanvas
@@ -52,54 +40,20 @@ function OffcanvasCart() {
                 <OffcanvasBody style={{ paddingTop: '0', marginBottom: '230px' }}>
                     <Row>
                         <Col>
-                            {products?.map((item) => (
-                                <div key={item.id}>
-                                    <hr style={{ width: '100%', margin: '20px 0' }} />
-                                    <Card style={{ border: 'none' }}>
-                                        <Row className="no-gutters">
-                                            <Col md="4">
-                                                <CardImg
-                                                    top
-                                                    width="100%"
-                                                    src="https://picsum.photos/300/200"
-                                                    alt="Card image cap"
-                                                    style={{ aspectRatio: '1 / 1', objectFit: 'cover' }}
-                                                />
-                                            </Col>
-                                            <Col md="8">
-                                                <CardBody>
-                                                    <CardTitle>{item.attributes.name}</CardTitle>
-                                                    <CardSubtitle className="pb-2" style={{ fontSize: '1.4rem' }}>
-                                                        Sku: {item.attributes.sku}
-                                                    </CardSubtitle>
-                                                    <CardText tag="h3" style={{ color: '#ea1b25' }}>
-                                                        <>
-                                                            <span
-                                                                style={{
-                                                                    fontSize: '1.4rem',
-                                                                    color: 'gray',
-                                                                }}
-                                                            >
-                                                                {item.attributes.qty}x
-                                                            </span>{' '}
-                                                            {formatCurrency(item.attributes.price)}
-                                                        </>
-                                                    </CardText>
-
-                                                    <CloseButton
-                                                        style={{
-                                                            position: 'absolute',
-                                                            top: '10px',
-                                                            right: '0',
-                                                            fontSize: '1rem',
-                                                        }}
-                                                    />
-                                                </CardBody>
-                                            </Col>
-                                        </Row>
-                                    </Card>
+                            {products.length > 0 ? (
+                                products?.map((item) => (
+                                    <div key={item.id}>
+                                        <ProductItemOffcanvas product={item} />
+                                    </div>
+                                ))
+                            ) : (
+                                <div
+                                    className="d-flex justify-content-center "
+                                    style={{ fontSize: '20px', marginTop: '150px' }}
+                                >
+                                    Không Có Sản Phẩm Nào
                                 </div>
-                            ))}
+                            )}
                         </Col>
                     </Row>
                 </OffcanvasBody>
@@ -116,25 +70,25 @@ function OffcanvasCart() {
                     {/* <hr style={{ width: '100%', margin: '20px 0' }} /> */}
                     <div>
                         <div className="total-price d-flex justify-content-between">
+                            <h3>Thành Tiền:</h3>
+                            <h3>{formatCurrency(totalMoneyCart)}</h3>
+                        </div>
+                        <div className="total-price d-flex justify-content-between">
                             <h3>Tiết kiệm:</h3>
-                            <h3>{formatCurrency(21000)}</h3>
+                            <h3>{formatCurrency(0)}</h3>
                         </div>
                         <div className="total-price d-flex justify-content-between">
                             <h3>Tổng thanh toán:</h3>
                             <h3>
-                                <strong>{formatCurrency(21000)}</strong>
+                                <strong>{formatCurrency(totalMoneyCart)}</strong>
                             </h3>
                         </div>
                     </div>
-                    <Button
-                        size="lg"
-                        color="secondary"
-                        href="#"
-                        tag="a"
-                        style={{ fontSize: '2rem', width: '100%', margin: '20px 0' }}
-                    >
-                        Xem Giỏ Hàng
-                    </Button>
+                    <Link to="/gio-hang">
+                        <Button size="lg" color="light" style={{ fontSize: '2rem', width: '100%', margin: '20px 0' }}>
+                            Xem Giỏ Hàng
+                        </Button>
+                    </Link>
                     <Button
                         size="lg"
                         color="primary"

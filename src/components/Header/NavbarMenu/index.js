@@ -100,7 +100,7 @@ const NavbarMenu = ({ direction, ...args }) => {
                                 }}
                                 // className="category-dropdown-menu"
                             >
-                                <Link to="/danh-muc/dong-co">
+                                <Link to="/danh-muc/tat-ca-san-pham">
                                     <DropdownItem
                                         style={{
                                             width: '260px',

@@ -4,8 +4,6 @@ import styles from './QuantityInput.scss';
 
 const cx = classNames.bind(styles);
 
-// onChange(newQty)
-
 const QuantityInput = ({ defaultQty = 1, onChange }) => {
     const [qty, setQty] = useState(defaultQty);
 

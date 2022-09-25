@@ -4,19 +4,19 @@ import { Carousel, CarouselItem, CarouselControl, CarouselIndicators, CarouselCa
 const items = [
     {
         src: 'https://kamaztrade.com/sites/default/files/14._sklad_palletnogo_hraneniya_zch.jpg',
-        altText: 'Slide 1',
+        altText: 'Phụ Tùng Chính Hãng',
         caption: 'Slide 1',
         key: 1,
     },
     {
-        src: 'https://pdm72.ru/wp-content/uploads/2016/01/f_044537a65a575d31.jpg',
-        altText: 'Slide 2',
+        src: 'https://r4.wallpaperflare.com/wallpaper/28/775/705/sunset-the-evening-auto-machine-truck-hd-wallpaper-4b4813be23a33f8f347cc5adcbab1b35.jpg',
+        altText: 'Kamaz',
         caption: 'Slide 2',
         key: 2,
     },
     {
-        src: 'https://bigpicture.ru/wp-content/uploads/2020/12/avtoservis-gruzovikov.jpeg',
-        altText: 'Slide 3',
+        src: 'https://r4.wallpaperflare.com/wallpaper/725/828/848/engine-spare-parts-the-piston-rod-wallpaper-590068bdc10aad8bc607e80f0091260d.jpg',
+        altText: 'Phụ Tùng Chính Hãng',
         caption: 'Slide 3',
         key: 3,
     },

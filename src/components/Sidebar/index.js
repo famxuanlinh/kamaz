@@ -26,8 +26,6 @@ const Sidebar = () => {
             <ListGroup>
                 <Link to="/danh-muc/tat-ca-san-pham">
                     <ListGroupItem
-                        href="#"
-                        tag="a"
                         className="text-capitalize"
                         style={{
                             border: 'none',
