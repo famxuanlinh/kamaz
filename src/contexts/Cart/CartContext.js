@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 
 const CartContext = React.createContext();
 export const CartProvider = ({ children }) => {
@@ -31,6 +32,7 @@ export const CartProvider = ({ children }) => {
             setProducts(newProducts);
             setDataToLocalStorage(newProducts);
         }
+        toast.success('Thêm Vào Giỏ Hàng Thành Công');
     };
 
     const handleUpdateCart = (productId, newQty) => {
