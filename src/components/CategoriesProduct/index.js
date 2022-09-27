@@ -37,6 +37,7 @@ const CategoriesProduct = () => {
                 .then((res) => {
                     setPageProps({
                         ...pageProps,
+                        currentPage: 1,
                         totalPages: res.meta.pagination.pageCount,
                     });
                     setProducts(res.data);

@@ -1,10 +1,36 @@
 import { faAt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button, FormGroup, Input, Label, Form } from 'reactstrap';
+import { useLogin } from '~/contexts/Login/LoginContext';
 
 const FormLogIn = () => {
+    const { handleLogin } = useLogin();
+    const [userInfo, setUserInfo] = useState({
+        email: '',
+        password: '',
+    });
+
+    console.log(userInfo);
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        handleLogin({
+            identifier: userInfo.email,
+            password: userInfo.password,
+        });
+    };
+
+    const handleDataChange = (e) => {
+        const { name, value } = e.target;
+
+        setUserInfo({
+            ...userInfo,
+            [name]: value,
+        });
+    };
+
     return (
         <div className="container text-center">
             <div className="row align-items-center">
@@ -47,6 +73,7 @@ const FormLogIn = () => {
                             placeholder="Email"
                             type="email"
                             style={{ fontSize: '1.6rem' }}
+                            onChange={handleDataChange}
                         />
                     </FormGroup>{' '}
                     <FormGroup>
@@ -59,6 +86,7 @@ const FormLogIn = () => {
                             placeholder="Mật Khẩu"
                             type="password"
                             style={{ fontSize: '1.6rem' }}
+                            onChange={handleDataChange}
                         />
                     </FormGroup>
                     <FormGroup check className="d-flex justify-content-between pt-5 pb-3">
@@ -77,7 +105,11 @@ const FormLogIn = () => {
                             Quên Mật Khẩu?
                         </Link>
                     </FormGroup>
-                    <button className="btn btn-primary" style={{ width: '100%', fontSize: '1.6rem' }}>
+                    <button
+                        className="btn btn-primary"
+                        style={{ width: '100%', fontSize: '1.6rem' }}
+                        onClick={handleSubmit}
+                    >
                         Đăng Nhập
                     </button>
                 </Form>

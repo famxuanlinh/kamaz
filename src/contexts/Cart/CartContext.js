@@ -62,7 +62,7 @@ export const CartProvider = ({ children }) => {
     };
 
     //Lấy về từ local storage
-    const getDataToLocalStorage = (data) => {
+    const getDataFromLocalStorage = (data) => {
         const dataString = window.localStorage.getItem('cart');
         const dataObject = JSON.parse(dataString);
 
@@ -72,7 +72,7 @@ export const CartProvider = ({ children }) => {
     };
 
     useEffect(() => {
-        getDataToLocalStorage();
+        getDataFromLocalStorage();
     }, []);
 
     const totalQty = products.reduce((prev, product) => prev + product.qty, 0);

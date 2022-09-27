@@ -7,6 +7,7 @@ import Search from '~/components/Search';
 import OffcanvasWishlist from '~/components/OffcanvasWishlist';
 import OffcanvasCart from '~/components/OffcanvasCart';
 import OffcanvasMenu from '~/components/OffcanvasMenu';
+import { useLogin } from '~/contexts/Login/LoginContext';
 
 const wrapper = {
     backgroundColor: 'white',
@@ -15,6 +16,8 @@ const wrapper = {
 
 const Navbar = ({ direction, ...args }) => {
     const [dropdownOpen, setDropdownOpen] = useState(false);
+
+
 
     // const toggle = () => setDropdownOpen((prevState) => !prevState);
     return (
