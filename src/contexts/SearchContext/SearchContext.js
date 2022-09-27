@@ -7,6 +7,8 @@ import { BASE_URL } from '~/constants/env';
 const SearchContext = React.createContext();
 export const SearchProvider = ({ children }) => {
     const [searchValue, setSearchValue] = useState('');
+    const [showResult, setShowResult] = useState(true);
+
     const [searchResult, setSearchResult] = useState([]);
     const [suggests, setSuggests] = useState([]);
     const [pageProps, setPageProps] = useState({
@@ -21,8 +23,6 @@ export const SearchProvider = ({ children }) => {
     const [searchParams] = useSearchParams();
     const defaultTerm = searchParams.get('term');
 
-    console.log('term');
-
     const debounced = useDebounce(searchValue, 500); //set ko cho call API liên tục
 
     const getSuggests = () => {
@@ -34,11 +34,14 @@ export const SearchProvider = ({ children }) => {
                 setSuggests(res.data);
             });
     };
+
     const getSearchValue = (term) => {
         fetch(
             `${BASE_URL}/products?filters[$or][0][name][$containsi]=${
                 term || searchValue
-            }&filters[$or][1][sku][$containsi]=${term || searchValue}&populate=deep,3`,
+            }&filters[$or][1][sku][$containsi]=${term || searchValue}&populate=deep,3&pagination[page]=${
+                pageProps.currentPage
+            }&pagination[pageSize]=12&sort[0]=createdAt&populate=deep,2`,
         )
             .then((res) => res.json())
             .then((res) => {
@@ -50,14 +53,14 @@ export const SearchProvider = ({ children }) => {
             });
     };
 
-    // useEffect(() => {
-    //     if (!debounced.trim()) {
-    //         setSearchResult([]); // Khi xoá ký tự cuối thì sẽ ẩn search result
-    //         return;
-    //     }
+    useEffect(() => {
+        if (!debounced.trim()) {
+            setSearchResult([]); // Khi xoá ký tự cuối thì sẽ ẩn search result
+            return;
+        }
 
-    //     getSearchValue();
-    // }, [debounced, pageProps.currentPage]);
+        getSearchValue();
+    }, [debounced, pageProps.currentPage]);
 
     useEffect(() => {
         if (!debounced.trim()) {
@@ -65,7 +68,7 @@ export const SearchProvider = ({ children }) => {
             return;
         }
         getSuggests();
-    }, [searchValue]);
+    }, [debounced]);
 
     useEffect(() => {
         if (!defaultTerm) {
@@ -73,6 +76,7 @@ export const SearchProvider = ({ children }) => {
         }
         setSearchValue(defaultTerm);
         getSearchValue(defaultTerm);
+        setShowResult(false);
     }, []);
 
     const handleChangePage = (newPage) => {
@@ -86,6 +90,10 @@ export const SearchProvider = ({ children }) => {
         getSearchValue();
     };
 
+    const handleHideResult = (boolean) => {
+        setShowResult(boolean);
+    };
+
     return (
         <SearchContext.Provider
             value={{
@@ -96,6 +104,8 @@ export const SearchProvider = ({ children }) => {
                 handleSearch,
                 searchValue,
                 suggests,
+                showResult,
+                handleHideResult,
             }}
         >
             {' '}

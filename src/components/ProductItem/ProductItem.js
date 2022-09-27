@@ -40,6 +40,7 @@ const ProductItem = ({ product, args }) => {
                                 {product.attributes.name}
                             </CardTitle>
                             <CardSubtitle className="mb-2 text-muted" tag="h5">
+                                <span className="me-4">{product.attributes.sku}</span>
                                 Nhóm:
                                 {product.attributes.categories?.data.map((item) => {
                                     if (item.attributes.is_menu === true) {

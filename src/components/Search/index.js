@@ -11,8 +11,8 @@ import { useSearch } from '~/contexts/SearchContext/SearchContext';
 const Search = () => {
     // const [searchValue, setSearchValue] = useState('');
     // const [searchResult, setSearchResult] = useState([]);
-    const [showResult, setShowResult] = useState(true);
-    const { searchResult, handleTermChange, handleSearch, searchValue, suggests } = useSearch();
+    // const [showResult, setShowResult] = useState(true);
+    const { handleTermChange, handleSearch, searchValue, suggests, showResult, handleHideResult } = useSearch();
 
     // const debounced = useDebounce(searchValue, 500); //set ko cho call API liên tục
 
@@ -35,15 +35,11 @@ const Search = () => {
     //     getSearchValue();
     // }, [debounced]);
 
-    const handleHideResult = () => {
-        setShowResult(false);
-    };
-
     return (
         <HeadlessTippy
             interactive // Chọn được phần tử
             placement="bottom"
-            visible={showResult && searchResult.length > 0} //Chỉ hiển thị khi kết quả tìm kiếm lớn hơn 0
+            visible={showResult && suggests.length > 0} //Chỉ hiển thị khi kết quả tìm kiếm lớn hơn 0
             render={(attrs) => (
                 <div
                     tabIndex="-1"
@@ -88,7 +84,7 @@ const Search = () => {
                                         <div style={{ fontSize: '18px' }}>{item.attributes.name}</div>
                                         <div className="row">
                                             <div className="col-5 text-primary" style={{ fontSize: '16px' }}>
-                                                Sku: {item.attributes.sku}
+                                                Mã: {item.attributes.sku}
                                             </div>
                                             <div className="col-7" style={{ fontSize: '14px' }}>
                                                 Nhóm: {item.attributes.categories.data[0].attributes.name}
@@ -103,7 +99,7 @@ const Search = () => {
                     {/* ))} */}
                 </div>
             )}
-            onClickOutside={handleHideResult}
+            onClickOutside={() => handleHideResult(false)}
         >
             <form className="d-flex border border-1 p-0 rounded w-100">
                 <input
@@ -113,14 +109,17 @@ const Search = () => {
                     aria-label="Search"
                     style={{ fontSize: '14px', border: 'none' }}
                     onChange={(e) => handleTermChange(e.target.value)}
-                    onFocus={() => setShowResult(true)}
+                    onFocus={() => handleHideResult(true)}
                     value={searchValue}
                 />
-                <Link to={`/tim-kiem?term=${searchValue}`}>
+                <Link to={`/tim-kiem?term=${searchValue}`} className="d-flex">
                     <button
                         className="btn border-0  rounded-end px-3 m-0"
-                        onClick={handleSearch}
                         style={{ borderLeft: '0' }}
+                        onClick={() => {
+                            handleSearch();
+                            handleHideResult(false);
+                        }}
                         type="submit"
                     >
                         <FontAwesomeIcon icon={faSearch} style={{ fontSize: '24px' }} />
