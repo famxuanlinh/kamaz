@@ -57,7 +57,6 @@ const Search = () => {
                             Sản phẩm
                             <hr style={{ marginTop: '0' }} />
                         </div>
-                        {/* {searchResult.map((_result) => ( */}
                         {suggests.map((item) => (
                             <Link to={`/san-pham/${item.attributes.slug}`} key={item.id}>
                                 <div className="product-search d-flex py-2" style={{ width: '653px' }}>

@@ -16,8 +16,7 @@ const wrapper = {
 
 const Navbar = ({ direction, ...args }) => {
     const [dropdownOpen, setDropdownOpen] = useState(false);
-
-
+    const { userInfo, handleLogout } = useLogin();
 
     // const toggle = () => setDropdownOpen((prevState) => !prevState);
     return (
@@ -39,7 +38,7 @@ const Navbar = ({ direction, ...args }) => {
                     </div>
                     <div className="col d-flex flex-row-reverse">
                         <div className="d-flex align-items-center">
-                            {true ? (
+                            {userInfo ? (
                                 <div className="d-flex ps-4 ">
                                     <OffcanvasWishlist />
                                     <OffcanvasCart />
@@ -59,23 +58,37 @@ const Navbar = ({ direction, ...args }) => {
                                         <DropdownMenu
                                             {...args}
                                             end
-                                            className="dropdown-menu dropdown-menu-lg-end shadow-lg"
+                                            className="dropdown-menu dropdown-menu-lg-end shadow-lg py-4"
                                             style={{ fontSize: '1.8rem', zIndex: '9999', borderRadius: '0.5rem' }}
                                         >
                                             <div>
                                                 <DropdownItem>
-                                                    <Link to="/">Quản lý tài khoản</Link>
+                                                    <Link className="px-4" to="/quan-li-tai-khoan">
+                                                        Quản lý tài khoản
+                                                    </Link>
                                                 </DropdownItem>
                                                 <DropdownItem>
-                                                    <Link to="/">Thay đổi mật khẩu</Link>
+                                                    <Link className="px-4" to="/thay-doi-mat-khau">
+                                                        Thay đổi mật khẩu
+                                                    </Link>
                                                 </DropdownItem>
                                                 <DropdownItem>
-                                                    <Link to="/">Đơn hàng</Link>
+                                                    <Link className="px-4" to="/don-hang">
+                                                        Đơn hàng
+                                                    </Link>
                                                 </DropdownItem>
                                                 <DropdownItem className="border-top">
-                                                    <Link to="/" style={{ color: 'red' }}>
+                                                    <button
+                                                        className="px-4"
+                                                        style={{
+                                                            color: 'red',
+                                                            border: 'none',
+                                                            backgroundColor: 'transparent',
+                                                        }}
+                                                        onClick={handleLogout}
+                                                    >
                                                         Đăng xuất
-                                                    </Link>
+                                                    </button>
                                                 </DropdownItem>
                                             </div>
                                         </DropdownMenu>

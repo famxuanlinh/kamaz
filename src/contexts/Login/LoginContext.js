@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const LoginContext = React.createContext();
 export const LoginProvider = ({ children }) => {
@@ -22,12 +23,17 @@ export const LoginProvider = ({ children }) => {
                     setUserInfo(data.user);
                     setDataToLocalStorage({ ...data.user, jwt: data.jwt });
                     history('/');
+                    toast.success('Đăng Nhập Thành Công');
                 } else {
-                    alert('Ko đúng mật khẩu');
+                    alert('Mật Khẩu Không Đúng');
                 }
             })
             .catch((err) => {});
     }
+    const handleLogout = () => {
+        setUserInfo(null);
+        setDataToLocalStorage(null);
+    };
 
     //Lưu vào local storage
     const setDataToLocalStorage = (data) => {
@@ -45,7 +51,8 @@ export const LoginProvider = ({ children }) => {
     useEffect(() => {
         getDataFromLocalStorage();
     }, []);
-    return <LoginContext.Provider value={{ handleLogin, userInfo }}>{children}</LoginContext.Provider>;
+
+    return <LoginContext.Provider value={{ handleLogin, userInfo, handleLogout }}>{children}</LoginContext.Provider>;
 };
 
 export const useLogin = () => {

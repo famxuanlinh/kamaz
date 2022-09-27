@@ -53,15 +53,13 @@ export const SearchProvider = ({ children }) => {
             });
     };
 
+    //Tìm kiêms trang tìm kiếm
     useEffect(() => {
-        if (!debounced.trim()) {
-            setSearchResult([]); // Khi xoá ký tự cuối thì sẽ ẩn search result
-            return;
-        }
-
+        
         getSearchValue();
-    }, [debounced, pageProps.currentPage]);
+    }, [pageProps.currentPage]);
 
+    //Tìm kiếm trên Suggests
     useEffect(() => {
         if (!debounced.trim()) {
             setSuggests([]); // Khi xoá ký tự cuối thì sẽ ẩn search result
@@ -70,6 +68,7 @@ export const SearchProvider = ({ children }) => {
         getSuggests();
     }, [debounced]);
 
+    //Chạy lần đầu khi khởi động trang
     useEffect(() => {
         if (!defaultTerm) {
             return;
@@ -79,6 +78,7 @@ export const SearchProvider = ({ children }) => {
         setShowResult(false);
     }, []);
 
+    //Thay đổi trang
     const handleChangePage = (newPage) => {
         setPageProps({
             ...pageProps,
@@ -86,10 +86,12 @@ export const SearchProvider = ({ children }) => {
         });
     };
 
+    //Ấn vào nút tìm kiếm sẽ gọi API
     const handleSearch = () => {
         getSearchValue();
     };
 
+    //Ẩn hiện Suggests/ tippy
     const handleHideResult = (boolean) => {
         setShowResult(boolean);
     };
