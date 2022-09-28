@@ -6,6 +6,11 @@ import ProductPage from '~/pages/ProductPage';
 import Register from '~/pages/Register';
 import Cart from '~/pages/Cart';
 import SearchPage from '~/pages/SearchPage';
+import ManageUser from '~/pages/ManageUser';
+import UpdatePassword from '~/pages/UpdatePassword';
+import ForgotPassword from '~/pages/ForgotPassword';
+import Oders from '~/pages/Oders';
+import BuyProduct from '~/pages/BuyProduct';
 
 const publicRoutes = [
     { path: '/', component: Home, layout: MainLayout },
@@ -13,8 +18,13 @@ const publicRoutes = [
     { path: '/san-pham/:slug', component: ProductPage, layout: MainLayout },
     { path: '/tim-kiem', component: SearchPage, layout: MainLayout },
     { path: '/dang-nhap', component: LogIn, layout: DefaultLayout },
+    { path: '/thay-doi-mat-khau', component: UpdatePassword, layout: DefaultLayout },
+    { path: '/quen-mat-khau', component: ForgotPassword, layout: DefaultLayout },
+    { path: '/quan-li-tai-khoan', component: ManageUser, layout: DefaultLayout },
     { path: '/dang-ki', component: Register, layout: DefaultLayout },
     { path: '/gio-hang', component: Cart, layout: DefaultLayout },
+    { path: '/don-hang', component: Oders, layout: DefaultLayout },
+    { path: '/don-hang/dong-co', component: BuyProduct, layout: DefaultLayout },
     { path: '/wishlist', component: Register, layout: DefaultLayout },
 ];
 

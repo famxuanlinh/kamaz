@@ -68,7 +68,10 @@ function ProductsDetail({ product, showMoreInfo }) {
                     </div>
                     <div className="col-lg ">
                         <div className="mx-4 mb-4">
-                            <h2 style={{ fontSize: '30px', marginTop: '20px', fontWeight: '600' }}>
+                            <h2
+                                style={{ fontSize: '30px', marginTop: '20px', fontWeight: '600' }}
+                                className="text-lowercase"
+                            >
                                 {product.attributes.name}
                             </h2>
                             <h2 style={{ fontSize: '18px', marginBottom: '20px' }}>
@@ -178,9 +181,14 @@ function ProductsDetail({ product, showMoreInfo }) {
                                     </button>
                                 </div>
                                 <div>
-                                    <button className="btn btn-primary py-2 px-md-5 w-100" style={{ fontSize: '2rem' }}>
-                                        Mua Ngay
-                                    </button>
+                                    <Link to="/don-hang/dong-co">
+                                        <button
+                                            className="btn btn-primary py-2 px-md-5 w-100"
+                                            style={{ fontSize: '2rem' }}
+                                        >
+                                            Mua Ngay
+                                        </button>
+                                    </Link>
                                 </div>
                             </div>
                             <div className="d-md-flex pb-4">

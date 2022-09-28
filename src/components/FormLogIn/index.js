@@ -1,8 +1,8 @@
-import { faAt } from '@fortawesome/free-solid-svg-icons';
+import { faLock } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Button, FormGroup, Input, Label, Form, Breadcrumb } from 'reactstrap';
+import { Button, FormGroup, Input, Label, Form, Breadcrumb, InputGroupText, InputGroup } from 'reactstrap';
 import { useLogin } from '~/contexts/Login/LoginContext';
 import BreadcrumbProduct from '../BreadcrumbProduct';
 
@@ -37,9 +37,8 @@ const FormLogIn = () => {
                 <div className="row align-items-center">
                     <div className="col"></div>
                     <Form
-                        className="col align-items-center justify-content-center shadow "
+                        className="col align-items-center justify-content-center shadow w-100"
                         style={{
-                            maxWidth: '368px',
                             backgroundColor: 'white',
                             padding: '6rem 3.2rem',
                             borderRadius: '0.5rem',
@@ -47,53 +46,47 @@ const FormLogIn = () => {
                         }}
                     >
                         <div className="pb-4">
-                            <button
+                            <div
                                 className="btn "
                                 style={{
                                     border: 'none',
-                                    fontSize: '2.4rem',
+                                    fontSize: '3rem',
                                     color: 'red',
                                     fontWeight: '600',
                                 }}
                             >
                                 Đăng Nhập
-                            </button>
+                            </div>
                             <span className="px-3">|</span>
                             <Link to="/dang-ki">
-                                <button
-                                    className="btn "
-                                    style={{ border: 'none', fontSize: '2rem', fontWeight: '600' }}
-                                >
+                                <div className="btn " style={{ border: 'none', fontSize: '2.4rem', fontWeight: '600' }}>
                                     Đăng Kí
-                                </button>
+                                </div>
                             </Link>
                         </div>
-                        <FormGroup>
-                            <Label for="exampleEmail" hidden>
-                                Email
-                            </Label>
+                        <InputGroup style={{ fontSize: '2rem', marginBottom: '15px' }}>
+                            <InputGroupText>@</InputGroupText>
                             <Input
-                                id="exampleEmail"
+                                required={true}
+                                placeholder="Địa chỉ email"
                                 name="email"
-                                placeholder="Email"
                                 type="email"
                                 style={{ fontSize: '1.6rem' }}
                                 onChange={handleDataChange}
                             />
-                        </FormGroup>{' '}
-                        <FormGroup>
-                            <Label for="examplePassword" hidden>
-                                Password
-                            </Label>
+                        </InputGroup>{' '}
+                        <InputGroup style={{ fontSize: '2rem' }}>
+                            <InputGroupText>
+                                <FontAwesomeIcon icon={faLock} />
+                            </InputGroupText>
                             <Input
-                                id="examplePassword"
                                 name="password"
                                 placeholder="Mật Khẩu"
                                 type="password"
                                 style={{ fontSize: '1.6rem' }}
                                 onChange={handleDataChange}
                             />
-                        </FormGroup>
+                        </InputGroup>
                         <FormGroup check className="d-flex justify-content-between pt-5 pb-3">
                             <span>
                                 <Input
@@ -106,7 +99,7 @@ const FormLogIn = () => {
                                     Ghi Nhớ
                                 </Label>
                             </span>
-                            <Link to="/" style={{ fontSize: '1.4rem' }}>
+                            <Link to="/quen-mat-khau" style={{ fontSize: '1.4rem' }}>
                                 Quên Mật Khẩu?
                             </Link>
                         </FormGroup>
@@ -114,6 +107,7 @@ const FormLogIn = () => {
                             className="btn btn-primary"
                             style={{ width: '100%', fontSize: '1.6rem' }}
                             onClick={handleSubmit}
+                            type="submit"
                         >
                             Đăng Nhập
                         </button>

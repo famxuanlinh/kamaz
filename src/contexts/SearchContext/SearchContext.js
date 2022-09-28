@@ -20,6 +20,7 @@ export const SearchProvider = ({ children }) => {
     const handleTermChange = (term) => {
         setSearchValue(term);
     };
+
     const [searchParams] = useSearchParams();
     const defaultTerm = searchParams.get('term');
 
@@ -55,7 +56,6 @@ export const SearchProvider = ({ children }) => {
 
     //Tìm kiêms trang tìm kiếm
     useEffect(() => {
-        
         getSearchValue();
     }, [pageProps.currentPage]);
 
@@ -88,6 +88,9 @@ export const SearchProvider = ({ children }) => {
 
     //Ấn vào nút tìm kiếm sẽ gọi API
     const handleSearch = () => {
+        if (!debounced.trim()) {
+            return;
+        }
         getSearchValue();
     };
 

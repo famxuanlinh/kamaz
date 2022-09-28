@@ -8,68 +8,38 @@ import QuantityInput from '~/components/QuantityInput';
 import { useCart } from '~/contexts/Cart/CartContext';
 import formatCurrency from '~/until/formatCurrency';
 
-const Cart = () => {
-    const { products, handleUpdateCart, totalMoneyCart, handleDeleteItemInCart } = useCart();
+const Oders = () => {
+    const { handleUpdateCart, totalMoneyCart, handleDeleteItemInCart } = useCart();
 
+    const fakeApi = new Array(3).fill(0);
     return (
         <div style={{ backgroundColor: '#f7f7f7' }}>
             <div className="container">
                 <BreadcrumbProduct />
                 <div style={{ backgroundColor: 'white' }}>
                     <div style={{ padding: '30px' }}>
-                        <h1 className="text-dark">Giỏ Hàng</h1>
-                        {products.length > 0 ? (
+                        <h1 className="text-dark">Lịch sử đơn hàng</h1>
+                        {fakeApi.length > 0 ? (
                             <Table size="sm">
                                 <thead>
                                     <tr>
-                                        <th>Sản Phẩm</th>
-                                        <th>Đơn Giá</th>
+                                        <th>Mã vận đơn</th>
+                                        <th>Trạng thái</th>
                                         <th>Số Lượng</th>
-                                        <th>Thành Tiền</th>
-                                        <th></th>
+                                        <th>Tổng Tiền</th>
+                                        <th>Ngày</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {products?.map((product) => (
+                                    {fakeApi?.map((product) => (
                                         <tr key={product.id}>
-                                            <td className="d-flex align-items-center">
-                                                <img
-                                                    alt="Card image cap"
-                                                    src="https://picsum.photos/300/200"
-                                                    style={{
-                                                        aspectRatio: '1 / 1',
-                                                        objectFit: 'cover',
-                                                        width: '60px',
-                                                        marginRight: '10px',
-                                                        marginBottom: '10px',
-                                                        marginTop: '10px',
-                                                    }}
-                                                />
-                                                <div>
-                                                    <div>{product.attributes.name}</div>
-                                                    <div>sku: {product.attributes.sku}</div>
-                                                </div>
+                                            <td className="d-flex align-items-center py-2">
+                                                <div>65sfd6sfd65sdf65</div>
                                             </td>
-                                            <td>{formatCurrency(product.attributes.price)}</td>
-                                            <td>
-                                                <QuantityInput
-                                                    onChange={(newQty) => handleUpdateCart(product.id, newQty)}
-                                                    defaultQty={product.qty}
-                                                />
-                                            </td>
-                                            <td>{formatCurrency(product.attributes.price)}</td>
-                                            <td>
-                                                <button
-                                                    className="btn"
-                                                    onClick={() => handleDeleteItemInCart(product.id)}
-                                                >
-                                                    <FontAwesomeIcon
-                                                        className="cus-btn-icon"
-                                                        icon={faX}
-                                                        style={{ fontSize: '1.6rem' }}
-                                                    />
-                                                </button>
-                                            </td>
+                                            <td>Đã giao</td>
+                                            <td>1</td>
+                                            <td>{formatCurrency(4654656)}</td>
+                                            <td>28/09/2022</td>
                                         </tr>
                                     ))}
                                 </tbody>
@@ -79,7 +49,7 @@ const Cart = () => {
                                 className="d-flex justify-content-center "
                                 style={{ fontSize: '20px', margin: '100px 0' }}
                             >
-                                Không Có Sản Phẩm Nào
+                                Không có đơn hàng nào
                             </div>
                         )}
                     </div>
@@ -113,7 +83,7 @@ const Cart = () => {
                                             </Link>
                                         </th>
                                         <th className="text-end">
-                                            <Link to="/don-hang/dong-co">
+                                            <Link to="/">
                                                 <button
                                                     className="btn btn-primary btn-lg w-100"
                                                     style={{ fontSize: '20px' }}
@@ -133,4 +103,4 @@ const Cart = () => {
     );
 };
 
-export default Cart;
+export default Oders;

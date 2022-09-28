@@ -9,31 +9,7 @@ import { Link } from 'react-router-dom';
 import { useSearch } from '~/contexts/SearchContext/SearchContext';
 
 const Search = () => {
-    // const [searchValue, setSearchValue] = useState('');
-    // const [searchResult, setSearchResult] = useState([]);
-    // const [showResult, setShowResult] = useState(true);
     const { handleTermChange, handleSearch, searchValue, suggests, showResult, handleHideResult } = useSearch();
-
-    // const debounced = useDebounce(searchValue, 500); //set ko cho call API liên tục
-
-    // const getSearchValue = () => {
-    //     fetch(
-    //         `http://localhost:1337/api/products?filters[$or][0][name][$containsi]=${searchValue}&filters[$or][1][sku][$containsi]=${searchValue}&populate=deep,3`,
-    //     )
-    //         .then((res) => res.json())
-    //         .then((res) => {
-    //             setSearchResult(res.data);
-    //         });
-    // };
-
-    // useEffect(() => {
-    //     if (!debounced.trim()) {
-    //         setSearchResult([]); // Khi xoá ký tự cuối thì sẽ ẩn search result
-    //         return;
-    //     }
-
-    //     getSearchValue();
-    // }, [debounced]);
 
     return (
         <HeadlessTippy
@@ -103,13 +79,19 @@ const Search = () => {
             <form className="d-flex border border-1 p-0 rounded w-100">
                 <input
                     className="form-control me-2 p-3 border-0"
-                    type="search"
-                    placeholder="Hãy Nhập Tên Hoặc Mã Phụ Tùng"
+                    // type="search"
+                    placeholder="Hãy nhập tên hoặc mã phụ tùng"
                     aria-label="Search"
                     style={{ fontSize: '14px', border: 'none' }}
                     onChange={(e) => handleTermChange(e.target.value)}
                     onFocus={() => handleHideResult(true)}
                     value={searchValue}
+                    onKeyDown={(e) => {
+                        if (searchValue & (e.key === 'Enter')) {
+                            handleSearch();
+                            console.log('Ua Allo');
+                        }
+                    }}
                 />
                 <Link to={`/tim-kiem?term=${searchValue}`} className="d-flex">
                     <button

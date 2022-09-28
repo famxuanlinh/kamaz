@@ -12,6 +12,8 @@ export const LoginProvider = ({ children }) => {
         await fetch(`http://localhost:1337/api/auth/local`, {
             method: 'POST',
             credentials: 'same-origin',
+            identifier: 'email',
+            password: 'Password',
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -25,7 +27,7 @@ export const LoginProvider = ({ children }) => {
                     history('/');
                     toast.success('Đăng Nhập Thành Công');
                 } else {
-                    alert('Mật Khẩu Không Đúng');
+                    toast.error('Email hoặc mật khẩu không đúng');
                 }
             })
             .catch((err) => {});
@@ -43,8 +45,8 @@ export const LoginProvider = ({ children }) => {
     const getDataFromLocalStorage = () => {
         const dataString = window.localStorage.getItem('login');
         const dataObject = JSON.parse(dataString);
-        if (dataObject && dataObject.user) {
-            setUserInfo(dataObject.user);
+        if (dataObject) {
+            setUserInfo(dataObject);
         }
     };
 

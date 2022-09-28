@@ -19,24 +19,32 @@ const SearchPage = () => {
                         <div className=" col-12 col-lg-9">
                             <>
                                 <div
-                                    className="shadow"
+                                    // className="shadow"
                                     style={{
-                                        backgroundColor: 'white',
-                                        padding: '1.2rem 4rem',
-                                        borderRadius: '0.5rem',
+                                        // backgroundColor: 'white',
+                                        // padding: '1.2rem 4rem',
+                                        // borderRadius: '0.5rem',
+                                        fontSize: '2rem',
                                     }}
                                 >
                                     Kết Quả Tìm Kiếm Của Bạn:
                                 </div>
                                 <div className="my-5">
                                     <div className="row  g-3 g-md-4">
-                                        {searchResult.map((item) => (
-                                            <div className="col-6 col-md-4 col-lg-4" key={item.id}>
-                                                <ProductItem product={item} />
+                                        {searchResult.length > 0 ? (
+                                            searchResult.map((item) => (
+                                                <div className="col-6 col-md-4 col-lg-4" key={item.id}>
+                                                    <ProductItem product={item} />
+                                                </div>
+                                            ))
+                                        ) : (
+                                            <div className="text-center" style={{ marginTop: '300px' }}>
+                                                Không Có Kết Quả Bạn Mong Muốn
                                             </div>
-                                        ))}
+                                        )}
                                     </div>
                                 </div>
+
                                 {pageProps.totalPages > 1 ? (
                                     <PaginationProducts handleChangePage={handleChangePage} pageProps={pageProps} />
                                 ) : (

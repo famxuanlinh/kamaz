@@ -89,15 +89,17 @@ function OffcanvasCart() {
                             Xem Giỏ Hàng
                         </Button>
                     </Link>
-                    <Button
-                        size="lg"
-                        color="primary"
-                        href="#"
-                        tag="a"
-                        style={{ fontSize: '2rem', width: '100%', marginBottom: '20px' }}
-                    >
-                        Thanh toán ngay
-                    </Button>
+                    <Link to="/don-hang/dong-co">
+                        <Button
+                            size="lg"
+                            color="primary"
+                            href="#"
+                            tag="a"
+                            style={{ fontSize: '2rem', width: '100%', marginBottom: '20px' }}
+                        >
+                            Thanh toán ngay
+                        </Button>
+                    </Link>
                     <div style={{ fontSize: '12px' }}>Lưu ý: Số tiền trên chưa bao gồm phí ship.</div>
                 </div>
             </Offcanvas>

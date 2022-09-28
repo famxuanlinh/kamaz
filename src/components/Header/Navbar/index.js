@@ -53,7 +53,8 @@ const Navbar = ({ direction, ...args }) => {
                                                 fontSize: '1.8rem',
                                             }}
                                         >
-                                            <FontAwesomeIcon icon={faUser} style={{ paddingRight: '8px' }} /> Fam Linh
+                                            <FontAwesomeIcon icon={faUser} style={{ paddingRight: '8px' }} />{' '}
+                                            {userInfo.username}
                                         </DropdownToggle>
                                         <DropdownMenu
                                             {...args}
