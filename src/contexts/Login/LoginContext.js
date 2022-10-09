@@ -60,7 +60,8 @@ export const LoginProvider = ({ children }) => {
     }
 
     const handleUpdateCustomer = (payload1) => {
-        fetch(`${BASE_URL}/auth`, {
+        console.log(payload1);
+        fetch(`${BASE_URL}/users/me`, {
             method: 'PUT',
             headers: {
                 Authorization: `Bearer ${getToken()}`,
@@ -70,12 +71,15 @@ export const LoginProvider = ({ children }) => {
         })
             .then((res) => res.json())
             .then((res) => {
+                console.log(res);
                 const dataString = window.localStorage.getItem('login');
                 const dataObject = JSON.parse(dataString);
                 const newCustomer = {
                     ...dataObject,
-                    customer: res.data,
+                    ...res,
                 };
+                setUserInfo(newCustomer);
+
                 setDataToLocalStorage(newCustomer);
             });
     };

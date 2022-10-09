@@ -1,6 +1,6 @@
 import { faEye, faLock, faPhone } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button, FormGroup, Input, Label, Form, Breadcrumb, InputGroupText, InputGroup } from 'reactstrap';
 import BreadcrumbProduct from '~/components/BreadcrumbProduct';
@@ -10,8 +10,9 @@ import { useLogin } from '~/contexts/Login/LoginContext';
 
 const ManageUser = () => {
     const { userInfo, handleUpdateCustomer } = useLogin();
+    // console.log(userInfo);
     const [userPayload, setUserPayload] = useState({
-        name: userInfo?.username || '',
+        username: userInfo?.username || '',
         zalo: userInfo?.zalo || '',
         email: userInfo?.email || '',
         address: userInfo?.address || '',
@@ -20,15 +21,25 @@ const ManageUser = () => {
     const handleDataChange = (e) => {
         const { name, value } = e.target;
 
-        setUserPayload({
-            ...userPayload,
-            [name]: value,
-        });
+        setUserPayload({ ...userPayload, [name]: value });
     };
 
-    const handleSubmit = () => {
-        handleUpdateCustomer();
+    const handleSubmit = (e) => {
+        e.preventDefault(); //Ngăn chặn refresh lại trang khi đăng nhập
+        handleUpdateCustomer(userPayload);
     };
+
+    useEffect(() => {
+        if (userInfo) {
+            setUserPayload({
+                username: userInfo?.username || '',
+                zalo: userInfo?.zalo || '',
+                email: userInfo?.email || '',
+                address: userInfo?.address || '',
+            });
+        }
+    }, [userInfo]);
+
     return (
         <div className="d-flex align-items-center justify-content-center" style={{ backgroundColor: '#f7f7f7' }}>
             <div className="container ">
@@ -45,6 +56,7 @@ const ManageUser = () => {
                                 margin: '10rem 0',
                                 fontSize: '1.8rem',
                             }}
+                            onSubmit={handleSubmit}
                         >
                             <div className="pb-4" style={{ fontSize: '2.4rem' }}>
                                 Thông tin tài khoản
@@ -56,11 +68,11 @@ const ManageUser = () => {
                                 <Input
                                     required={true}
                                     id="exampleEmail"
-                                    name="name"
+                                    name="username"
                                     placeholder="Tên"
                                     type="text"
                                     style={{ fontSize: '1.6rem' }}
-                                    value={userInfo.username}
+                                    value={userPayload.username}
                                     onChange={handleDataChange}
                                 />
                             </FormGroup>
@@ -76,7 +88,7 @@ const ManageUser = () => {
                                     type="email"
                                     style={{ fontSize: '1.6rem' }}
                                     onChange={handleDataChange}
-                                    value={userInfo.email}
+                                    value={userPayload.email}
                                 />
                             </FormGroup>
                             <FormGroup>
@@ -87,11 +99,12 @@ const ManageUser = () => {
                                 <Input
                                     required={true}
                                     id="exampleEmail"
-                                    name="number phone"
+                                    name="zalo"
                                     placeholder="Số điện thoại"
                                     type="text"
                                     onChange={handleDataChange}
                                     style={{ fontSize: '1.6rem' }}
+                                    value={userPayload.zalo}
                                 />
                             </FormGroup>
                             <FormGroup>
@@ -101,11 +114,12 @@ const ManageUser = () => {
                                 <Input
                                     required={true}
                                     id="exampleEmail"
-                                    name="number phone"
+                                    name="address"
                                     placeholder="Địa chỉ của bạn"
                                     type="text"
                                     onChange={handleDataChange}
                                     style={{ fontSize: '1.6rem' }}
+                                    value={userPayload.address}
                                 />
                             </FormGroup>
                             <div className="text-muted py-2" style={{ fontSize: '1.2rem' }}>
@@ -113,8 +127,8 @@ const ManageUser = () => {
                             </div>
                             <button
                                 className="btn btn-primary mt-4"
+                                type="submit"
                                 style={{ width: '100%', fontSize: '1.6rem' }}
-                                onClick={handleSubmit}
                             >
                                 Lưu
                             </button>
