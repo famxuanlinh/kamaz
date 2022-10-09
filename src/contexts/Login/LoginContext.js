@@ -1,6 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { BASE_URL } from '~/constants/env';
+import getToken from '~/until/getToken';
 
 const LoginContext = React.createContext();
 export const LoginProvider = ({ children }) => {
@@ -9,7 +11,7 @@ export const LoginProvider = ({ children }) => {
     let history = useNavigate();
 
     async function handleLogin(payload) {
-        await fetch(`http://localhost:1337/api/auth/local`, {
+        await fetch(`${BASE_URL}/auth/local`, {
             method: 'POST',
             credentials: 'same-origin',
             identifier: 'email',
@@ -32,6 +34,75 @@ export const LoginProvider = ({ children }) => {
             })
             .catch((err) => {});
     }
+
+    async function handleRegister(payload2) {
+        console.log(payload2);
+        fetch(`${BASE_URL}/auth/local/register`, {
+            method: 'POST',
+            credentials: 'same-origin',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(payload2),
+        })
+            .then((res) => res.json())
+            .then((data) => {
+                // console.log(data);
+                if (data?.error) {
+                    toast.error(data.error?.message || 'Something went wrong');
+                } else if (data.user) {
+                    setUserInfo(data.user);
+                    setDataToLocalStorage({ ...data.user, jwt: data.jwt });
+                    history('/');
+                    toast.success('Xin chào!');
+                }
+            });
+    }
+
+    const handleUpdateCustomer = (payload1) => {
+        fetch(`${BASE_URL}/auth`, {
+            method: 'PUT',
+            headers: {
+                Authorization: `Bearer ${getToken()}`,
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(payload1),
+        })
+            .then((res) => res.json())
+            .then((res) => {
+                const dataString = window.localStorage.getItem('login');
+                const dataObject = JSON.parse(dataString);
+                const newCustomer = {
+                    ...dataObject,
+                    customer: res.data,
+                };
+                setDataToLocalStorage(newCustomer);
+            });
+    };
+
+    const handleUpdatePassword = (payload2) => {
+        console.log(payload2);
+        fetch(`${BASE_URL}/auth/change-password`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${userInfo.jwt}`,
+            },
+            body: JSON.stringify(payload2),
+        })
+            .then((res) => res.json())
+            .then((data) => {
+                if (data?.error) {
+                    toast.error(data.error?.message || 'Mật khẩu bạn nhập không đúng');
+                } else if (data.user) {
+                    setUserInfo(data.user);
+                    setDataToLocalStorage({ ...data.user, jwt: data.jwt });
+                    history('/');
+                    toast.success('Xin chào!');
+                }
+            });
+    };
+
     const handleLogout = () => {
         setUserInfo(null);
         setDataToLocalStorage(null);
@@ -54,7 +125,13 @@ export const LoginProvider = ({ children }) => {
         getDataFromLocalStorage();
     }, []);
 
-    return <LoginContext.Provider value={{ handleLogin, userInfo, handleLogout }}>{children}</LoginContext.Provider>;
+    return (
+        <LoginContext.Provider
+            value={{ handleLogin, handleUpdatePassword, handleRegister, userInfo, handleLogout, handleUpdateCustomer }}
+        >
+            {children}
+        </LoginContext.Provider>
+    );
 };
 
 export const useLogin = () => {

@@ -7,6 +7,32 @@ import BreadcrumbProduct from '~/components/BreadcrumbProduct';
 import { useLogin } from '~/contexts/Login/LoginContext';
 
 const UpdatePassword = () => {
+    const { handleUpdatePassword } = useLogin();
+    const [password, setPassword] = useState({
+        currentPassword: '',
+        password: '',
+        passwordConfirmation: '',
+    });
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        handleUpdatePassword({
+            currentPassword: password.currentPassword,
+            password: password.password,
+            passwordConfirmation: password.passwordConfirmation,
+        });
+    };
+
+    const handleDataChange = (e) => {
+        const { name, value } = e.target;
+
+        setPassword((prev) => ({
+            ...prev,
+            [name]: value,
+        }));
+    };
+    // console.log(password);
+
     return (
         <div className="d-flex align-items-center justify-content-center" style={{ backgroundColor: '#f7f7f7' }}>
             <div className="container">
@@ -22,11 +48,27 @@ const UpdatePassword = () => {
                                 borderRadius: '0.5rem',
                                 margin: '10rem 0',
                             }}
+                            onSubmit={handleSubmit}
                         >
                             <div className="pb-4" style={{ fontSize: '2.4rem' }}>
-                                Cập nhật mật khẩu
+                                Thay đổi mật khẩu
                             </div>
 
+                            <InputGroup style={{ fontSize: '2rem', marginBottom: '15px' }}>
+                                <InputGroupText>
+                                    <FontAwesomeIcon icon={faLock} />
+                                </InputGroupText>
+
+                                <Input
+                                    required={true}
+                                    id="examplePassword"
+                                    name="currentPassword"
+                                    placeholder="Mật khẩu hiện tại"
+                                    type="password"
+                                    style={{ fontSize: '1.6rem' }}
+                                    onChange={handleDataChange}
+                                />
+                            </InputGroup>
                             <InputGroup style={{ fontSize: '2rem', marginBottom: '15px' }}>
                                 <InputGroupText>
                                     <FontAwesomeIcon icon={faLock} />
@@ -39,7 +81,7 @@ const UpdatePassword = () => {
                                     placeholder="Mật khẩu mới"
                                     type="password"
                                     style={{ fontSize: '1.6rem' }}
-                                    // onChange={handleDataChange}
+                                    onChange={handleDataChange}
                                 />
                             </InputGroup>
                             <InputGroup style={{ fontSize: '2rem' }}>
@@ -50,19 +92,19 @@ const UpdatePassword = () => {
                                 <Input
                                     required
                                     id="examplePassword"
-                                    name="password"
+                                    name="passwordConfirmation"
                                     placeholder="Xác nhận mật khẩu"
                                     type="password"
                                     style={{ fontSize: '1.6rem' }}
-                                    // onChange={handleDataChange}
+                                    onChange={handleDataChange}
                                 />
                             </InputGroup>
                             <button
                                 className="btn btn-primary mt-5"
                                 style={{ width: '100%', fontSize: '1.6rem' }}
-                                // onClick={handleSubmit}
+                                type="submit"
                             >
-                                Cập nhật mật khẩu
+                                Thay đổi mật khẩu
                             </button>
                         </Form>
                         <div className="col"></div>

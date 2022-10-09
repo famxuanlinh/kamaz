@@ -8,28 +8,31 @@ import { useLogin } from '~/contexts/Login/LoginContext';
 import BreadcrumbProduct from '../BreadcrumbProduct';
 
 const FormRegister = () => {
-    // const { handleLogin } = useLogin();
-    // const [userInfo, setUserInfo] = useState({
-    //     email: '',
-    //     password: '',
-    // });
+    const { handleRegister } = useLogin();
+    const [userInfo, setUserInfo] = useState({
+        username: '',
+        email: '',
+        password: '',
+    });
 
-    // const handleSubmit = (e) => {
-    //     e.preventDefault(); //Ngăn chặn refresh lại trang khi đăng nhập
-    //     handleLogin({
-    //         identifier: userInfo.email,
-    //         password: userInfo.password,
-    //     });
-    // };
+    const handleSubmit = (e) => {
+        e.preventDefault(); //Ngăn chặn refresh lại trang khi đăng nhập
+        handleRegister({
+            username: userInfo.username,
+            email: userInfo.email,
+            password: userInfo.password,
+        });
+    };
 
-    // const handleDataChange = (e) => {
-    //     const { name, value } = e.target;
+    const handleDataChange = (e) => {
+        const { name, value } = e.target;
 
-    //     setUserInfo({
-    //         ...userInfo,
-    //         [name]: value,
-    //     });
-    // };
+        setUserInfo((prev) => ({
+            ...prev,
+            [name]: value,
+        }));
+    };
+    // console.log(userInfo);
     return (
         <div className="container text-center">
             <BreadcrumbProduct />
@@ -44,6 +47,7 @@ const FormRegister = () => {
                             borderRadius: '0.5rem',
                             margin: '10rem 0',
                         }}
+                        onSubmit={handleSubmit}
                     >
                         <div className="pb-4">
                             <div
@@ -74,9 +78,10 @@ const FormRegister = () => {
                             <Input
                                 required={true}
                                 placeholder="Tên"
-                                type="email"
+                                name="username"
+                                type="text"
                                 style={{ fontSize: '1.6rem' }}
-                                // onChange={handleDataChange}
+                                onChange={handleDataChange}
                             />
                         </InputGroup>{' '}
                         <InputGroup style={{ fontSize: '2rem', marginBottom: '15px' }}>
@@ -84,9 +89,10 @@ const FormRegister = () => {
                             <Input
                                 required={true}
                                 placeholder="Địa chỉ email"
+                                name="email"
                                 type="email"
                                 style={{ fontSize: '1.6rem' }}
-                                // onChange={handleDataChange}
+                                onChange={handleDataChange}
                             />
                         </InputGroup>{' '}
                         <InputGroup style={{ fontSize: '2rem', marginBottom: '15px' }}>
@@ -101,28 +107,13 @@ const FormRegister = () => {
                                 placeholder="Mật Khẩu"
                                 type="password"
                                 style={{ fontSize: '1.6rem' }}
-                                // onChange={handleDataChange}
-                            />
-                        </InputGroup>
-                        <InputGroup style={{ fontSize: '2rem' }}>
-                            <InputGroupText>
-                                <FontAwesomeIcon icon={faLock} />
-                            </InputGroupText>
-
-                            <Input
-                                required={true}
-                                id="examplePassword"
-                                name="password"
-                                placeholder="Mật Khẩu"
-                                type="password"
-                                style={{ fontSize: '1.6rem' }}
-                                // onChange={handleDataChange}
+                                onChange={handleDataChange}
                             />
                         </InputGroup>
                         <button
                             className="btn btn-primary mt-5"
                             style={{ width: '100%', fontSize: '1.6rem' }}
-                            // onClick={handleSubmit}
+                            type="submit"
                         >
                             Đăng Ký
                         </button>

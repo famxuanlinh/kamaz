@@ -15,6 +15,7 @@ const Search = () => {
         <HeadlessTippy
             interactive // Chọn được phần tử
             placement="bottom"
+            // onClickOutside={() => handleHideResult(false)}
             visible={showResult && suggests.length > 0} //Chỉ hiển thị khi kết quả tìm kiếm lớn hơn 0
             render={(attrs) => (
                 <div
@@ -74,9 +75,14 @@ const Search = () => {
                     {/* ))} */}
                 </div>
             )}
-            onClickOutside={() => handleHideResult(false)}
         >
-            <form className="d-flex border border-1 p-0 rounded w-100">
+            <form
+                className="d-flex border border-1 p-0 rounded w-100"
+                onSubmit={(e) => {
+                    handleSearch();
+                    handleHideResult(false);
+                }}
+            >
                 <input
                     className="form-control me-2 p-3 border-0"
                     // type="search"
@@ -94,15 +100,7 @@ const Search = () => {
                     }}
                 />
                 <Link to={`/tim-kiem?term=${searchValue}`} className="d-flex">
-                    <button
-                        className="btn border-0  rounded-end px-3 m-0"
-                        style={{ borderLeft: '0' }}
-                        onClick={() => {
-                            handleSearch();
-                            handleHideResult(false);
-                        }}
-                        type="submit"
-                    >
+                    <button className="btn border-0  rounded-end px-3 m-0" style={{ borderLeft: '0' }} type="submit">
                         <FontAwesomeIcon icon={faSearch} style={{ fontSize: '24px' }} />
                     </button>
                 </Link>

@@ -53,8 +53,23 @@ const BuyProduct = () => {
                             <tbody>
                                 {fakeApi?.map((product) => (
                                     <tr key={product.id}>
-                                        <td className="d-flex align-items-center py-2">
-                                            <div>65sfd6sfd65sdf65</div>
+                                        <td className="d-flex align-items-center">
+                                            <img
+                                                alt="Card image cap"
+                                                src="https://picsum.photos/300/200"
+                                                style={{
+                                                    aspectRatio: '1 / 1',
+                                                    objectFit: 'cover',
+                                                    width: '60px',
+                                                    marginRight: '10px',
+                                                    marginBottom: '10px',
+                                                    marginTop: '10px',
+                                                }}
+                                            />
+                                            <div>
+                                                <div>Hello</div>
+                                                <div>sku: 65545454</div>
+                                            </div>
                                         </td>
                                         <td>{formatCurrency(4654656)}</td>
                                         <td>1</td>

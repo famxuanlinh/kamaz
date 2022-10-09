@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
+import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem, Button } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
@@ -79,17 +79,18 @@ const Navbar = ({ direction, ...args }) => {
                                                     </Link>
                                                 </DropdownItem>
                                                 <DropdownItem className="border-top">
-                                                    <button
+                                                    <Button
                                                         className="px-4"
                                                         style={{
                                                             color: 'red',
                                                             border: 'none',
                                                             backgroundColor: 'transparent',
+                                                            fontSize: '1.8rem',
                                                         }}
                                                         onClick={handleLogout}
                                                     >
                                                         Đăng xuất
-                                                    </button>
+                                                    </Button>
                                                 </DropdownItem>
                                             </div>
                                         </DropdownMenu>

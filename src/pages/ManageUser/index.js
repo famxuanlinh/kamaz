@@ -9,7 +9,26 @@ import { useLogin } from '~/contexts/Login/LoginContext';
 // import React from 'react';
 
 const ManageUser = () => {
-    const { userInfo } = useLogin();
+    const { userInfo, handleUpdateCustomer } = useLogin();
+    const [userPayload, setUserPayload] = useState({
+        name: userInfo?.username || '',
+        zalo: userInfo?.zalo || '',
+        email: userInfo?.email || '',
+        address: userInfo?.address || '',
+    });
+
+    const handleDataChange = (e) => {
+        const { name, value } = e.target;
+
+        setUserPayload({
+            ...userPayload,
+            [name]: value,
+        });
+    };
+
+    const handleSubmit = () => {
+        handleUpdateCustomer();
+    };
     return (
         <div className="d-flex align-items-center justify-content-center" style={{ backgroundColor: '#f7f7f7' }}>
             <div className="container ">
@@ -31,7 +50,9 @@ const ManageUser = () => {
                                 Thông tin tài khoản
                             </div>
                             <FormGroup>
-                                <Label for="exampleEmail">Tên* </Label>
+                                <Label for="exampleEmail">
+                                    Tên <span style={{ color: 'red' }}>*</span>{' '}
+                                </Label>
                                 <Input
                                     required={true}
                                     id="exampleEmail"
@@ -40,10 +61,13 @@ const ManageUser = () => {
                                     type="text"
                                     style={{ fontSize: '1.6rem' }}
                                     value={userInfo.username}
+                                    onChange={handleDataChange}
                                 />
                             </FormGroup>
                             <FormGroup>
-                                <Label for="exampleEmail">Email*</Label>
+                                <Label for="exampleEmail">
+                                    Email <span style={{ color: 'red' }}>*</span>
+                                </Label>
                                 <Input
                                     required={true}
                                     id="exampleEmail"
@@ -51,12 +75,14 @@ const ManageUser = () => {
                                     placeholder="Địa chỉ email"
                                     type="email"
                                     style={{ fontSize: '1.6rem' }}
+                                    onChange={handleDataChange}
                                     value={userInfo.email}
                                 />
                             </FormGroup>
                             <FormGroup>
                                 <Label for="exampleEmail">
-                                    Zalo (vui lòng cung cấp số zalo chính xác để hỗ giao hàng) *
+                                    Zalo (vui lòng cung cấp số zalo chính xác để hỗ giao hàng){' '}
+                                    <span style={{ color: 'red' }}>*</span>
                                 </Label>
                                 <Input
                                     required={true}
@@ -64,6 +90,21 @@ const ManageUser = () => {
                                     name="number phone"
                                     placeholder="Số điện thoại"
                                     type="text"
+                                    onChange={handleDataChange}
+                                    style={{ fontSize: '1.6rem' }}
+                                />
+                            </FormGroup>
+                            <FormGroup>
+                                <Label for="exampleEmail">
+                                    Địa chỉ <span style={{ color: 'red' }}>*</span>
+                                </Label>
+                                <Input
+                                    required={true}
+                                    id="exampleEmail"
+                                    name="number phone"
+                                    placeholder="Địa chỉ của bạn"
+                                    type="text"
+                                    onChange={handleDataChange}
                                     style={{ fontSize: '1.6rem' }}
                                 />
                             </FormGroup>
@@ -73,7 +114,7 @@ const ManageUser = () => {
                             <button
                                 className="btn btn-primary mt-4"
                                 style={{ width: '100%', fontSize: '1.6rem' }}
-                                // onClick={handleSubmit}
+                                onClick={handleSubmit}
                             >
                                 Lưu
                             </button>
