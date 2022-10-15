@@ -3,19 +3,19 @@ import { Carousel, CarouselItem, CarouselControl, CarouselIndicators, CarouselCa
 
 const items = [
     {
-        src: 'https://kamaztrade.com/sites/default/files/14._sklad_palletnogo_hraneniya_zch.jpg',
-        altText: 'Phụ Tùng Chính Hãng',
+        src: '/slide1.jpg',
+        altText: 'Sửa chữa tất cả các loại xe tải',
         caption: 'Slide 1',
         key: 1,
     },
     {
-        src: 'https://r4.wallpaperflare.com/wallpaper/28/775/705/sunset-the-evening-auto-machine-truck-hd-wallpaper-4b4813be23a33f8f347cc5adcbab1b35.jpg',
-        altText: 'Kamaz',
+        src: '/slide2.jpg',
+        altText: 'Xe KAMAZ chính hãng',
         caption: 'Slide 2',
         key: 2,
     },
     {
-        src: 'https://r4.wallpaperflare.com/wallpaper/725/828/848/engine-spare-parts-the-piston-rod-wallpaper-590068bdc10aad8bc607e80f0091260d.jpg',
+        src: '/slide3.png',
         altText: 'Phụ Tùng Chính Hãng',
         caption: 'Slide 3',
         key: 3,
@@ -56,7 +56,7 @@ function CarouselSlide(args) {
                     alt={item.altText}
                     style={{ width: '100vw', minHeight: '30rem', maxHeight: '52.5rem', objectFit: 'cover' }}
                 />
-                <CarouselCaption captionText={item.caption} captionHeader={item.caption} />
+                <CarouselCaption captionText={item.caption} captionHeader={item.altText} />
             </CarouselItem>
         );
     });
