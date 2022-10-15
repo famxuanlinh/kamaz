@@ -44,7 +44,7 @@ const NavbarMenu = ({ direction, ...args }) => {
     return (
         <Wrapper className=" d-none d-lg-block">
             <div className="container py-2">
-                <Navbar {...args} style={{ fontSize: '20px', color: 'white' }} className="text-capitalize">
+                <Navbar {...args} style={{ fontSize: '22px', color: 'white' }} className="text-capitalize">
                     <NavItem>
                         <NavLink href="/">Trang chủ</NavLink>
                     </NavItem>
@@ -128,7 +128,7 @@ const NavbarMenu = ({ direction, ...args }) => {
                     </div>
 
                     <NavItem>
-                        <NavLink href="/components/">Thông tin về công ty</NavLink>
+                        <NavLink href="/components/">Về chúng tôi</NavLink>
                     </NavItem>
                     <NavItem>
                         <NavLink href="/components/">Tuyển dụng</NavLink>

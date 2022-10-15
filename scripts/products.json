@@ -1,0 +1,25 @@
+[
+    {
+        "id": 1,
+        "name": "ỐNG XẢ MỀM /METAL HOSE",
+        "stock": 34,
+        "sku": "000.4859.150.0001",
+        "price": 804372
+    },
+    {
+        "id": 2,
+        "name": "MÁY KHỞI ĐỘNG, VẬT LIỆU THÉP, MÀU XÁM, DÙNG KHỞI ĐỘNG 53229/STARTER",
+        "description": "стартер",
+        "stock": 38,
+        "sku": "12610051",
+        "price": 11295649
+    },
+    {
+        "id": 3,
+        "name": "MÁY PHÁT ĐIỆN/GENERATOR",
+        "description": "генератор",
+        "stock": 0,
+        "sku": "1245550521",
+        "price": 11295649
+    }
+]

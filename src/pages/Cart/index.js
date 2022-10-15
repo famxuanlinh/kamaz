@@ -1,16 +1,51 @@
 import { faX } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Table } from 'reactstrap';
 import BreadcrumbProduct from '~/components/BreadcrumbProduct';
 import QuantityInput from '~/components/QuantityInput';
+import { BASE_URL } from '~/constants/env';
 import { useCart } from '~/contexts/Cart/CartContext';
+import { useLogin } from '~/contexts/Login/LoginContext';
 import formatCurrency from '~/until/formatCurrency';
+import { v4 as uuidv4 } from 'uuid';
+import { useNavigate } from 'react-router-dom';
 
 const Cart = () => {
-    const { products, handleUpdateCart, totalMoneyCart, handleDeleteItemInCart } = useCart();
+    const { products, handleUpdateCart, totalMoneyCart, handleDeleteItemInCart, handleCheckout } = useCart();
+    // const [orderInfo, setOrderInfo] = useState([]);
+    // let history = useNavigate();
 
+    const { userInfo } = useLogin();
+
+    // const handleCheckout = () => {
+    //     const code = uuidv4();
+    //     const payload = {
+    //         code,
+    //         orderBy: `${userInfo.id}`,
+    //         products: products,
+    //     };
+
+    //     fetch(`${BASE_URL}/orders?filters[orderBy]=${userInfo.id}`, {
+    //         method: 'POST',
+    //         headers: {
+    //             Authorization: `Bearer ${userInfo.jwt}`,
+    //             'Content-Type': 'application/json',
+    //         },
+    //         body: JSON.stringify({ data: payload }),
+    //     })
+    //         .then((res) => res.json())
+    //         .then((data) => {
+    //             // Thong bao don hang thanh cong
+
+    //             // xoa gio hang hien tai
+    //             if (data?.data?.id) {
+    //                 history(`/don-hang/${data?.data?.id}?type=thank`);
+    //             }
+    //             setOrderInfo(data?.data);
+    //         });
+    // };
     return (
         <div style={{ backgroundColor: '#f7f7f7' }}>
             <div className="container">
@@ -57,7 +92,7 @@ const Cart = () => {
                                                     defaultQty={product.qty}
                                                 />
                                             </td>
-                                            <td>{formatCurrency(product.attributes.price)}</td>
+                                            <td>{formatCurrency(product.attributes.price * product.qty)}</td>
                                             <td>
                                                 <button
                                                     className="btn"
@@ -113,14 +148,15 @@ const Cart = () => {
                                             </Link>
                                         </th>
                                         <th className="text-end">
-                                            <Link to="/don-hang/dong-co">
-                                                <button
-                                                    className="btn btn-primary btn-lg w-100"
-                                                    style={{ fontSize: '20px' }}
-                                                >
-                                                    Mua Ngay
-                                                </button>
-                                            </Link>
+                                            {/* <Link to="/don-hang"> */}
+                                            <button
+                                                className="btn btn-primary btn-lg w-100"
+                                                style={{ fontSize: '20px' }}
+                                                onClick={handleCheckout}
+                                            >
+                                                Mua Ngay
+                                            </button>
+                                            {/* </Link> */}
                                         </th>
                                     </tr>
                                 </tbody>

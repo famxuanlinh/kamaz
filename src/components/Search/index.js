@@ -92,12 +92,12 @@ const Search = () => {
                     onChange={(e) => handleTermChange(e.target.value)}
                     onFocus={() => handleHideResult(true)}
                     value={searchValue}
-                    onKeyDown={(e) => {
-                        if (searchValue & (e.key === 'Enter')) {
-                            handleSearch();
-                            console.log('Ua Allo');
-                        }
-                    }}
+                    // onKeyDown={(e) => {
+                    //     if (searchValue & (e.key === 'Enter')) {
+                    //         handleSearch();
+                    //         // console.log('Ua Allo');
+                    //     }
+                    // }}
                 />
                 <Link to={`/tim-kiem?term=${searchValue}`} className="d-flex">
                     <button className="btn border-0  rounded-end px-3 m-0" style={{ borderLeft: '0' }} type="submit">

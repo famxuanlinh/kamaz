@@ -1,9 +1,17 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { v4 as uuidv4 } from 'uuid';
+import { BASE_URL } from '~/constants/env';
+import { useLogin } from '../Login/LoginContext';
 
 const CartContext = React.createContext();
 export const CartProvider = ({ children }) => {
     const [products, setProducts] = useState([]);
+    const [orderInfo, setOrderInfo] = useState([]);
+    const { userInfo } = useLogin();
+
+    let history = useNavigate();
 
     // const [productsWishlist, setProductsWishlist] = useState([]);
     // const handleAddToWishlist = (data) => {
@@ -48,6 +56,34 @@ export const CartProvider = ({ children }) => {
         });
         setProducts(newProducts);
         setDataToLocalStorage(newProducts);
+    };
+
+    const handleCheckout = () => {
+        const code = uuidv4();
+        const payload = {
+            code,
+            orderBy: `${userInfo.id}`,
+            products: products,
+        };
+
+        fetch(`${BASE_URL}/orders?filters[orderBy]=${userInfo.id}`, {
+            method: 'POST',
+            headers: {
+                Authorization: `Bearer ${userInfo.jwt}`,
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ data: payload }),
+        })
+            .then((res) => res.json())
+            .then((data) => {
+                if (data?.data?.id) {
+                    history(`/don-hang/${data?.data?.attributes.code}?type=thank`);
+                }
+                setOrderInfo(data?.data);
+                toast.success('Đã Đặt Hàng Thành Công');
+                setProducts([]);
+                setDataToLocalStorage([]);
+            });
     };
 
     const handleDeleteItemInCart = (productId) => {
@@ -103,6 +139,8 @@ export const CartProvider = ({ children }) => {
                 totalQtyProducts,
                 totalMoneyCart,
                 handleDeleteItemInCart,
+                handleCheckout,
+                orderInfo,
             }}
         >
             {' '}

@@ -9,8 +9,8 @@ import SearchPage from '~/pages/SearchPage';
 import ManageUser from '~/pages/ManageUser';
 import UpdatePassword from '~/pages/UpdatePassword';
 import ForgotPassword from '~/pages/ForgotPassword';
-import Oders from '~/pages/Oders';
-import BuyProduct from '~/pages/BuyProduct';
+import Orders from '~/pages/Orders';
+import OrderDetail from '~/pages/OrderDetail';
 
 const publicRoutes = [
     { path: '/', component: Home, layout: MainLayout },
@@ -23,8 +23,8 @@ const publicRoutes = [
     { path: '/quan-li-tai-khoan', component: ManageUser, layout: DefaultLayout },
     { path: '/dang-ki', component: Register, layout: DefaultLayout },
     { path: '/gio-hang', component: Cart, layout: DefaultLayout },
-    { path: '/don-hang', component: Oders, layout: DefaultLayout },
-    { path: '/don-hang/dong-co', component: BuyProduct, layout: DefaultLayout },
+    { path: '/don-hang', component: Orders, layout: DefaultLayout },
+    { path: '/don-hang/:id', component: OrderDetail, layout: DefaultLayout },
     { path: '/wishlist', component: Register, layout: DefaultLayout },
 ];
 

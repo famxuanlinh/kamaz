@@ -1,5 +1,6 @@
 const productsData = require('./products.json');
 const fetch = require('node-fetch');
+const { IMG_URL } = require('~/constants/env');
 //Nodejs dùng es5
 
 console.log(productsData);
@@ -7,7 +8,7 @@ console.log(productsData);
 // API
 
 const createProduct = (payload) => {
-    fetch('http://localhost:1337/content-manager/collection-types/api::product.product', {
+    fetch(`${IMG_URL}/content-manager/collection-types/api::product.product`, {
         method: 'POST',
         headers: {
             'Accept-Language': 'en-US,en;q=0.9',
@@ -16,7 +17,7 @@ const createProduct = (payload) => {
             Connection: 'keep-alive',
             'Content-Type': 'application/json',
             DNT: '1',
-            Origin: 'http://localhost:1337',
+            Origin: { IMG_URL },
             'Sec-Fetch-Dest': 'empty',
             'Sec-Fetch-Mode': 'cors',
             'Sec-Fetch-Site': 'same-origin',

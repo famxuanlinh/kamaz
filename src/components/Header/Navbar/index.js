@@ -26,11 +26,7 @@ const Navbar = ({ direction, ...args }) => {
                     <div className="d-flex col align-items-center">
                         <OffcanvasMenu />
                         <Link className="navbar-brand " to="/">
-                            <img
-                                src="https://kamaztrade.com/sites/all/themes/jipn/images/logo.png"
-                                alt="kamaz"
-                                height="60"
-                            />
+                            <img src="/logo.png" alt="kamaz" height="60" />
                         </Link>
                     </div>
                     <div className="col-6 d-none d-lg-flex">

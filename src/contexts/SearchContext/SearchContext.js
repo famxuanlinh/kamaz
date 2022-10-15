@@ -28,7 +28,7 @@ export const SearchProvider = ({ children }) => {
 
     const getSuggests = () => {
         fetch(
-            `http://localhost:1337/api/products?filters[$or][0][name][$containsi]=${searchValue}&filters[$or][1][sku][$containsi]=${searchValue}&populate=deep,2&pagination[pageSize]=5`,
+            `${BASE_URL}/products?filters[$or][0][name][$containsi]=${searchValue}&filters[$or][1][sku][$containsi]=${searchValue}&populate=deep,2&pagination[pageSize]=5`,
         )
             .then((res) => res.json())
             .then((res) => {

@@ -10,9 +10,12 @@ import React, { useState } from 'react';
 import { Modal, ModalHeader, ModalBody } from 'reactstrap';
 // import { BASE_URL } from '~/constants/env';
 import ProductsDetail from '../ProductsDetail';
+import { IMG_URL } from '~/constants/env';
+import { useCart } from '~/contexts/Cart/CartContext';
 
 const ProductItem = ({ product, args }) => {
     const [modal, setModal] = useState(false);
+    const { handleAddToCart } = useCart();
 
     const toggle = () => setModal(!modal);
     return (
@@ -22,7 +25,7 @@ const ProductItem = ({ product, args }) => {
                     <Card style={{ borderRadius: '0.5rem' }} className="shadow-sm">
                         <img
                             alt="Sample"
-                            src={`http://localhost:1337${product.attributes.images?.data[0].attributes.formats.small.url}`}
+                            src={IMG_URL + product.attributes.images?.data[0].attributes.formats.small.url}
                             style={{
                                 aspectRatio: '1 / 1',
                                 objectFit: 'cover',
@@ -100,6 +103,7 @@ const ProductItem = ({ product, args }) => {
                         data-bs-toggle="tooltip"
                         data-bs-placement="left"
                         title="Thêm Vào Giỏ Hàng"
+                        onClick={() => handleAddToCart(product, 1)}
                     >
                         <FontAwesomeIcon
                             className="cus-btn-icon"

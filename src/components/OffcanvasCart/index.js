@@ -11,7 +11,7 @@ import ProductItemOffcanvas from '../ProductItemOffcanvas';
 
 function OffcanvasCart() {
     const [isOpen, setIsOpen] = useState(false);
-    const { products, handleUpdateCart, totalMoneyCart, totalQty } = useCart();
+    const { products, handleUpdateCart, totalMoneyCart, totalQty, handleCheckout } = useCart();
 
     return (
         <div className="mx-3 position-relative">
@@ -24,8 +24,8 @@ function OffcanvasCart() {
                     style={{ fontSize: '10px' }}
                     className="position-absolute top-1 start-90 translate-middle badge rounded-pill bg-danger"
                 >
-                    {totalQty}
-                    <span className="visually-hidden">unread messages</span>
+                    {totalQty > 0 ? totalQty : ''}
+                    {/* <span className="visually-hidden">unread messages</span> */}
                 </span>
             </Button>
             <Offcanvas
@@ -89,17 +89,16 @@ function OffcanvasCart() {
                             Xem Giỏ Hàng
                         </Button>
                     </Link>
-                    <Link to="/don-hang/dong-co">
-                        <Button
-                            size="lg"
-                            color="primary"
-                            href="#"
-                            tag="a"
-                            style={{ fontSize: '2rem', width: '100%', marginBottom: '20px' }}
-                        >
-                            Thanh toán ngay
-                        </Button>
-                    </Link>
+                    <Button
+                        size="lg"
+                        color="primary"
+                        href="#"
+                        tag="a"
+                        onClick={handleCheckout}
+                        style={{ fontSize: '2rem', width: '100%', marginBottom: '20px' }}
+                    >
+                        Thanh toán ngay
+                    </Button>
                     <div style={{ fontSize: '12px' }}>Lưu ý: Số tiền trên chưa bao gồm phí ship.</div>
                 </div>
             </Offcanvas>

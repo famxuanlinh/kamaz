@@ -36,7 +36,7 @@ export const LoginProvider = ({ children }) => {
     }
 
     async function handleRegister(payload2) {
-        console.log(payload2);
+        // console.log(payload2);
         fetch(`${BASE_URL}/auth/local/register`, {
             method: 'POST',
             credentials: 'same-origin',
@@ -78,6 +78,7 @@ export const LoginProvider = ({ children }) => {
                     ...dataObject,
                     ...res,
                 };
+                toast.success('Cập Nhật Thông Tin Thành Công');
                 setUserInfo(newCustomer);
 
                 setDataToLocalStorage(newCustomer);

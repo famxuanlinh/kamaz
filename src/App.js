@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { publicRoutes } from './routes';
 import { DefaultLayout } from './Layout';
 import { Fragment } from 'react';
@@ -9,10 +9,20 @@ import { LoginProvider } from './contexts/Login/LoginContext';
 import { SearchProvider } from './contexts/SearchContext/SearchContext';
 
 function App() {
+    // const { userInfo } = useLogin();
+    // console.log('🚀 ~ file: App.js ~ line 13 ~ App ~ userInfo', userInfo);
+    // const PrivateRoute = ({ children }) => {
+    //     return userInfo ? children : <Navigate to="/dang-nhap" />;
+    // };
+
+    // const PublicRoute = ({ children }) => {
+    //     return userInfo ? <Navigate to="/" /> : children;
+    // };
+
     return (
         <Router>
-            <LoginProvider>
-                <SearchProvider>
+            <SearchProvider>
+                <LoginProvider>
                     <CartProvider>
                         <div className="App">
                             <Routes>
@@ -42,8 +52,8 @@ function App() {
                             <ToastContainer hideProgressBar />
                         </div>
                     </CartProvider>
-                </SearchProvider>
-            </LoginProvider>
+                </LoginProvider>
+            </SearchProvider>
         </Router>
     );
 }

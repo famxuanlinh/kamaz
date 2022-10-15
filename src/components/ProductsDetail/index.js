@@ -8,10 +8,10 @@ import './ProductsDetail.css';
 import { Link, useParams } from 'react-router-dom';
 import { useCart } from '~/contexts/Cart/CartContext';
 import QuantityInput from '../QuantityInput';
-import { BASE_URL } from '~/constants/env';
+import { BASE_URL, IMG_URL } from '~/constants/env';
 
 function ProductsDetail({ product, showMoreInfo }) {
-    const { handleAddToCart } = useCart();
+    const { handleAddToCart, handleCheckout } = useCart();
     const [qty, setQty] = useState(1);
 
     if (!product) return <div>Loading...</div>;
@@ -27,7 +27,10 @@ function ProductsDetail({ product, showMoreInfo }) {
                                     {product.attributes.images.data.map((img) => (
                                         <div className="carousel-item active " key={img.id}>
                                             <img
-                                                src={`http://localhost:1337${img.attributes.formats.medium.url}`}
+                                                src={
+                                                    IMG_URL +
+                                                    product.attributes.images?.data[0].attributes.formats.medium.url
+                                                }
                                                 className="d-block w-100"
                                                 alt="..."
                                                 style={{
@@ -48,7 +51,7 @@ function ProductsDetail({ product, showMoreInfo }) {
                                                     data-bs-slide-to={index}
                                                     className="active img-thumbnail mx-3"
                                                     aria-current="true"
-                                                    src={`http://localhost:1337${img.attributes.formats.thumbnail.url}`}
+                                                    src={IMG_URL + img.attributes.formats.thumbnail.url}
                                                     alt=""
                                                     key={img.id}
                                                     style={{
@@ -128,13 +131,14 @@ function ProductsDetail({ product, showMoreInfo }) {
                                 <div>
                                     <div>Lưu Ý: </div>
                                     <div>
-                                        Để Biết Rõ Hơn Về Cách Thức Đặt Hàng Và Giao Hang Hãy Liên Hệ Ngay với Chúng Tôi{' '}
+                                        - Để Biết Rõ Hơn Về Cách Thức Đặt Hàng Và Giao Hang Hãy Liên Hệ Ngay với Chúng
+                                        Tôi{' '}
                                     </div>
                                     <div>
-                                        Giá Trên Có Thể Thay Đổi Tuỳ Do Tình Hình Chiến Tranh Đang kéo Dài Ở Nga Và
+                                        - Giá Trên Có Thể Thay Đổi Do Tình Hình Chiến Tranh Đang kéo Dài Ở Nga Và
                                         Ukraina.{' '}
                                     </div>
-                                    <div>Chúng Tôi Đã, Đang Và Chỉ Bán Phụ Tùng Chính Hãng Từ Nhà Máy, Nga.</div>
+                                    <div>- Chúng Tôi Đã, Đang Và Chỉ Bán Phụ Tùng Chính Hãng Từ Nhà Máy, Nga.</div>
                                     <hr />
                                 </div>
                             ) : (
@@ -181,14 +185,13 @@ function ProductsDetail({ product, showMoreInfo }) {
                                     </button>
                                 </div>
                                 <div>
-                                    <Link to="/don-hang/dong-co">
-                                        <button
-                                            className="btn btn-primary py-2 px-md-5 w-100"
-                                            style={{ fontSize: '2rem' }}
-                                        >
-                                            Mua Ngay
-                                        </button>
-                                    </Link>
+                                    <button
+                                        className="btn btn-primary py-2 px-md-5 w-100"
+                                        style={{ fontSize: '2rem' }}
+                                        onClick={handleCheckout}
+                                    >
+                                        Mua Ngay
+                                    </button>
                                 </div>
                             </div>
                             <div className="d-md-flex pb-4">
@@ -207,7 +210,9 @@ function ProductsDetail({ product, showMoreInfo }) {
                                     </span>
                                 </button>
                                 <button style={{ background: 'none', border: 'none' }}>
-                                    <span className="text-danger">Liên Hệ Với Chúng Tôi!</span>
+                                    <a href="https://zalo.me/0964347450" className="text-danger">
+                                        Liên Hệ Với Chúng Tôi!
+                                    </a>
                                 </button>
                             </div>
                             <div className="d-flex">

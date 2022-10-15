@@ -12,11 +12,7 @@ const Footer = () => {
                     <footer className="row row-cols-5 py-5 d-flex">
                         <div className="col-8 col-lg-5">
                             <Link className="navbar-brand " to="/">
-                                <img
-                                    src="https://kamaztrade.com/sites/all/themes/jipn/images/logo.png"
-                                    alt="kamaz"
-                                    height="60"
-                                />
+                                <img src="/logo.png" alt="kamaz" height="60" />
                                 <span style={{ color: 'white', fontSize: '1.6rem', paddingLeft: '2rem' }}>
                                     KAMAZ TRADE Limited.
                                 </span>

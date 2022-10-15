@@ -15,6 +15,7 @@ import { faBars } from '@fortawesome/free-solid-svg-icons';
 import '../OffcanvasMenu/OffcanvasMenu.css';
 import Search from '../Search';
 import { Link } from 'react-router-dom';
+import { BASE_URL } from '~/constants/env';
 
 function OffcanvasMenu() {
     const [isOpen, setIsOpen] = useState(false);
@@ -31,7 +32,7 @@ function OffcanvasMenu() {
     const [postList, setpostList] = useState([]);
 
     const getCategory = () => {
-        fetch(`http://localhost:1337/api/categories`)
+        fetch(`${BASE_URL}/categories`)
             .then((res) => res.json())
             .then((res) => {
                 setpostList(res.data);
