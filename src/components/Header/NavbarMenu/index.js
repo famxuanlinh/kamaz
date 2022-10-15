@@ -24,6 +24,7 @@ const Wrapper = styled.div`
 
 const NavbarMenu = ({ direction, ...args }) => {
     const [postList, setpostList] = useState([]);
+    const [service, setService] = useState([]);
 
     const [dropdownOpen, setDropdownOpen] = useState(false);
 
@@ -37,8 +38,17 @@ const NavbarMenu = ({ direction, ...args }) => {
             });
     };
 
+    const getRepair = () => {
+        fetch(`${BASE_URL}/repairs`)
+            .then((res) => res.json())
+            .then((res) => {
+                setService(res.data);
+            });
+    };
+
     useEffect(() => {
         getCategory();
+        getRepair();
     }, []);
 
     return (
@@ -61,16 +71,16 @@ const NavbarMenu = ({ direction, ...args }) => {
                                 {...args}
                                 style={{
                                     maxHeight: '70vh',
-                                    width: '522px',
+                                    // width: '602px',
                                     flexWrap: 'wrap',
                                     overflowWrap: 'break-word',
                                     // display: 'flex',
                                 }}
                                 // className="category-dropdown-menu"
                             >
-                                {postList.map((item) => (
-                                    <Link to={`/danh-muc/${item.slug}`} key={item.id}>
-                                        <DropdownItem style={{ width: '260px' }} className="text-capitalize">
+                                {service.map((item) => (
+                                    <Link to={`/sua-chua/${item.attributes.slug}`} key={item.id}>
+                                        <DropdownItem style={{ width: '360px' }} className="text-capitalize">
                                             <span className="text-primary">{item.attributes.group_number} </span>
                                             {item.attributes.name}
                                         </DropdownItem>

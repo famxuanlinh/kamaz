@@ -1,6 +1,6 @@
 import { faX } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { Table } from 'reactstrap';
 import BreadcrumbProduct from '~/components/BreadcrumbProduct';
@@ -10,18 +10,22 @@ import { useCart } from '~/contexts/Cart/CartContext';
 import { useLogin } from '~/contexts/Login/LoginContext';
 import formatCurrency from '~/until/formatCurrency';
 import { useSearchParams } from 'react-router-dom';
+import getUserDataFromLocalStorage from '~/until/getUserDataFromLocalStorage';
 
 const Orders = () => {
     const { userInfo } = useLogin();
+    const isOrderDataLoaded = useRef(false);
     console.log('🚀 ~ file: index.js ~ line 16 ~ Orders ~ userInfo', userInfo);
 
     const [ordersProducts, setOrdersProducts] = useState([]);
     // const [searchParams] = useSearchParams();
 
     const getOrders = () => {
-        fetch(`${BASE_URL}/orders?filters[orderBy]=${userInfo?.id}`, {
+        const user = getUserDataFromLocalStorage();
+        if (!user?.id) return;
+        fetch(`${BASE_URL}/orders?filters[orderBy]=${user?.id}`, {
             headers: {
-                Authorization: `Bearer ${userInfo?.jwt}`,
+                Authorization: `Bearer ${user?.jwt}`,
                 'Content-Type': 'application/json',
             },
         })
@@ -33,7 +37,7 @@ const Orders = () => {
 
     useEffect(() => {
         getOrders();
-    }, [userInfo]);
+    }, []);
     //Thêm useInfo và attribiu vì nếu ko thêm thì reset lại ko có user
 
     return (

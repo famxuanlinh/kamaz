@@ -7,7 +7,6 @@ import getToken from '~/until/getToken';
 const LoginContext = React.createContext();
 export const LoginProvider = ({ children }) => {
     const [userInfo, setUserInfo] = useState();
-
     let history = useNavigate();
 
     async function handleLogin(payload) {

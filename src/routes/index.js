@@ -11,6 +11,7 @@ import UpdatePassword from '~/pages/UpdatePassword';
 import ForgotPassword from '~/pages/ForgotPassword';
 import Orders from '~/pages/Orders';
 import OrderDetail from '~/pages/OrderDetail';
+import Repair from '~/pages/Repair';
 
 const publicRoutes = [
     { path: '/', component: Home, layout: MainLayout },
@@ -25,6 +26,7 @@ const publicRoutes = [
     { path: '/gio-hang', component: Cart, layout: DefaultLayout },
     { path: '/don-hang', component: Orders, layout: DefaultLayout },
     { path: '/don-hang/:id', component: OrderDetail, layout: DefaultLayout },
+    { path: '/sua-chua/:slug', component: Repair, layout: DefaultLayout },
     { path: '/wishlist', component: Register, layout: DefaultLayout },
 ];
 

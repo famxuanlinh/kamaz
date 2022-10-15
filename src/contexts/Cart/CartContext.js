@@ -10,6 +10,7 @@ export const CartProvider = ({ children }) => {
     const [products, setProducts] = useState([]);
     const [orderInfo, setOrderInfo] = useState([]);
     const { userInfo } = useLogin();
+    console.log('🚀 ~ file: CartContext.js ~ line 13 ~ CartProvider ~ userInfo', userInfo);
 
     let history = useNavigate();
 
@@ -64,6 +65,7 @@ export const CartProvider = ({ children }) => {
             code,
             orderBy: `${userInfo.id}`,
             products: products,
+            address: `${userInfo.address}`,
         };
 
         fetch(`${BASE_URL}/orders?filters[orderBy]=${userInfo.id}`, {

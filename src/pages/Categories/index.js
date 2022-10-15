@@ -3,7 +3,6 @@ import { useParams } from 'react-router-dom';
 import { Button } from 'reactstrap';
 import BreadcrumbProduct from '~/components/BreadcrumbProduct';
 import CategoriesProduct from '~/components/CategoriesProduct';
-import PaginationProducts from '~/components/Pagination';
 import Sidebar from '~/components/Sidebar';
 
 const Categories = () => {

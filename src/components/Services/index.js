@@ -3,21 +3,26 @@ import React, { useEffect, useState } from 'react';
 import { BASE_URL } from '~/constants/env';
 import ProductItem from '../ProductItem';
 import { Accordion, AccordionBody, AccordionHeader, AccordionItem } from 'reactstrap';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
-const Services = ({ slug }) => {
-    const [open, setOpen] = useState('1');
-    const toggle = (id) => {
-        if (open === id) {
-            setOpen();
-        } else {
-            setOpen(id);
-        }
+const Services = () => {
+    const [service, setService] = useState([]);
+
+    const getRepair = () => {
+        fetch(`${BASE_URL}/repairs`)
+            .then((res) => res.json())
+            .then((res) => {
+                setService(res.data);
+            });
     };
 
+    useEffect(() => {
+        getRepair();
+    }, []);
+
     return (
-        <div className="row d-flex justify-content-center align-items-center" style={{ maxHeight: '550px' }}>
-            <div className="col ps-5 ">
+        <div className="row d-flex justify-content-center align-items-center">
+            <div className="col-xl-5 ps-5 ">
                 <div className="row text-center text-xl-start">
                     <div className="col-0 col-xl-3 col-xxl-4 "></div>
                     <div className="col-12 col-xl-9 col-xxl-8  ">
@@ -30,40 +35,26 @@ const Services = ({ slug }) => {
                         >
                             CÁC LOẠI HÌNH <br /> SỬA CHỮA
                         </div>
-                        <ul style={{ fontSize: '2rem' }} className="py-5 ps-0">
-                            <Link to="/">
-                                <li>Chuẩn đoán</li>
-                            </Link>
-                            <Link to="/">
-                                <li>Sửa chữa và đại tu động cơ</li>
-                            </Link>
-                            <Link to="/">
-                                <li>Hệ thống khung gầm và truyền động </li>
-                            </Link>
-                            <Link to="/">
-                                <li>Hệ thống điện</li>
-                            </Link>
-                            <Link to="/">
-                                <li>Hệ thống lái</li>
-                            </Link>
-                            <Link to="/">
-                                <li>Hệ thống phanh</li>
-                            </Link>
-                            <Link to="/">
-                                <li>Hệ thống nhiên liệu</li>
-                            </Link>
-                            <Link to="/">
-                                <li>Đồng sơn và phủ dinitrol chống rỉ</li>
-                            </Link>
+                        <ul style={{ fontSize: '2rem' }} className="py-5 ">
+                            {service.map((item) => (
+                                <Link to={`/sua-chua/${item.attributes.slug}`} key={item.id}>
+                                    <li>{item.attributes.name}</li>
+                                </Link>
+                            ))}
                         </ul>
                     </div>
                 </div>
             </div>
-            <div className="d-none d-xl-flex col ">
+            <div className="d-none d-xl-flex col-xl-7 " style={{ height: '550px' }}>
                 <img
                     src="/service1.jpg"
                     alt="service 1"
-                    style={{ width: '100%', height: '100%', clipPath: 'polygon(200px 0px, 0 100%, 100% 100%, 100% 0)' }}
+                    style={{
+                        width: '100%',
+                        height: '100%',
+                        clipPath: 'polygon(200px 0px, 0 100%, 100% 100%, 100% 0)',
+                        objectFit: 'cover',
+                    }}
                 ></img>
             </div>
         </div>

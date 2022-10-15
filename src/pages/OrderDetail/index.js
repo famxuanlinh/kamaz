@@ -1,32 +1,51 @@
 import { faCheck, faCircleCheck, faX } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Table } from 'reactstrap';
 import BreadcrumbProduct from '~/components/BreadcrumbProduct';
 import QuantityInput from '~/components/QuantityInput';
 import { useCart } from '~/contexts/Cart/CartContext';
 import formatCurrency from '~/until/formatCurrency';
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams, useParams } from 'react-router-dom';
 import { useLogin } from '~/contexts/Login/LoginContext';
-import { IMG_URL } from '~/constants/env';
+import { BASE_URL, IMG_URL } from '~/constants/env';
+import getUserDataFromLocalStorage from '~/until/getUserDataFromLocalStorage';
 
 const OrderDetail = () => {
-    const { orderInfo, handleCheckout } = useCart();
-    console.log('🚀 ~ file: index.js ~ line 16 ~ OrderDetail ~ orderInfo', orderInfo);
-    const { userInfo } = useLogin();
     const [searchParams] = useSearchParams();
+    const { id } = useParams();
     const isThankYou = searchParams.get('type');
+    const [order, setOrder] = useState(null);
+    const [products, setProducts] = useState([]);
+    //Dùng 2 state để map ra cho tiện ko dài dòng. Có thể dùng mỗi state oder
 
-    const totalOrder = orderInfo.attributes.products.reduce(
-        (prev, product) => prev + product.attributes.price * product.qty,
-        0,
-    );
+    const totalOrder = products?.reduce((prev, product) => prev + product.attributes.price * product.qty, 0);
 
-    // useEffect(() => {
-    //     handleCheckout();
-    // }, []);
+    const getOrder = (id) => {
+        const user = getUserDataFromLocalStorage();
+        if (!user?.id) return;
+        fetch(`${BASE_URL}/orders?filters[orderBy]=3&filters[code]=${id}`, {
+            headers: {
+                Authorization: `Bearer ${user?.jwt}`,
+                'Content-Type': 'application/json',
+            },
+        })
+            .then((res) => res.json())
+            .then((res) => {
+                const orderData = res?.data?.[0];
+                if (orderData) {
+                    setOrder(orderData?.attributes);
+                    setProducts(orderData.attributes?.products || []);
+                }
+            });
+    };
 
+    useEffect(() => {
+        getOrder(id);
+    }, []);
+
+    if (!order) return null;
     return (
         <div style={{ backgroundColor: '#f7f7f7' }}>
             <div className="container">
@@ -44,11 +63,10 @@ const OrderDetail = () => {
                                 </div>
                                 <div style={{ fontSize: '2rem' }}>CẢM ƠN VÌ BẠN ĐÃ MUA HÀNG</div>
                                 <div className="pt-3">
-                                    Mã đơn hàng:{' '}
-                                    <span className="text-primary fw-bold">{orderInfo.attributes.code}</span>
+                                    Mã đơn hàng: <span className="text-primary fw-bold">{order.code}</span>
                                 </div>
                                 <button className="btn btn-secondary">Coppy mã đơn hàng</button>
-                                <div className="py-4">Địa chỉ: {userInfo.address}</div>
+                                <div className="py-4">Địa chỉ: {order.address}</div>
                                 <div className="text-muted">
                                     Bạn hãy copy mã đơn hàng ở trên và gửi qua zalo để được giao hàng ngay.
                                 </div>
@@ -56,7 +74,7 @@ const OrderDetail = () => {
                             </div>
                         ) : null}
                         <h1 className="text-dark">Chi tiết đơn hàng</h1>
-                        <h4 className="text-dark">{new Date(orderInfo.attributes.createdAt).toLocaleDateString()}</h4>
+                        <h4 className="text-dark">{new Date(order.createdAt).toLocaleDateString()}</h4>
                         <Table size="sm">
                             <thead>
                                 <tr>
@@ -67,25 +85,30 @@ const OrderDetail = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {orderInfo.attributes.products?.map((product) => (
+                                {products?.map((product) => (
                                     <tr key={product.id}>
-                                        <td className="d-flex align-items-center">
-                                            <img
-                                                alt="Card image cap"
-                                                src={`${IMG_URL}${product.attributes.images?.data[0].attributes.formats.small.url}`}
-                                                style={{
-                                                    aspectRatio: '1 / 1',
-                                                    objectFit: 'cover',
-                                                    width: '60px',
-                                                    marginRight: '10px',
-                                                    marginBottom: '10px',
-                                                    marginTop: '10px',
-                                                }}
-                                            />
-                                            <div>
-                                                <div>{product.attributes.name}</div>
-                                                <div>sku: {product.attributes.sku}</div>
-                                            </div>
+                                        <td>
+                                            <Link
+                                                className="d-flex align-items-center"
+                                                to={`/san-pham/${product.attributes.slug}`}
+                                            >
+                                                <img
+                                                    alt="Card image cap"
+                                                    src={`${IMG_URL}${product.attributes.images?.data[0].attributes.formats.small.url}`}
+                                                    style={{
+                                                        aspectRatio: '1 / 1',
+                                                        objectFit: 'cover',
+                                                        width: '60px',
+                                                        marginRight: '10px',
+                                                        marginBottom: '10px',
+                                                        marginTop: '10px',
+                                                    }}
+                                                />
+                                                <div>
+                                                    <div>{product.attributes.name}</div>
+                                                    <div>sku: {product.attributes.sku}</div>
+                                                </div>
+                                            </Link>
                                         </td>
                                         <td>{formatCurrency(product.attributes.price)}</td>
                                         <td>{product.qty}</td>

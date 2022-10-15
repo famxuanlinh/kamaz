@@ -40,7 +40,7 @@ const ServiceMaintenance = ({ slug }) => {
                 </div>
                 <div className="text-secondary py-5" style={{ width: '50%' }}>
                     Bất kỳ chiếc xe nào muốn vận hành không gặp sự cố cũng cần được bảo trì thường xuyên
-                    <span className="d-xl-none d-xll-flex">
+                    <span className="d-xl-none d-xxl-flex">
                         , dịch vụ hướng tới mục đích duy trì khả năng vận hành của tất cả các bộ phận linh kiện trên xe.
                         Việc bảo dưỡng thường xuyên có vai trò vô cùng quan trọng đối với xe tải, vì đây ...
                     </span>
