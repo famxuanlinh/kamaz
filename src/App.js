@@ -1,5 +1,5 @@
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import { publicRoutes } from './routes';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { routes } from './routes';
 import { DefaultLayout } from './Layout';
 import { Fragment } from 'react';
 import { CartProvider } from './contexts/Cart/CartContext';
@@ -7,18 +7,9 @@ import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
 import { LoginProvider } from './contexts/Login/LoginContext';
 import { SearchProvider } from './contexts/SearchContext/SearchContext';
+import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
-    // const { userInfo } = useLogin();
-    // console.log('🚀 ~ file: App.js ~ line 13 ~ App ~ userInfo', userInfo);
-    // const PrivateRoute = ({ children }) => {
-    //     return userInfo ? children : <Navigate to="/dang-nhap" />;
-    // };
-
-    // const PublicRoute = ({ children }) => {
-    //     return userInfo ? <Navigate to="/" /> : children;
-    // };
-
     return (
         <Router>
             <SearchProvider>
@@ -26,7 +17,7 @@ function App() {
                     <CartProvider>
                         <div className="App">
                             <Routes>
-                                {publicRoutes.map((route, index) => {
+                                {routes.map((route, index) => {
                                     const Page = route.component;
                                     let Layout = DefaultLayout;
 
@@ -41,9 +32,11 @@ function App() {
                                             key={index}
                                             path={route.path}
                                             element={
-                                                <Layout>
-                                                    <Page />
-                                                </Layout>
+                                                <ProtectedRoute route={route}>
+                                                    <Layout>
+                                                        <Page />
+                                                    </Layout>
+                                                </ProtectedRoute>
                                             }
                                         />
                                     );

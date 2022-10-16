@@ -1,51 +1,6 @@
-<div style={{ backgroundColor: 'white' }}>
-                <div className="row g-4">
-                    <div className="col-lg">
-                        <div className="m-4">
-                            <div id="carouselExampleIndicators" className="carousel slide" data-bs-ride="carousel">
-                                <div className="carousel-inner mb-4 position-relative">
-                                    {fakeProducts.map((_item, index) => (
-                                        <div className="carousel-item active">
-                                            <img
-                                                src="https://picsum.photos/id/456/1200/400"
-                                                className="d-block w-100"
-                                                alt="..."
-                                                style={{
-                                                    aspectRatio: '1 / 1',
-                                                    objectFit: 'cover',
-                                                    borderRadius: '0.5rem',
-                                                }}
-                                            />
-                                        </div>
-                                    ))}
-                                </div>
-                                <div className="text-center ">
-                                    <div style={{ bottom: '1rem' }}>
-                                        <div className="d-flex justify-content-center align-items-center">
-                                            {fakeProducts.map((_item, index) => (
-                                                <img
-                                                    data-bs-target="#carouselExampleIndicators"
-                                                    data-bs-slide-to="0"
-                                                    className="active img-thumbnail mx-3"
-                                                    aria-current="true"
-                                                    aria-label="Slide 1"
-                                                    src="https://kamaztrade.com/sites/default/files/14._sklad_palletnogo_hraneniya_zch.jpg"
-                                                    alt=""
-                                                    style={{
-                                                        aspectRatio: '1 / 1',
-                                                        objectFit: 'cover',
-                                                        maxWidth: '6rem',
-                                                        borderRadius: '0.5rem',
-                                                        border: '1px solid #ddd',
-                                                    }}
-                                                />
-                                            ))}
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-lg"></div>
-                </div>
-            </div>
+//useSearchParam đùng để kiếm sau dấu ? (type) //useParam là để kiếm slug hoặc id
+
+<a href="abc.html" onMouseOver="this.style.color='#0F0'" onMouseOut="this.style.color='#00F'">
+    Text
+</a>;
+//how to use hover css inline

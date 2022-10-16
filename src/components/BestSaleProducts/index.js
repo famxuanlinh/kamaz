@@ -24,9 +24,11 @@ const BestSaleProducts = ({ slug }) => {
     return (
         <div>
             <div className="container">
-                <h2 className="title-products-home">
+                <h2 className="title-products-home" style={{ letterSpacing: '3px' }}>
                     <FontAwesomeIcon icon={faMinus} style={{ color: '#1f3f81', paddingRight: '0.5rem' }} /> SẢN PHẨM{' '}
-                    <span style={{ fontWeight: '600' }}>{category?.name}</span>
+                    <span className="text-primary" style={{ fontWeight: '700', textTransform: 'uppercase' }}>
+                        {category?.name}
+                    </span>
                 </h2>
                 <div className="col-12">
                     <div className="container">

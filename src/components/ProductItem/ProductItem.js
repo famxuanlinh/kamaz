@@ -8,7 +8,6 @@ import ProductQuickView from '../ProductQuickView';
 
 import React, { useState } from 'react';
 import { Modal, ModalHeader, ModalBody } from 'reactstrap';
-// import { BASE_URL } from '~/constants/env';
 import ProductsDetail from '../ProductsDetail';
 import { IMG_URL } from '~/constants/env';
 import { useCart } from '~/contexts/Cart/CartContext';
@@ -38,11 +37,20 @@ const ProductItem = ({ product, args }) => {
                         <CardBody>
                             <CardTitle
                                 tag="h4"
-                                style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}
+                                style={{
+                                    whiteSpace: 'nowrap',
+                                    overflow: 'hidden',
+                                    textOverflow: 'ellipsis',
+                                    textTransform: 'none',
+                                }}
                             >
                                 {product.attributes.name}
                             </CardTitle>
-                            <CardSubtitle className="mb-2 text-muted" tag="h5">
+                            <CardSubtitle
+                                className="mb-2 text-muted"
+                                tag="h5"
+                                style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}
+                            >
                                 <span className="me-4">{product.attributes.sku}</span>
                                 Nhóm:
                                 {product.attributes.categories?.data.map((item) => {

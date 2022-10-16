@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { Table } from 'reactstrap';
 import BreadcrumbProduct from '~/components/BreadcrumbProduct';
 import QuantityInput from '~/components/QuantityInput';
-import { BASE_URL } from '~/constants/env';
+import { BASE_URL, IMG_URL } from '~/constants/env';
 import { useCart } from '~/contexts/Cart/CartContext';
 import { useLogin } from '~/contexts/Login/LoginContext';
 import formatCurrency from '~/until/formatCurrency';
@@ -14,38 +14,9 @@ import { useNavigate } from 'react-router-dom';
 
 const Cart = () => {
     const { products, handleUpdateCart, totalMoneyCart, handleDeleteItemInCart, handleCheckout } = useCart();
-    // const [orderInfo, setOrderInfo] = useState([]);
-    // let history = useNavigate();
 
     const { userInfo } = useLogin();
 
-    // const handleCheckout = () => {
-    //     const code = uuidv4();
-    //     const payload = {
-    //         code,
-    //         orderBy: `${userInfo.id}`,
-    //         products: products,
-    //     };
-
-    //     fetch(`${BASE_URL}/orders?filters[orderBy]=${userInfo.id}`, {
-    //         method: 'POST',
-    //         headers: {
-    //             Authorization: `Bearer ${userInfo.jwt}`,
-    //             'Content-Type': 'application/json',
-    //         },
-    //         body: JSON.stringify({ data: payload }),
-    //     })
-    //         .then((res) => res.json())
-    //         .then((data) => {
-    //             // Thong bao don hang thanh cong
-
-    //             // xoa gio hang hien tai
-    //             if (data?.data?.id) {
-    //                 history(`/don-hang/${data?.data?.id}?type=thank`);
-    //             }
-    //             setOrderInfo(data?.data);
-    //         });
-    // };
     return (
         <div style={{ backgroundColor: '#f7f7f7' }}>
             <div className="container">
@@ -70,7 +41,7 @@ const Cart = () => {
                                             <td className="d-flex align-items-center">
                                                 <img
                                                     alt="Card image cap"
-                                                    src="https://picsum.photos/300/200"
+                                                    src={`${IMG_URL}${product.attributes.images?.data[0].attributes.formats.small.url}`}
                                                     style={{
                                                         aspectRatio: '1 / 1',
                                                         objectFit: 'cover',
@@ -119,51 +90,55 @@ const Cart = () => {
                         )}
                     </div>
                 </div>
-                <div className="pb-5 pt-4" style={{ backgroundColor: '#f7f7f7' }}>
-                    <div className="d-flex justify-content-end">
-                        <div className="p-4" style={{ width: '420px', backgroundColor: 'white' }}>
-                            <Table borderless>
-                                <tbody>
-                                    <tr>
-                                        <td>Thành Tiền</td>
-                                        <th className="text-end text-dark">{formatCurrency(totalMoneyCart)}</th>
-                                    </tr>
-                                    <tr>
-                                        <td>Giảm Giá</td>
-                                        <th className="text-end text-dark">{formatCurrency(0)}</th>
-                                    </tr>
-                                    <tr>
-                                        <th style={{ color: '#1f3f81', fontSize: '20px' }}>Tổng Tiền</th>
-                                        <th className="text-end text-dark">{formatCurrency(totalMoneyCart)}</th>
-                                    </tr>
-                                    <tr>
-                                        <th>
-                                            <Link to="/danh-muc/tat-ca-san-pham">
+                {products.length !== 0 ? (
+                    <div className="pb-5 pt-4" style={{ backgroundColor: '#f7f7f7' }}>
+                        <div className="d-flex justify-content-end">
+                            <div className="p-4" style={{ width: '420px', backgroundColor: 'white' }}>
+                                <Table borderless>
+                                    <tbody>
+                                        <tr>
+                                            <td>Thành Tiền</td>
+                                            <th className="text-end text-dark">{formatCurrency(totalMoneyCart)}</th>
+                                        </tr>
+                                        <tr>
+                                            <td>Giảm Giá</td>
+                                            <th className="text-end text-dark">{formatCurrency(0)}</th>
+                                        </tr>
+                                        <tr>
+                                            <th style={{ color: '#1f3f81', fontSize: '20px' }}>Tổng Tiền</th>
+                                            <th className="text-end text-dark">{formatCurrency(totalMoneyCart)}</th>
+                                        </tr>
+                                        <tr>
+                                            <th>
+                                                <Link to="/danh-muc/tat-ca-san-pham">
+                                                    <button
+                                                        className="btn btn-light btn-lg w-100"
+                                                        style={{ fontSize: '20px' }}
+                                                    >
+                                                        Cửa Hàng
+                                                    </button>
+                                                </Link>
+                                            </th>
+                                            <th className="text-end">
+                                                {/* <Link to="/don-hang"> */}
                                                 <button
-                                                    className="btn btn-light btn-lg w-100"
+                                                    className="btn btn-primary btn-lg w-100"
                                                     style={{ fontSize: '20px' }}
+                                                    onClick={handleCheckout}
                                                 >
-                                                    Cửa Hàng
+                                                    Mua Ngay
                                                 </button>
-                                            </Link>
-                                        </th>
-                                        <th className="text-end">
-                                            {/* <Link to="/don-hang"> */}
-                                            <button
-                                                className="btn btn-primary btn-lg w-100"
-                                                style={{ fontSize: '20px' }}
-                                                onClick={handleCheckout}
-                                            >
-                                                Mua Ngay
-                                            </button>
-                                            {/* </Link> */}
-                                        </th>
-                                    </tr>
-                                </tbody>
-                            </Table>
+                                                {/* </Link> */}
+                                            </th>
+                                        </tr>
+                                    </tbody>
+                                </Table>
+                            </div>
                         </div>
                     </div>
-                </div>
+                ) : (
+                    ''
+                )}
             </div>
         </div>
     );

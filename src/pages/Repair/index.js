@@ -1,5 +1,7 @@
+import { Markup } from 'interweave';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import HTMLParser from '~/components/HTMLParser';
 import { BASE_URL, IMG_URL } from '~/constants/env';
 
 const Repair = () => {
@@ -16,6 +18,7 @@ const Repair = () => {
     useEffect(() => {
         getRepair(slug);
     }, [slug]);
+
     return (
         <>
             {repair.map((item) => (
@@ -28,7 +31,7 @@ const Repair = () => {
                         />
                         {/* <div style={{ width: '100vw', height: '315px', backgroundColor: 'dark' }}></div> */}
                         <div
-                            className="text-center"
+                            className="text-center description"
                             style={{
                                 position: 'absolute',
                                 top: '50%',
@@ -43,7 +46,9 @@ const Repair = () => {
                             {item.attributes.name}
                         </div>
                     </div>
-                    <div className="container py-5">{item.attributes.description}</div>
+                    <div className="container py-5 ">
+                        <HTMLParser content={item.attributes.description} />
+                    </div>
                 </div>
             ))}
         </>

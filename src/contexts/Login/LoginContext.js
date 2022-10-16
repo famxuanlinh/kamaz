@@ -110,6 +110,7 @@ export const LoginProvider = ({ children }) => {
     const handleLogout = () => {
         setUserInfo(null);
         setDataToLocalStorage(null);
+        history('/');
     };
 
     //Lưu vào local storage

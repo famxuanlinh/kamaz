@@ -1,5 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { BASE_URL } from '~/constants/env';
 import ProductItem from '../ProductItem';
 
@@ -45,9 +46,11 @@ const ServiceMaintenance = ({ slug }) => {
                         Việc bảo dưỡng thường xuyên có vai trò vô cùng quan trọng đối với xe tải, vì đây ...
                     </span>
                 </div>
-                <button className="btn  btn-primary btn-lg px-5" style={{ fontSize: '2.4rem' }}>
-                    Chi tiết
-                </button>
+                <Link to="/sua-chua/bao-tri-bao-duong">
+                    <button className="btn  btn-primary btn-lg px-5" style={{ fontSize: '2.4rem' }}>
+                        Chi tiết
+                    </button>
+                </Link>
             </div>
         </div>
     );

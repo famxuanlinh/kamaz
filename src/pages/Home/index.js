@@ -13,7 +13,7 @@ const Home = () => {
             <div style={{ paddingBottom: '3rem' }}>
                 <NewProducts slug={'ban-chay'} />
             </div>
-            <div style={{ paddingBottom: '3rem' }}>
+            <div>
                 {' '}
                 <Services />
             </div>

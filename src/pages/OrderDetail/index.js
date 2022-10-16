@@ -25,7 +25,7 @@ const OrderDetail = () => {
     const getOrder = (id) => {
         const user = getUserDataFromLocalStorage();
         if (!user?.id) return;
-        fetch(`${BASE_URL}/orders?filters[orderBy]=3&filters[code]=${id}`, {
+        fetch(`${BASE_URL}/orders?filters[orderBy]=${user.id}&filters[code]=${id}&populate=deep,3`, {
             headers: {
                 Authorization: `Bearer ${user?.jwt}`,
                 'Content-Type': 'application/json',
@@ -33,7 +33,7 @@ const OrderDetail = () => {
         })
             .then((res) => res.json())
             .then((res) => {
-                const orderData = res?.data?.[0];
+                const orderData = res?.data[0];
                 if (orderData) {
                     setOrder(orderData?.attributes);
                     setProducts(orderData.attributes?.products || []);
@@ -77,7 +77,7 @@ const OrderDetail = () => {
                         <h4 className="text-dark">{new Date(order.createdAt).toLocaleDateString()}</h4>
                         <Table size="sm">
                             <thead>
-                                <tr>
+                                <tr className="text-center">
                                     <th>Sản phẩm</th>
                                     <th>Đơn giá</th>
                                     <th>Số Lượng</th>
@@ -110,9 +110,11 @@ const OrderDetail = () => {
                                                 </div>
                                             </Link>
                                         </td>
-                                        <td>{formatCurrency(product.attributes.price)}</td>
-                                        <td>{product.qty}</td>
-                                        <td>{formatCurrency(product.attributes.price * product.qty)}</td>
+                                        <td className="text-center">{formatCurrency(product.attributes.price)}</td>
+                                        <td className="text-center">{product.qty}</td>
+                                        <td className="text-center">
+                                            {formatCurrency(product.attributes.price * product.qty)}
+                                        </td>
                                     </tr>
                                 ))}
                             </tbody>

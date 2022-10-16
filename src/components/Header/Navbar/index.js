@@ -34,10 +34,10 @@ const Navbar = ({ direction, ...args }) => {
                     </div>
                     <div className="col d-flex flex-row-reverse">
                         <div className="d-flex align-items-center">
+                            <OffcanvasWishlist />
+                            <OffcanvasCart />
                             {userInfo ? (
                                 <div className="d-flex ps-4 ">
-                                    <OffcanvasWishlist />
-                                    <OffcanvasCart />
                                     <Dropdown isOpen={dropdownOpen} direction={direction}>
                                         <DropdownToggle
                                             caret

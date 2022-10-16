@@ -11,7 +11,7 @@ import QuantityInput from '../QuantityInput';
 import { BASE_URL, IMG_URL } from '~/constants/env';
 
 function ProductsDetail({ product, showMoreInfo }) {
-    const { handleAddToCart, handleCheckout } = useCart();
+    const { handleAddToCart, handleQuickCheckout } = useCart();
     const [qty, setQty] = useState(1);
 
     if (!product) return <div>Loading...</div>;
@@ -27,10 +27,7 @@ function ProductsDetail({ product, showMoreInfo }) {
                                     {product.attributes.images.data.map((img) => (
                                         <div className="carousel-item active " key={img.id}>
                                             <img
-                                                src={
-                                                    IMG_URL +
-                                                    product.attributes.images?.data[0].attributes.formats.medium.url
-                                                }
+                                                src={IMG_URL + img.attributes.formats.medium.url}
                                                 className="d-block w-100"
                                                 alt="..."
                                                 style={{
@@ -71,12 +68,16 @@ function ProductsDetail({ product, showMoreInfo }) {
                     </div>
                     <div className="col-lg ">
                         <div className="mx-4 mb-4">
-                            <h2
-                                style={{ fontSize: '30px', marginTop: '20px', fontWeight: '600' }}
-                                className="text-lowercase"
+                            <div
+                                style={{
+                                    fontSize: '30px',
+                                    marginTop: '20px',
+                                    fontWeight: '600',
+                                    textTransform: 'none',
+                                }}
                             >
                                 {product.attributes.name}
-                            </h2>
+                            </div>
                             <h2 style={{ fontSize: '18px', marginBottom: '20px' }}>
                                 {' '}
                                 Nhóm:
@@ -129,16 +130,16 @@ function ProductsDetail({ product, showMoreInfo }) {
                             <hr />
                             {showMoreInfo === true ? (
                                 <div>
-                                    <div>Lưu Ý: </div>
+                                    <div>Lưu ý: </div>
                                     <div>
-                                        - Để Biết Rõ Hơn Về Cách Thức Đặt Hàng Và Giao Hang Hãy Liên Hệ Ngay với Chúng
-                                        Tôi{' '}
+                                        - Để biết rõ hơn về cách thức đặt hàng và giao hang hãy liên hệ ngay với chúng
+                                        tôi{' '}
                                     </div>
                                     <div>
-                                        - Giá Trên Có Thể Thay Đổi Do Tình Hình Chiến Tranh Đang kéo Dài Ở Nga Và
-                                        Ukraina.{' '}
+                                        - Giá trên có thể thay đổi do tình hình chiến tranh đang kéo dài ở nga và
+                                        ukraina .{' '}
                                     </div>
-                                    <div>- Chúng Tôi Đã, Đang Và Chỉ Bán Phụ Tùng Chính Hãng Từ Nhà Máy, Nga.</div>
+                                    <div>- Chúng tôi đã, đang và chỉ bán phụ tùng chính hãng từ nhà máy, Nga.</div>
                                     <hr />
                                 </div>
                             ) : (
@@ -188,7 +189,7 @@ function ProductsDetail({ product, showMoreInfo }) {
                                     <button
                                         className="btn btn-primary py-2 px-md-5 w-100"
                                         style={{ fontSize: '2rem' }}
-                                        onClick={handleCheckout}
+                                        onClick={() => handleQuickCheckout(product, qty)}
                                     >
                                         Mua Ngay
                                     </button>

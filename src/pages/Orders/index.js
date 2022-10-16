@@ -13,9 +13,8 @@ import { useSearchParams } from 'react-router-dom';
 import getUserDataFromLocalStorage from '~/until/getUserDataFromLocalStorage';
 
 const Orders = () => {
-    const { userInfo } = useLogin();
     const isOrderDataLoaded = useRef(false);
-    console.log('🚀 ~ file: index.js ~ line 16 ~ Orders ~ userInfo', userInfo);
+    // console.log('🚀 ~ file: index.js ~ line 16 ~ Orders ~ userInfo', userInfo);
 
     const [ordersProducts, setOrdersProducts] = useState([]);
     // const [searchParams] = useSearchParams();

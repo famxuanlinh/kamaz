@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import formatCurrency from '~/until/formatCurrency';
 import QuantityInput from '../QuantityInput';
 import { useCart } from '~/contexts/Cart/CartContext';
+import { IMG_URL } from '~/constants/env';
 
 const ProductItemOffcanvas = (product) => {
     const { handleUpdateCart, handleDeleteItemInCart } = useCart();
@@ -17,7 +18,7 @@ const ProductItemOffcanvas = (product) => {
                         <CardImg
                             top
                             width="100%"
-                            src="https://picsum.photos/300/200"
+                            src={`${IMG_URL}${product.product.attributes.images?.data[0].attributes.formats.thumbnail.url}`}
                             alt="Card image cap"
                             style={{ aspectRatio: '1 / 1', objectFit: 'cover' }}
                         />

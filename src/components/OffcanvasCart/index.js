@@ -37,7 +37,7 @@ function OffcanvasCart() {
                 <OffcanvasHeader toggle={() => setIsOpen((prev) => !prev)} style={{ paddingBottom: '0' }}>
                     <strong style={{ fontSize: '1.8rem' }}>Giỏ Hàng</strong>
                 </OffcanvasHeader>
-                <OffcanvasBody style={{ paddingTop: '0', marginBottom: '230px' }}>
+                <OffcanvasBody style={{ paddingTop: '0', marginBottom: '240px' }}>
                     <Row>
                         <Col>
                             {products.length > 0 ? (
@@ -68,37 +68,45 @@ function OffcanvasCart() {
                     }}
                 >
                     {/* <hr style={{ width: '100%', margin: '20px 0' }} /> */}
-                    <div>
-                        <div className="total-price d-flex justify-content-between">
-                            <h3>Thành Tiền:</h3>
-                            <h3>{formatCurrency(totalMoneyCart)}</h3>
+                    {products.length !== 0 ? (
+                        <div>
+                            <div className="total-price d-flex justify-content-between">
+                                <h3>Thành Tiền:</h3>
+                                <h3>{formatCurrency(totalMoneyCart)}</h3>
+                            </div>
+                            <div className="total-price d-flex justify-content-between">
+                                <h3>Tiết kiệm:</h3>
+                                <h3>{formatCurrency(0)}</h3>
+                            </div>
+                            <div className="total-price d-flex justify-content-between">
+                                <h3>Tổng thanh toán:</h3>
+                                <h3>
+                                    <strong>{formatCurrency(totalMoneyCart)}</strong>
+                                </h3>
+                            </div>
                         </div>
-                        <div className="total-price d-flex justify-content-between">
-                            <h3>Tiết kiệm:</h3>
-                            <h3>{formatCurrency(0)}</h3>
-                        </div>
-                        <div className="total-price d-flex justify-content-between">
-                            <h3>Tổng thanh toán:</h3>
-                            <h3>
-                                <strong>{formatCurrency(totalMoneyCart)}</strong>
-                            </h3>
-                        </div>
-                    </div>
+                    ) : (
+                        ''
+                    )}
                     <Link to="/gio-hang">
                         <Button size="lg" color="light" style={{ fontSize: '2rem', width: '100%', margin: '20px 0' }}>
                             Xem Giỏ Hàng
                         </Button>
                     </Link>
-                    <Button
-                        size="lg"
-                        color="primary"
-                        href="#"
-                        tag="a"
-                        onClick={handleCheckout}
-                        style={{ fontSize: '2rem', width: '100%', marginBottom: '20px' }}
-                    >
-                        Thanh toán ngay
-                    </Button>
+                    {products.length !== 0 ? (
+                        <Button
+                            size="lg"
+                            color="primary"
+                            href="#"
+                            tag="a"
+                            onClick={handleCheckout}
+                            style={{ fontSize: '2rem', width: '100%', marginBottom: '20px' }}
+                        >
+                            Thanh toán ngay
+                        </Button>
+                    ) : (
+                        ''
+                    )}
                     <div style={{ fontSize: '12px' }}>Lưu ý: Số tiền trên chưa bao gồm phí ship.</div>
                 </div>
             </Offcanvas>

@@ -3,14 +3,13 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { v4 as uuidv4 } from 'uuid';
 import { BASE_URL } from '~/constants/env';
+import getUserDataFromLocalStorage from '~/until/getUserDataFromLocalStorage';
 import { useLogin } from '../Login/LoginContext';
 
 const CartContext = React.createContext();
 export const CartProvider = ({ children }) => {
     const [products, setProducts] = useState([]);
     const [orderInfo, setOrderInfo] = useState([]);
-    const { userInfo } = useLogin();
-    console.log('🚀 ~ file: CartContext.js ~ line 13 ~ CartProvider ~ userInfo', userInfo);
 
     let history = useNavigate();
 
@@ -60,18 +59,26 @@ export const CartProvider = ({ children }) => {
     };
 
     const handleCheckout = () => {
+        // const newProducts = [{ ...product, qty }];
+        const user = getUserDataFromLocalStorage();
+
+        if (!user) {
+            history('/dang-nhap');
+            return;
+        }
+
         const code = uuidv4();
         const payload = {
             code,
-            orderBy: `${userInfo.id}`,
+            orderBy: `${user.id}`,
             products: products,
-            address: `${userInfo.address}`,
+            address: `${user.address}`,
         };
 
-        fetch(`${BASE_URL}/orders?filters[orderBy]=${userInfo.id}`, {
+        fetch(`${BASE_URL}/orders?filters[orderBy]=${user.id}`, {
             method: 'POST',
             headers: {
-                Authorization: `Bearer ${userInfo.jwt}`,
+                Authorization: `Bearer ${user.jwt}`,
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({ data: payload }),
@@ -85,6 +92,41 @@ export const CartProvider = ({ children }) => {
                 toast.success('Đã Đặt Hàng Thành Công');
                 setProducts([]);
                 setDataToLocalStorage([]);
+            });
+    };
+
+    const handleQuickCheckout = (product, qty) => {
+        const newProducts = [{ ...product, qty }];
+        const user = getUserDataFromLocalStorage();
+
+        if (!user) {
+            history('/dang-nhap');
+            return;
+        }
+
+        const code = uuidv4();
+        const payload = {
+            code,
+            orderBy: `${user.id}`,
+            products: newProducts,
+            address: `${user.address}`,
+        };
+
+        fetch(`${BASE_URL}/orders?filters[orderBy]=${user.id}`, {
+            method: 'POST',
+            headers: {
+                Authorization: `Bearer ${user.jwt}`,
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ data: payload }),
+        })
+            .then((res) => res.json())
+            .then((data) => {
+                if (data?.data?.id) {
+                    history(`/don-hang/${data?.data?.attributes.code}?type=thank`);
+                }
+                setOrderInfo(data?.data);
+                toast.success('Đã Đặt Hàng Thành Công');
             });
     };
 
@@ -143,6 +185,7 @@ export const CartProvider = ({ children }) => {
                 handleDeleteItemInCart,
                 handleCheckout,
                 orderInfo,
+                handleQuickCheckout,
             }}
         >
             {' '}
