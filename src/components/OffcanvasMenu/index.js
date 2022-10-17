@@ -61,7 +61,7 @@ function OffcanvasMenu() {
                     style={{ paddingBottom: '0' }}
                 ></OffcanvasHeader>
                 <hr style={{ width: '100%', margin: '20px 0' }} />
-                <Search />
+                <Search show={false} />
                 <OffcanvasBody style={{ margin: '20px 0 0', fontSize: '1.4rem' }}>
                     <Accordion open={open} toggle={toggle}>
                         <div style={{ padding: '1rem 1.25rem' }}>

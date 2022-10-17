@@ -10,9 +10,9 @@ const MainLayout = ({ children }) => {
         <div>
             <Announcement />
             <Navbar />
-            <div className="d-md-block d-lg-none py-3" style={{ backgroundColor: '#fff' }}>
+            {/* <div className="d-md-block d-lg-none py-3" style={{ backgroundColor: '#fff' }}>
                 <Search />
-            </div>
+            </div> */}
             <Navbar2 />
             {children}
             <Footer />

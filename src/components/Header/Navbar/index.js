@@ -8,6 +8,7 @@ import OffcanvasWishlist from '~/components/OffcanvasWishlist';
 import OffcanvasCart from '~/components/OffcanvasCart';
 import OffcanvasMenu from '~/components/OffcanvasMenu';
 import { useLogin } from '~/contexts/Login/LoginContext';
+import Search1 from '~/components/Search1';
 
 const wrapper = {
     backgroundColor: 'white',
@@ -29,8 +30,8 @@ const Navbar = ({ direction, ...args }) => {
                             <img src="/logo.png" alt="kamaz" height="60" />
                         </Link>
                     </div>
-                    <div className="col-6 d-none d-lg-flex">
-                        <Search className="p-0 w-60" />
+                    <div className="col-6 d-none d-lg-flex" style={{ width: '465px' }}>
+                        <Search className="p-0" show={true} />
                     </div>
                     <div className="col d-flex flex-row-reverse">
                         <div className="d-flex align-items-center">
@@ -38,10 +39,15 @@ const Navbar = ({ direction, ...args }) => {
                             <OffcanvasCart />
                             {userInfo ? (
                                 <div className="d-flex ps-4 ">
-                                    <Dropdown isOpen={dropdownOpen} direction={direction}>
-                                        <DropdownToggle
+                                    <div className="dropdown1">
+                                        <button
                                             caret
-                                            size="lg"
+                                            className="btn btn-secondary dropdown-toggle"
+                                            type="button"
+                                            // id="dropdownMenuButton5"
+                                            // data-bs-toggle="dropdown"
+                                            aria-expanded="false"
+                                            // size="lg"
                                             style={{
                                                 backgroundColor: 'transparent',
                                                 color: 'black',
@@ -51,30 +57,31 @@ const Navbar = ({ direction, ...args }) => {
                                         >
                                             <FontAwesomeIcon icon={faUser} style={{ paddingRight: '8px' }} />{' '}
                                             {userInfo.username}
-                                        </DropdownToggle>
-                                        <DropdownMenu
+                                        </button>
+                                        <ul
                                             {...args}
-                                            end
-                                            className="dropdown-menu dropdown-menu-lg-end shadow-lg py-4"
+                                            // aria-labelledby="dropdownMenuButton5"
+                                            // end
+                                            className="dropdown-menu"
                                             style={{ fontSize: '1.8rem', zIndex: '9999', borderRadius: '0.5rem' }}
                                         >
                                             <div>
-                                                <DropdownItem>
+                                                <li className="dropdown-item">
                                                     <Link className="px-4" to="/quan-li-tai-khoan">
                                                         Quản lý tài khoản
                                                     </Link>
-                                                </DropdownItem>
-                                                <DropdownItem>
+                                                </li>
+                                                <li className="dropdown-item">
                                                     <Link className="px-4" to="/thay-doi-mat-khau">
                                                         Thay đổi mật khẩu
                                                     </Link>
-                                                </DropdownItem>
-                                                <DropdownItem>
+                                                </li>
+                                                <li className="dropdown-item">
                                                     <Link className="px-4" to="/don-hang">
                                                         Đơn hàng
                                                     </Link>
-                                                </DropdownItem>
-                                                <DropdownItem className="border-top">
+                                                </li>
+                                                <li className=" dropdown-item border-top">
                                                     <Button
                                                         className="px-4"
                                                         style={{
@@ -87,10 +94,10 @@ const Navbar = ({ direction, ...args }) => {
                                                     >
                                                         Đăng xuất
                                                     </Button>
-                                                </DropdownItem>
+                                                </li>
                                             </div>
-                                        </DropdownMenu>
-                                    </Dropdown>
+                                        </ul>
+                                    </div>
                                 </div>
                             ) : (
                                 <>
@@ -111,9 +118,6 @@ const Navbar = ({ direction, ...args }) => {
                             )}
                         </div>
                     </div>
-                    {/* <div className="d-md-block d-lg-none my-3">
-                        <Search className="p-0 w-60 " />
-                    </div> */}
                 </nav>
             </div>
         </div>

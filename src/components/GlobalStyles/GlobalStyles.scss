@@ -70,12 +70,29 @@ html *::-webkit-scrollbar-track {
 }
 
 //Dropdown
-.dropdown.category-dropdown-menu:hover .dropdown-menu {
+// .dropdown.category-dropdown-menu:hover .dropdown-menu {
+//     display: flex;
+//     margin-top: 0; // remove the gap so it doesn't close
+// }
+
+// .dropdown:hover .dropdown-menu {
+//     display: flex;
+//     margin-top: 0; // remove the gap so it doesn't close
+// }
+
+// .dropdown-menu {
+//     border-radius: 0.5rem;
+//     font-size: 2rem;
+//     margin-bottom: 10px;
+// }
+
+//Dropdown
+.dropdown1.category-dropdown-menu:hover .dropdown-menu {
     display: flex;
     margin-top: 0; // remove the gap so it doesn't close
 }
 
-.dropdown:hover .dropdown-menu {
+.dropdown1:hover .dropdown-menu {
     display: flex;
     margin-top: 0; // remove the gap so it doesn't close
 }

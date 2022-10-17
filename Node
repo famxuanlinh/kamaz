@@ -4,3 +4,124 @@
     Text
 </a>;
 //how to use hover css inline
+
+
+<Dropdown isOpen={dropdownOpen} toggle={toggle} style={{ width: '100%' }}>
+                <form
+                    className="d-flex border border-1 p-0 rounded "
+                    style={{ width: '100%' }}
+                    onSubmit={() => {
+                        handleSearch();
+                        handleHideResult(false);
+                    }}
+                >
+                    <input
+                        className="form-control me-2 p-3 border-0 w-100"
+                        placeholder="Hãy nhập tên hoặc mã phụ tùng"
+                        aria-label="Search"
+                        style={{ fontSize: '14px', border: 'none' }}
+                        onChange={(e) => handleTermChange(e.target.value)}
+                        onFocus={() => handleHideResult(true)}
+                        value={searchValue}
+                    />
+                    <Link to={`/tim-kiem?term=${searchValue}`} className="d-flex">
+                        <button
+                            className="btn border-0  rounded-end px-3 m-0"
+                            onMouseDown={(e) => {
+                                // Bỏ qua hành vi focus vào ô tìm kiếm khi nhấn submit
+                                e.preventDefault();
+                            }}
+                            style={{ borderLeft: '0' }}
+                            type="submit"
+                        >
+                            <FontAwesomeIcon icon={faSearch} style={{ fontSize: '24px' }} />
+                        </button>
+                    </Link>
+                </form>
+                <DropdownMenu {...args}>
+                    <div style={{ width: '100%' }}>
+                        <DropdownItem header style={{ width: '100%' }}>
+                            <span className="pt-5 pb-2 ps-3" style={{ fontSize: '2rem' }}>
+                                Sản phẩm
+                            </span>
+                            <hr style={{ marginTop: '5px' }} />
+                        </DropdownItem>
+                        {suggests.map((item) => (
+                            <Link style={{ width: '100%' }} to={`/san-pham/${item.attributes.slug}`} key={item.id}>
+                                <DropdownItem style={{ width: '100%' }}>
+                                    <div className="product-search d-flex py-2 ">
+                                        <div
+                                            style={{
+                                                height: '48px',
+                                                display: 'flex',
+                                                alignItems: 'center',
+                                                justifyContent: 'center',
+                                            }}
+                                        >
+                                            <img
+                                                src="https://picsum.photos/300/200"
+                                                alt=""
+                                                style={{
+                                                    aspectRatio: '1 / 1',
+                                                    objectFit: 'cover',
+                                                    height: '85%',
+                                                    borderRadius: '50%',
+                                                }}
+                                            />
+                                        </div>
+                                        <div style={{ marginLeft: '10px' }}>
+                                            <div style={{ fontSize: '18px' }}>{item.attributes.name}</div>
+
+                                            <div className="row  ">
+                                                <div className=" text-primary col" style={{ fontSize: '16px' }}>
+                                                    Mã: {item.attributes.sku}
+                                                </div>
+                                                <div className="col" style={{ fontSize: '14px' }}>
+                                                    Nhóm: {item.attributes.categories.data[0].attributes.name}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </DropdownItem>
+                            </Link>
+                        ))}
+                    </div>
+                </DropdownMenu>
+            </Dropdown>
+
+
+
+
+
+
+            <div className="d-flex">
+                <Dropdown isOpen={dropdownOpen} direction={direction}>
+                    <div className="d-flex align-items-center">
+                        Sửa chữa
+                        <FontAwesomeIcon
+                            icon={faCaretDown}
+                            style={{ paddingLeft: '10px', alignItems: 'center' }}
+                        />
+                    </div>
+                    <DropdownMenu
+                        {...args}
+                        style={{
+                            maxHeight: '70vh',
+                            // width: '602px',
+                            flexWrap: 'wrap',
+                            overflowWrap: 'break-word',
+                            // display: 'flex',
+                        }}
+                        // className="category-dropdown-menu"
+                    >
+                        {service.map((item) => (
+                            <Link to={`/sua-chua/${item.attributes.slug}`} key={item.id}>
+                                <DropdownItem style={{ width: '360px' }} className="text-capitalize">
+                                    <span className="text-primary">{item.attributes.group_number} </span>
+                                    {item.attributes.name}
+                                </DropdownItem>
+                            </Link>
+                        ))}
+                    </DropdownMenu>
+                </Dropdown>
+            </div>

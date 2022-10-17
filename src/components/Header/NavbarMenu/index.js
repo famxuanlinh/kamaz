@@ -28,7 +28,7 @@ const NavbarMenu = ({ direction, ...args }) => {
 
     const [dropdownOpen, setDropdownOpen] = useState(false);
 
-    // const toggle = () => setDropdownOpen((prevState) => !prevState);
+    const toggle = () => setDropdownOpen((prevState) => !prevState);
 
     const getCategory = () => {
         fetch(`${BASE_URL}/categories?filters[is_menu][$eq]=true`)
@@ -59,19 +59,26 @@ const NavbarMenu = ({ direction, ...args }) => {
                         <NavLink href="/">Trang chủ</NavLink>
                     </NavItem>
                     <div className="d-flex">
-                        <Dropdown isOpen={dropdownOpen} direction={direction}>
-                            <div className="d-flex align-items-center">
+                        <div className="dropdown1">
+                            <div
+                                className="d-flex align-items-center"
+                                // id="dropdownMenuButton2"
+                                // data-bs-toggle="dropdown"
+                                aria-expanded="false"
+                            >
                                 Sửa chữa
                                 <FontAwesomeIcon
                                     icon={faCaretDown}
                                     style={{ paddingLeft: '10px', alignItems: 'center' }}
                                 />
                             </div>
-                            <DropdownMenu
+                            <ul
+                                className="dropdown-menu"
+                                // aria-labelledby="dropdownMenuButton2"
                                 {...args}
                                 style={{
                                     maxHeight: '70vh',
-                                    // width: '602px',
+                                    width: '362px',
                                     flexWrap: 'wrap',
                                     overflowWrap: 'break-word',
                                     // display: 'flex',
@@ -80,26 +87,33 @@ const NavbarMenu = ({ direction, ...args }) => {
                             >
                                 {service.map((item) => (
                                     <Link to={`/sua-chua/${item.attributes.slug}`} key={item.id}>
-                                        <DropdownItem style={{ width: '360px' }} className="text-capitalize">
+                                        <li className="dropdown-item text-capitalize" style={{ width: '360px' }}>
                                             <span className="text-primary">{item.attributes.group_number} </span>
                                             {item.attributes.name}
-                                        </DropdownItem>
+                                        </li>
                                     </Link>
                                 ))}
-                            </DropdownMenu>
-                        </Dropdown>
+                            </ul>
+                        </div>
                     </div>
 
                     <div className="d-flex">
-                        <Dropdown isOpen={dropdownOpen} direction={direction}>
-                            <div className="d-flex align-items-center">
+                        <div className="dropdown1">
+                            <div
+                                className="d-flex align-items-center"
+                                // id="dropdownMenuButton3"
+                                // data-bs-toggle="dropdown"
+                                aria-expanded="false"
+                            >
                                 Phụ tùng KAMAZ
                                 <FontAwesomeIcon
                                     icon={faCaretDown}
                                     style={{ paddingLeft: '10px', alignItems: 'center' }}
                                 />
                             </div>
-                            <DropdownMenu
+                            <ul
+                                className="dropdown-menu"
+                                // aria-labelledby="dropdownMenuButton3"
                                 {...args}
                                 style={{
                                     maxHeight: '70vh',
@@ -111,30 +125,30 @@ const NavbarMenu = ({ direction, ...args }) => {
                                 // className="category-dropdown-menu"
                             >
                                 <Link to="/danh-muc/tat-ca-san-pham">
-                                    <DropdownItem
+                                    <li
+                                        className="dropdown-item text-capitalize"
                                         style={{
                                             width: '260px',
                                             color: '#1f3f81',
                                             fontSize: '1.8rem',
                                             fontWeight: '600',
                                         }}
-                                        className="text-capitalize"
                                     >
                                         Tất Cả Sản Phẩm
-                                    </DropdownItem>
+                                    </li>
                                 </Link>
                                 {postList.map((item) => (
                                     <Link to={`/danh-muc/${item.attributes.slug}`} key={item.id}>
-                                        <DropdownItem style={{ width: '260px' }} className="text-capitalize">
+                                        <li className="dropdown-item text-capitalize" style={{ width: '260px' }}>
                                             <span className="text-primary" style={{ fontWeight: '600' }}>
                                                 {item.attributes.group_number}{' '}
                                             </span>
                                             {item.attributes.name}
-                                        </DropdownItem>
+                                        </li>
                                     </Link>
                                 ))}
-                            </DropdownMenu>
-                        </Dropdown>
+                            </ul>
+                        </div>
                     </div>
 
                     <NavItem>
