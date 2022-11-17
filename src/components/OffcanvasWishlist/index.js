@@ -20,10 +20,14 @@ import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import formatCurrency from '~/until/formatCurrency';
 import ProductItemOffcanvas from '../ProductItemOffcanvas';
 import { useCart } from '~/contexts/Cart/CartContext';
+import { useWishlist } from '~/contexts/Wishlist/WishlistContext';
 
 function OffcanvasWishlist() {
+    const { products, totalQtyProducts } = useWishlist();
+    // console.log('🚀 ~ file: index.js ~ line 26 ~ OffcanvasWishlist ~ products', products);
+
     const [isOpen, setIsOpen] = useState(false);
-    const fakeApi = new Array(3).fill(0);
+    // const fakeApi = new Array(3).fill(0);
 
     return (
         <div className="position-relative">
@@ -36,7 +40,8 @@ function OffcanvasWishlist() {
                     style={{ fontSize: '10px' }}
                     className="position-absolute top-1 start-90 translate-middle badge rounded-pill bg-danger"
                 >
-                    99<span className="visually-hidden">unread messages</span>
+                    {totalQtyProducts > 0 ? totalQtyProducts : ''}
+                    {/* <span className="visually-hidden">unread messages</span> */}
                 </span>
             </Button>
             <Offcanvas
@@ -51,9 +56,10 @@ function OffcanvasWishlist() {
                 <OffcanvasBody style={{ paddingTop: '0', marginBottom: '80px' }}>
                     <Row>
                         <Col>
-                            {fakeApi.map((_product, index) => (
-                                <div key={index}>
-                                    <hr style={{ width: '100%', margin: '20px 0' }} />
+                            {products.map((product) => (
+                                <div key={product.id}>
+                                    <ProductItemOffcanvas product={product} />
+                                    {/* <hr style={{ width: '100%', margin: '20px 0' }} />
                                     <Card style={{ border: 'none' }}>
                                         <Row className="no-gutters">
                                             <Col md="4">
@@ -67,7 +73,7 @@ function OffcanvasWishlist() {
                                             </Col>
                                             <Col md="8">
                                                 <CardBody>
-                                                    <CardTitle>Tên sản phẩm</CardTitle>
+                                                    <CardTitle></CardTitle>
                                                     <CardSubtitle className="pb-2" style={{ fontSize: '1.4rem' }}>
                                                         Sku: 798354983459
                                                     </CardSubtitle>
@@ -97,7 +103,7 @@ function OffcanvasWishlist() {
                                                 </CardBody>
                                             </Col>
                                         </Row>
-                                    </Card>
+                                    </Card> */}
                                 </div>
                             ))}
                         </Col>

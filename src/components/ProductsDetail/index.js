@@ -9,9 +9,12 @@ import { Link, useParams } from 'react-router-dom';
 import { useCart } from '~/contexts/Cart/CartContext';
 import QuantityInput from '../QuantityInput';
 import { BASE_URL, IMG_URL } from '~/constants/env';
+import { useWishlist } from '~/contexts/Wishlist/WishlistContext';
 
 function ProductsDetail({ product, showMoreInfo }) {
     const { handleAddToCart, handleQuickCheckout } = useCart();
+    const { handleAddToWishlist } = useWishlist();
+
     const [qty, setQty] = useState(1);
 
     if (!product) return <div>Loading...</div>;
@@ -199,7 +202,7 @@ function ProductsDetail({ product, showMoreInfo }) {
                                 <button
                                     style={{ background: 'none', border: 'none' }}
                                     className="pb-md-2  pe-5"
-                                    // onClick={() => handleAddToWishlist(...product, qty)}
+                                    onClick={() => handleAddToWishlist(product, qty)}
                                 >
                                     <span>
                                         <FontAwesomeIcon

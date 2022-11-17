@@ -41,7 +41,7 @@ const Navbar = ({ direction, ...args }) => {
                                 <div className="d-flex ps-4 ">
                                     <div className="dropdown1">
                                         <button
-                                            caret
+                                            // caret
                                             className="btn btn-secondary dropdown-toggle"
                                             type="button"
                                             // id="dropdownMenuButton5"
@@ -56,7 +56,7 @@ const Navbar = ({ direction, ...args }) => {
                                             }}
                                         >
                                             <FontAwesomeIcon icon={faUser} style={{ paddingRight: '8px' }} />{' '}
-                                            {userInfo.username}
+                                            <span className="d-none d-md-inline-block">{userInfo.username}</span>
                                         </button>
                                         <ul
                                             {...args}

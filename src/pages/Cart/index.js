@@ -25,7 +25,7 @@ const Cart = () => {
                     <div style={{ padding: '30px' }}>
                         <h1 className="text-dark">Giỏ Hàng</h1>
                         {products.length > 0 ? (
-                            <Table size="sm">
+                            <Table size="sm" style={{ overflowX: 'auto', whiteSpace: 'nowrap' }}>
                                 <thead>
                                     <tr>
                                         <th>Sản Phẩm</th>
@@ -56,15 +56,19 @@ const Cart = () => {
                                                     <div>sku: {product.attributes.sku}</div>
                                                 </div>
                                             </td>
-                                            <td>{formatCurrency(product.attributes.price)}</td>
-                                            <td>
+                                            <td className="pt-5">
+                                                <span>{formatCurrency(product.attributes.price)}</span>
+                                            </td>
+                                            <td className="pt-4">
                                                 <QuantityInput
                                                     onChange={(newQty) => handleUpdateCart(product.id, newQty)}
                                                     defaultQty={product.qty}
                                                 />
                                             </td>
-                                            <td>{formatCurrency(product.attributes.price * product.qty)}</td>
-                                            <td>
+                                            <td className="pt-5">
+                                                {formatCurrency(product.attributes.price * product.qty)}
+                                            </td>
+                                            <td className="pt-5">
                                                 <button
                                                     className="btn"
                                                     onClick={() => handleDeleteItemInCart(product.id)}

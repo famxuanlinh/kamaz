@@ -1,16 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './NavbarMenu.css';
 import { Link } from 'react-router-dom';
-import {
-    Navbar,
-    NavItem,
-    NavLink,
-    UncontrolledDropdown,
-    DropdownToggle,
-    DropdownMenu,
-    DropdownItem,
-    Dropdown,
-} from 'reactstrap';
+import { Navbar, NavItem, NavLink } from 'reactstrap';
 
 import styled from 'styled-components';
 import { BASE_URL } from '~/constants/env';
@@ -25,6 +16,7 @@ const Wrapper = styled.div`
 const NavbarMenu = ({ direction, ...args }) => {
     const [postList, setpostList] = useState([]);
     const [service, setService] = useState([]);
+    const [service1, setService1] = useState([]);
 
     const [dropdownOpen, setDropdownOpen] = useState(false);
 
@@ -39,16 +31,24 @@ const NavbarMenu = ({ direction, ...args }) => {
     };
 
     const getRepair = () => {
-        fetch(`${BASE_URL}/repairs`)
+        fetch(`${BASE_URL}/repairs?filters[is_menu][$eq]=true`)
             .then((res) => res.json())
             .then((res) => {
                 setService(res.data);
+            });
+    };
+    const getRepair1 = () => {
+        fetch(`${BASE_URL}/repairs?filters[is_menu][$eq]=false`)
+            .then((res) => res.json())
+            .then((res) => {
+                setService1(res.data);
             });
     };
 
     useEffect(() => {
         getCategory();
         getRepair();
+        getRepair1();
     }, []);
 
     return (
@@ -88,7 +88,7 @@ const NavbarMenu = ({ direction, ...args }) => {
                                 {service.map((item) => (
                                     <Link to={`/sua-chua/${item.attributes.slug}`} key={item.id}>
                                         <li className="dropdown-item text-capitalize" style={{ width: '360px' }}>
-                                            <span className="text-primary">{item.attributes.group_number} </span>
+                                            {/* <span className="text-primary">{item.attributes.group_number} </span> */}
                                             {item.attributes.name}
                                         </li>
                                     </Link>
@@ -150,16 +150,11 @@ const NavbarMenu = ({ direction, ...args }) => {
                             </ul>
                         </div>
                     </div>
-
-                    <NavItem>
-                        <NavLink href="/components/">Về chúng tôi</NavLink>
-                    </NavItem>
-                    <NavItem>
-                        <NavLink href="/components/">Tuyển dụng</NavLink>
-                    </NavItem>
-                    <NavItem>
-                        <NavLink href="/components/">Thông tin liên hệ</NavLink>
-                    </NavItem>
+                    {service1.map((item) => (
+                        <div key={item.id}>
+                            <Link to={`/sua-chua/${item.attributes.slug}`}>{item.attributes.name}</Link>
+                        </div>
+                    ))}
                 </Navbar>
             </div>
         </Wrapper>

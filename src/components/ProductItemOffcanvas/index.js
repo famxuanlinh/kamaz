@@ -5,9 +5,16 @@ import formatCurrency from '~/until/formatCurrency';
 import QuantityInput from '../QuantityInput';
 import { useCart } from '~/contexts/Cart/CartContext';
 import { IMG_URL } from '~/constants/env';
+import { useWishlist } from '~/contexts/Wishlist/WishlistContext';
 
 const ProductItemOffcanvas = (product) => {
     const { handleUpdateCart, handleDeleteItemInCart } = useCart();
+    const { handleDeleteItemInWishlist } = useWishlist();
+
+    const handleDeleteItem = (id) => {
+        handleDeleteItemInCart(id);
+        handleDeleteItemInWishlist(id);
+    };
 
     return (
         <div>
@@ -47,7 +54,7 @@ const ProductItemOffcanvas = (product) => {
                             </CardText>
 
                             <CloseButton
-                                onClick={() => handleDeleteItemInCart(product.product.id)}
+                                onClick={() => handleDeleteItem(product.product.id)}
                                 style={{
                                     position: 'absolute',
                                     top: '10px',

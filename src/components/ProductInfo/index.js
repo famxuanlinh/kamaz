@@ -40,10 +40,10 @@ function ProductInfo() {
                     <Table borderless>
                         <tbody>
                             <tr>
-                                <th scope="row" className="col-2">
+                                <th scope="row" className="col-4">
                                     Cân Nặng, g
                                 </th>
-                                <td className="col-10">
+                                <td className="col-8">
                                     {product.attributes.weight != null ? product.attributes.weight : '-'}
                                 </td>
                             </tr>

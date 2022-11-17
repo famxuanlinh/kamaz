@@ -67,6 +67,12 @@ export const CartProvider = ({ children }) => {
             return;
         }
 
+        if (!user.zalo || !user.address) {
+            toast.warning('Vui lòng cập nhật địa chỉ và số zalo trước khi mua hàng');
+            history('/quan-li-tai-khoan');
+            return;
+        }
+
         const code = uuidv4();
         const payload = {
             code,
@@ -101,6 +107,12 @@ export const CartProvider = ({ children }) => {
 
         if (!user) {
             history('/dang-nhap');
+            return;
+        }
+
+        if (!user.zalo || !user.address) {
+            toast.warning('Vui lòng cập nhật địa chỉ và số zalo trước khi mua hàng');
+            history('/quan-li-tai-khoan');
             return;
         }
 

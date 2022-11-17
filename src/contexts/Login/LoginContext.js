@@ -35,7 +35,6 @@ export const LoginProvider = ({ children }) => {
     }
 
     async function handleRegister(payload2) {
-        // console.log(payload2);
         fetch(`${BASE_URL}/auth/local/register`, {
             method: 'POST',
             credentials: 'same-origin',
@@ -59,7 +58,6 @@ export const LoginProvider = ({ children }) => {
     }
 
     const handleUpdateCustomer = (payload1) => {
-        console.log(payload1);
         fetch(`${BASE_URL}/users/me`, {
             method: 'PUT',
             headers: {
@@ -85,7 +83,6 @@ export const LoginProvider = ({ children }) => {
     };
 
     const handleUpdatePassword = (payload2) => {
-        console.log(payload2);
         fetch(`${BASE_URL}/auth/change-password`, {
             method: 'POST',
             headers: {

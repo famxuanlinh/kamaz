@@ -1,6 +1,7 @@
 import { Markup } from 'interweave';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import ContactMap from '~/components/ContactMap';
 import HTMLParser from '~/components/HTMLParser';
 import { BASE_URL, IMG_URL } from '~/constants/env';
 
@@ -29,21 +30,23 @@ const Repair = () => {
                             alt="repair"
                             style={{ width: '100vw', height: '315px', objectFit: 'cover' }}
                         />
-                        {/* <div style={{ width: '100vw', height: '315px', backgroundColor: 'dark' }}></div> */}
                         <div
                             className="text-center description"
                             style={{
                                 position: 'absolute',
                                 top: '50%',
-                                left: '35%',
+                                left: '0',
                                 fontSize: '5rem',
                                 fontWeight: '600',
                                 lineHeight: 'initial',
                                 letterSpacing: '3px',
                                 color: 'white',
+                                width: '100vw',
                             }}
                         >
-                            {item.attributes.name}
+                            <span className="d-flex justify-content-center align-items-center">
+                                {item.attributes.name}
+                            </span>
                         </div>
                     </div>
                     <div className="container py-5 ">
@@ -51,6 +54,8 @@ const Repair = () => {
                     </div>
                 </div>
             ))}
+
+            {slug === 'lien-he' ? <ContactMap /> : ''}
         </>
     );
 };

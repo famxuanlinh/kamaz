@@ -30,17 +30,35 @@ function OffcanvasMenu() {
     };
 
     const [postList, setpostList] = useState([]);
+    const [service, setService] = useState([]);
+    const [service1, setService1] = useState([]);
 
     const getCategory = () => {
-        fetch(`${BASE_URL}/categories`)
+        fetch(`${BASE_URL}/categories?filters[is_menu][$eq]=true`)
             .then((res) => res.json())
             .then((res) => {
                 setpostList(res.data);
             });
     };
+    const getRepair = () => {
+        fetch(`${BASE_URL}/repairs?filters[is_menu][$eq]=true`)
+            .then((res) => res.json())
+            .then((res) => {
+                setService(res.data);
+            });
+    };
+    const getRepair1 = () => {
+        fetch(`${BASE_URL}/repairs?filters[is_menu][$eq]=false`)
+            .then((res) => res.json())
+            .then((res) => {
+                setService1(res.data);
+            });
+    };
 
     useEffect(() => {
         getCategory();
+        getRepair();
+        getRepair1();
     }, []);
     return (
         <div className="d-block d-lg-none">
@@ -67,32 +85,35 @@ function OffcanvasMenu() {
                         <div style={{ padding: '1rem 1.25rem' }}>
                             <Link to="/">TRANG CHỦ</Link>
                         </div>
-                        {/* <AccordionItem style={{ border: 'none' }}>
-                            <AccordionHeader targetId="1">TRANG CHỦ</AccordionHeader>
-                        </AccordionItem> */}
+
                         <AccordionItem style={{ border: 'none' }}>
                             <AccordionHeader targetId="2">SỬA CHỮA</AccordionHeader>
                             <AccordionBody accordionId="2">
-                                <div className="accordionItemRemote">
-                                    <Link to="/">Chuẩn đoán</Link>
-                                </div>
-                                <div className="accordionItemRemote">
-                                    <Link to="/">Bảo Trì Kỹ Thuật</Link>
-                                </div>
-                                <div className="accordionItemRemote">
-                                    <Link to="/">Đồng Sơn Lại xe</Link>
-                                </div>
-                                <div className="accordionItemRemote">
-                                    <Link to="/">Bảo Hành Xe</Link>
-                                </div>
+                                {service.map((item) => (
+                                    <div className="accordionItemRemote" key={item.id}>
+                                        <Link to={`/sua-chua/${item.attributes.slug}`}>{item.attributes.name}</Link>
+                                    </div>
+                                ))}
                             </AccordionBody>
                         </AccordionItem>
                         <AccordionItem style={{ border: 'none' }}>
                             <AccordionHeader targetId="3">PHỤ TÙNG KAMAZ</AccordionHeader>
                             <AccordionBody accordionId="3">
+                                <div className="accordionItemRemote text-capitalize">
+                                    <Link
+                                        to="/danh-muc/tat-ca-san-pham"
+                                        style={{
+                                            color: '#1f3f81',
+                                            fontSize: '1.6rem',
+                                            fontWeight: '600',
+                                        }}
+                                    >
+                                        Tất Cả Sản Phẩm
+                                    </Link>
+                                </div>
                                 {postList.map((item) => (
                                     <div className="accordionItemRemote text-capitalize" key={item.id}>
-                                        <Link to="/">
+                                        <Link to={`/danh-muc/${item.attributes.slug}`}>
                                             <span className="text-primary" style={{ fontWeight: '600' }}>
                                                 {item.attributes.group_number}{' '}
                                             </span>
@@ -102,15 +123,11 @@ function OffcanvasMenu() {
                                 ))}
                             </AccordionBody>
                         </AccordionItem>
-                        <div style={{ padding: '1rem 1.25rem' }}>
-                            <Link to="/">THÔNG TIN VỀ CÔNG TY</Link>
-                        </div>
-                        <div style={{ padding: '1rem 1.25rem' }}>
-                            <Link to="/">TUYỂN DỤNG</Link>
-                        </div>
-                        <div style={{ padding: '1rem 1.25rem' }}>
-                            <Link to="/">THÔNG TIN LIÊN HỆ</Link>
-                        </div>
+                        {service1.map((item) => (
+                            <div style={{ padding: '1rem 1.25rem' }} key={item.id}>
+                                <Link to={`/sua-chua/${item.attributes.slug}`}>{item.attributes.name}</Link>
+                            </div>
+                        ))}
                     </Accordion>
                 </OffcanvasBody>
             </Offcanvas>

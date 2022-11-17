@@ -32,7 +32,6 @@ const FormRegister = () => {
             [name]: value,
         }));
     };
-    // console.log(userInfo);
     return (
         <div className="container text-center">
             <BreadcrumbProduct />
@@ -47,7 +46,7 @@ const FormRegister = () => {
                             borderRadius: '0.5rem',
                             margin: '10rem 0',
                         }}
-                        onSubmit={handleSubmit}
+                        // onSubmit={handleSubmit}
                     >
                         <div className="pb-4">
                             <div
@@ -114,6 +113,7 @@ const FormRegister = () => {
                             className="btn btn-primary mt-5"
                             style={{ width: '100%', fontSize: '1.6rem' }}
                             type="submit"
+                            onClick={handleSubmit}
                         >
                             Đăng Ký
                         </button>
