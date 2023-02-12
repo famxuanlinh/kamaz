@@ -11,14 +11,17 @@ import {
 
 import React, { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faUser } from '@fortawesome/free-solid-svg-icons';
 import '../OffcanvasMenu/OffcanvasMenu.css';
 import Search from '../Search';
 import { Link } from 'react-router-dom';
 import { BASE_URL } from '~/constants/env';
+import { useLogin } from '~/contexts/Login/LoginContext';
 
 function OffcanvasMenu() {
     const [isOpen, setIsOpen] = useState(false);
+
+    const { userInfo, handleLogout } = useLogin();
 
     const [open, setOpen] = useState('1');
     const toggle = (id) => {
@@ -90,7 +93,7 @@ function OffcanvasMenu() {
                             <AccordionHeader targetId="2">SỬA CHỮA</AccordionHeader>
                             <AccordionBody accordionId="2">
                                 {service.map((item) => (
-                                    <div className="accordionItemRemote" key={item.id}>
+                                    <div className="accordionItemRemote" onClick={() => setIsOpen(false)} key={item.id}>
                                         <Link to={`/sua-chua/${item.attributes.slug}`}>{item.attributes.name}</Link>
                                     </div>
                                 ))}
@@ -99,7 +102,7 @@ function OffcanvasMenu() {
                         <AccordionItem style={{ border: 'none' }}>
                             <AccordionHeader targetId="3">PHỤ TÙNG KAMAZ</AccordionHeader>
                             <AccordionBody accordionId="3">
-                                <div className="accordionItemRemote text-capitalize">
+                                <div onClick={() => setIsOpen(false)} className="accordionItemRemote text-capitalize">
                                     <Link
                                         to="/danh-muc/tat-ca-san-pham"
                                         style={{
@@ -112,7 +115,11 @@ function OffcanvasMenu() {
                                     </Link>
                                 </div>
                                 {postList.map((item) => (
-                                    <div className="accordionItemRemote text-capitalize" key={item.id}>
+                                    <div
+                                        onClick={() => setIsOpen(false)}
+                                        className="accordionItemRemote text-capitalize"
+                                        key={item.id}
+                                    >
                                         <Link to={`/danh-muc/${item.attributes.slug}`}>
                                             <span className="text-primary" style={{ fontWeight: '600' }}>
                                                 {item.attributes.group_number}{' '}
@@ -124,10 +131,52 @@ function OffcanvasMenu() {
                             </AccordionBody>
                         </AccordionItem>
                         {service1.map((item) => (
-                            <div style={{ padding: '1rem 1.25rem' }} key={item.id}>
+                            <div className="text-uppercase" style={{ padding: '1rem 1.25rem' }} key={item.id}>
                                 <Link to={`/sua-chua/${item.attributes.slug}`}>{item.attributes.name}</Link>
                             </div>
                         ))}
+                        <AccordionItem style={{ border: 'none' }}>
+                            <AccordionHeader targetId="4">
+                                <FontAwesomeIcon icon={faUser} style={{ paddingRight: '8px' }} />{' '}
+                                <span className="text-uppercase">{userInfo?.username}</span>
+                            </AccordionHeader>
+                            <AccordionBody accordionId="4">
+                                <div className="p-0 d-block lh-lg">
+                                    <div>
+                                        <Link className="px-4 text-capitalize" to="/quan-li-tai-khoan">
+                                            Quản lý tài khoản
+                                        </Link>
+                                    </div>
+
+                                    <div>
+                                        <Link className="px-4 text-capitalize" to="/thay-doi-mat-khau">
+                                            Thay đổi mật khẩu
+                                        </Link>
+                                    </div>
+
+                                    <div>
+                                        <Link className="px-4 text-capitalize" to="/don-hang">
+                                            Đơn hàng
+                                        </Link>
+                                    </div>
+
+                                    {/* <div> */}
+                                    <Button
+                                        className="px-4 text-capitalize"
+                                        style={{
+                                            color: 'red',
+                                            border: 'none',
+                                            backgroundColor: 'transparent',
+                                            fontSize: '1.8rem',
+                                        }}
+                                        onClick={handleLogout}
+                                    >
+                                        Đăng xuất
+                                    </Button>
+                                    {/* </div> */}
+                                </div>
+                            </AccordionBody>
+                        </AccordionItem>
                     </Accordion>
                 </OffcanvasBody>
             </Offcanvas>

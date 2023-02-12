@@ -21,7 +21,7 @@ const ProductItemOffcanvas = (product) => {
             <hr style={{ width: '100%', margin: '20px 0' }} />
             <Card style={{ border: 'none' }}>
                 <Row className="no-gutters">
-                    <Col md="4">
+                    <Col xs="4">
                         <CardImg
                             top
                             width="100%"
@@ -30,7 +30,7 @@ const ProductItemOffcanvas = (product) => {
                             style={{ aspectRatio: '1 / 1', objectFit: 'cover' }}
                         />
                     </Col>
-                    <Col md="8">
+                    <Col xs="8">
                         <CardBody>
                             <CardTitle>{product.product.attributes.name}</CardTitle>
                             <CardSubtitle className="pb-2" style={{ fontSize: '1.4rem' }}>

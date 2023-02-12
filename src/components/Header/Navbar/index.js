@@ -38,7 +38,7 @@ const Navbar = ({ direction, ...args }) => {
                             <OffcanvasWishlist />
                             <OffcanvasCart />
                             {userInfo ? (
-                                <div className="d-flex ps-4 ">
+                                <div className="d-none d-sm-flex ps-4 ">
                                     <div className="dropdown1">
                                         <button
                                             // caret
@@ -58,14 +58,14 @@ const Navbar = ({ direction, ...args }) => {
                                             <FontAwesomeIcon icon={faUser} style={{ paddingRight: '8px' }} />{' '}
                                             <span className="d-none d-md-inline-block">{userInfo.username}</span>
                                         </button>
-                                        <ul
+                                        <div
                                             {...args}
                                             // aria-labelledby="dropdownMenuButton5"
                                             // end
-                                            className="dropdown-menu"
+                                            className="dropdown-menu "
                                             style={{ fontSize: '1.8rem', zIndex: '9999', borderRadius: '0.5rem' }}
                                         >
-                                            <div>
+                                            <ul className="p-0">
                                                 <li className="dropdown-item">
                                                     <Link className="px-4" to="/quan-li-tai-khoan">
                                                         Quản lý tài khoản
@@ -95,8 +95,8 @@ const Navbar = ({ direction, ...args }) => {
                                                         Đăng xuất
                                                     </Button>
                                                 </li>
-                                            </div>
-                                        </ul>
+                                            </ul>
+                                        </div>
                                     </div>
                                 </div>
                             ) : (
