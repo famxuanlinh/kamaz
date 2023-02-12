@@ -58,6 +58,11 @@ function OffcanvasMenu() {
             });
     };
 
+    const handleLogoutOffCanvas = () => {
+        handleLogout();
+        setIsOpen(false);
+    };
+
     useEffect(() => {
         getCategory();
         getRepair();
@@ -135,48 +140,50 @@ function OffcanvasMenu() {
                                 <Link to={`/sua-chua/${item.attributes.slug}`}>{item.attributes.name}</Link>
                             </div>
                         ))}
-                        <AccordionItem style={{ border: 'none' }}>
-                            <AccordionHeader targetId="4">
-                                <FontAwesomeIcon icon={faUser} style={{ paddingRight: '8px' }} />{' '}
-                                <span className="text-uppercase">{userInfo?.username}</span>
-                            </AccordionHeader>
-                            <AccordionBody accordionId="4">
-                                <div className="p-0 d-block lh-lg">
-                                    <div>
-                                        <Link className="px-4 text-capitalize" to="/quan-li-tai-khoan">
-                                            Quản lý tài khoản
-                                        </Link>
-                                    </div>
+                        {userInfo && (
+                            <AccordionItem style={{ border: 'none' }}>
+                                <AccordionHeader targetId="4">
+                                    <FontAwesomeIcon icon={faUser} style={{ paddingRight: '8px' }} />{' '}
+                                    <span className="text-uppercase">{userInfo?.username}</span>
+                                </AccordionHeader>
+                                <AccordionBody accordionId="4">
+                                    <div className="p-0 d-block lh-lg">
+                                        <div onClick={() => setIsOpen(false)}>
+                                            <Link className="px-4 text-capitalize" to="/quan-li-tai-khoan">
+                                                Quản lý tài khoản
+                                            </Link>
+                                        </div>
 
-                                    <div>
-                                        <Link className="px-4 text-capitalize" to="/thay-doi-mat-khau">
-                                            Thay đổi mật khẩu
-                                        </Link>
-                                    </div>
+                                        <div onClick={() => setIsOpen(false)}>
+                                            <Link className="px-4 text-capitalize" to="/thay-doi-mat-khau">
+                                                Thay đổi mật khẩu
+                                            </Link>
+                                        </div>
 
-                                    <div>
-                                        <Link className="px-4 text-capitalize" to="/don-hang">
-                                            Đơn hàng
-                                        </Link>
-                                    </div>
+                                        <div onClick={() => setIsOpen(false)}>
+                                            <Link className="px-4 text-capitalize" to="/don-hang">
+                                                Đơn hàng
+                                            </Link>
+                                        </div>
 
-                                    {/* <div> */}
-                                    <Button
-                                        className="px-4 text-capitalize"
-                                        style={{
-                                            color: 'red',
-                                            border: 'none',
-                                            backgroundColor: 'transparent',
-                                            fontSize: '1.8rem',
-                                        }}
-                                        onClick={handleLogout}
-                                    >
-                                        Đăng xuất
-                                    </Button>
-                                    {/* </div> */}
-                                </div>
-                            </AccordionBody>
-                        </AccordionItem>
+                                        {/* <div> */}
+                                        <Button
+                                            className="px-4 text-capitalize"
+                                            style={{
+                                                color: 'red',
+                                                border: 'none',
+                                                backgroundColor: 'transparent',
+                                                fontSize: '1.8rem',
+                                            }}
+                                            onClick={handleLogoutOffCanvas}
+                                        >
+                                            Đăng xuất
+                                        </Button>
+                                        {/* </div> */}
+                                    </div>
+                                </AccordionBody>
+                            </AccordionItem>
+                        )}
                     </Accordion>
                 </OffcanvasBody>
             </Offcanvas>

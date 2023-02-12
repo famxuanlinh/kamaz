@@ -56,7 +56,7 @@ const Navbar = ({ direction, ...args }) => {
                                             }}
                                         >
                                             <FontAwesomeIcon icon={faUser} style={{ paddingRight: '8px' }} />{' '}
-                                            <span className="d-none d-md-inline-block">{userInfo.username}</span>
+                                            <span>{userInfo.username}</span>
                                         </button>
                                         <div
                                             {...args}

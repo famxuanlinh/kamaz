@@ -37,9 +37,9 @@ const FormRegister = () => {
             <BreadcrumbProduct />
             <div style={{ background: 'white' }}>
                 <div className="row align-items-center">
-                    <div className="col"></div>
+                    <div className="col-0 col-lg-3"></div>
                     <Form
-                        className="col align-items-center justify-content-center shadow w-100"
+                        className="col align-items-center justify-content-center shadow me-5 ms-5  "
                         style={{
                             backgroundColor: 'white',
                             padding: '6rem 3.2rem',
@@ -118,7 +118,7 @@ const FormRegister = () => {
                             Đăng Ký
                         </button>
                     </Form>
-                    <div className="col"></div>
+                    <div className="col-0 col-lg-3"></div>
                 </div>
             </div>
         </div>
