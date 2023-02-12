@@ -1,9 +1,6 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useEffect, useState } from 'react';
 import { BASE_URL } from '~/constants/env';
-import ProductItem from '../ProductItem';
-import { Accordion, AccordionBody, AccordionHeader, AccordionItem } from 'reactstrap';
-import { Link, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const Services = () => {
     const [service, setService] = useState([]);
@@ -21,7 +18,7 @@ const Services = () => {
     }, []);
 
     return (
-        <div className="row d-flex justify-content-center align-items-center">
+        <div className="row d-flex justify-content-center align-items-center g-0">
             <div className="col-xl-5 ps-5 ">
                 <div className="row text-center ">
                     <div className="col-0 col-xl-3 col-xxl-4 "></div>

@@ -3,7 +3,7 @@ import { Carousel, CarouselItem, CarouselControl, CarouselIndicators, CarouselCa
 
 const items = [
     {
-        src: '/slide1.jpg',
+        src: '/slide1.jpeg',
         altText: 'Sửa chữa tất cả các loại xe tải',
         caption: 'Slide 1',
         key: 1,
@@ -15,7 +15,7 @@ const items = [
         key: 2,
     },
     {
-        src: '/slide3.png',
+        src: '/slide3.jpeg',
         altText: 'Phụ Tùng Chính Hãng',
         caption: 'Slide 3',
         key: 3,
