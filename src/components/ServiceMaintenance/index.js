@@ -24,7 +24,7 @@ const ServiceMaintenance = ({ slug }) => {
     return (
         <div className="row d-flex justify-content-center align-items-center g-0" style={{ maxHeight: '550px' }}>
             <div className="d-none d-xl-flex col">
-                <img src="/service1.jpg" alt="service 1" style={{ width: '100%' }}></img>
+                <img src="/service1.jpeg" alt="service 1" style={{ width: '100%' }}></img>
             </div>
             <div className="col ps-5 " style={{ position: 'relative' }}>
                 <img

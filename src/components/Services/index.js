@@ -44,7 +44,7 @@ const Services = () => {
             </div>
             <div className="d-none d-xl-flex col-xl-7 " style={{ height: '550px' }}>
                 <img
-                    src="/service1.jpg"
+                    src="/service3.JPG"
                     alt="service 1"
                     style={{
                         width: '100%',
