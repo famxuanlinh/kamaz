@@ -30,7 +30,7 @@ const ServiceMaintenance = ({ slug }) => {
                 <img
                     src="/service2.png"
                     alt="service 2"
-                    style={{ position: 'absolute', width: '66%', bottom: '-10rem', right: '-15rem' }}
+                    style={{ position: 'absolute', width: '52%', bottom: '-8rem', right: '0' }}
                 />
                 <div className="text-primary mb-4" style={{ letterSpacing: '3px', fontWeight: '600' }}>
                     {' '}

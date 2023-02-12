@@ -23,7 +23,7 @@ const Services = () => {
     return (
         <div className="row d-flex justify-content-center align-items-center">
             <div className="col-xl-5 ps-5 ">
-                <div className="row text-center text-xl-start">
+                <div className="row text-center ">
                     <div className="col-0 col-xl-3 col-xxl-4 "></div>
                     <div className="col-12 col-xl-9 col-xxl-8  ">
                         <div className="text-primary mb-4" style={{ letterSpacing: '3px', fontWeight: '600' }}>
